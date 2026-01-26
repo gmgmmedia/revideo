@@ -1,0 +1,11 @@
+{
+  "name": "revideo-workspace",
+  "private": true,
+  "workspaces": ["projects/*"],
+  "scripts": {
+    "raiku:start": "npm run start -w projects/raiku",
+    "raiku:render": "npm run render -w projects/raiku",
+    "realmotion:start": "npm run start -w projects/realmotion",
+    "realmotion:render": "npm run render -w projects/realmotion"
+  }
+}
