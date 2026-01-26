@@ -1,0 +1,1167 @@
+{
+  "project": "Solana Boxes Explainer",
+  "total_duration": 40,
+  "frame_rate": 30,
+  "sounds": [
+    {
+      "id": "scene1_001",
+      "scene": 1,
+      "timestamp": 0.0,
+      "name": "BG Glow Init",
+      "prompt": "soft ambient hum fading in, gentle electronic warmth, very quiet",
+      "duration": 2.0
+    },
+    {
+      "id": "scene1_002",
+      "scene": 1,
+      "timestamp": 0.1,
+      "name": "Hero Cube Appears",
+      "prompt": "gentle metallic whoosh with soft spring bounce, subtle reverb tail",
+      "duration": 1.0
+    },
+    {
+      "id": "scene1_003",
+      "scene": 1,
+      "timestamp": 0.27,
+      "name": "Shadow Settles",
+      "prompt": "quiet low thud, soft landing on surface, minimal",
+      "duration": 0.5
+    },
+    {
+      "id": "scene1_004",
+      "scene": 1,
+      "timestamp": 0.43,
+      "name": "Logo Fade In",
+      "prompt": "delicate digital chime, soft crystalline tone, ethereal",
+      "duration": 1.0
+    },
+    {
+      "id": "scene1_005",
+      "scene": 1,
+      "timestamp": 0.67,
+      "name": "Logo Pulse",
+      "prompt": "gentle electronic pulse, soft glow sound, brief shimmer",
+      "duration": 0.5
+    },
+    {
+      "id": "scene1_006",
+      "scene": 1,
+      "timestamp": 1.37,
+      "name": "Cube Shrinks",
+      "prompt": "soft descending tone, gentle compression sound, subtle",
+      "duration": 0.5
+    },
+    {
+      "id": "scene1_007",
+      "scene": 1,
+      "timestamp": 1.73,
+      "name": "Grid Ripple Start",
+      "prompt": "quiet cascading pings, soft glass-like tones spreading outward, delicate",
+      "duration": 2.0
+    },
+    {
+      "id": "scene1_008",
+      "scene": 1,
+      "timestamp": 2.17,
+      "name": "Grid Complete",
+      "prompt": "gentle settling tone, soft harmonic resolution",
+      "duration": 1.0
+    },
+    {
+      "id": "scene1_009",
+      "scene": 1,
+      "timestamp": 2.67,
+      "name": "Wave Glow 1",
+      "prompt": "soft shimmer sweep, gentle light passing over surface",
+      "duration": 1.0
+    },
+    {
+      "id": "scene1_010",
+      "scene": 1,
+      "timestamp": 2.87,
+      "name": "Wave Glow 2",
+      "prompt": "quiet sparkle wave, delicate luminescence sound",
+      "duration": 1.0
+    },
+    {
+      "id": "scene1_011",
+      "scene": 1,
+      "timestamp": 2.93,
+      "name": "Particles Appear",
+      "prompt": "very soft whisper texture, gentle floating particles, ambient",
+      "duration": 2.0
+    },
+    {
+      "id": "scene1_012",
+      "scene": 1,
+      "timestamp": 3.0,
+      "name": "Final Lightning Pulse",
+      "prompt": "soft electric charge building, gentle resonant hum, subtle power",
+      "duration": 1.5
+    },
+    {
+      "id": "scene2_001",
+      "scene": 2,
+      "timestamp": 3.5,
+      "name": "Wallet Cube Rise",
+      "prompt": "gentle upward whoosh with soft bounce, subtle spring sound",
+      "duration": 1.0
+    },
+    {
+      "id": "scene2_002",
+      "scene": 2,
+      "timestamp": 3.77,
+      "name": "Wallet Icon Appears",
+      "prompt": "soft UI confirmation tone, delicate interface sound",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_003",
+      "scene": 2,
+      "timestamp": 3.9,
+      "name": "Clasp Reveals",
+      "prompt": "tiny metallic ping, soft click, minimal",
+      "duration": 0.3
+    },
+    {
+      "id": "scene2_004",
+      "scene": 2,
+      "timestamp": 4.03,
+      "name": "Card Slot 1",
+      "prompt": "quiet soft click, gentle slot sound",
+      "duration": 0.3
+    },
+    {
+      "id": "scene2_005",
+      "scene": 2,
+      "timestamp": 4.07,
+      "name": "Card Slot 2",
+      "prompt": "quiet soft click, gentle slot sound, slightly different pitch",
+      "duration": 0.3
+    },
+    {
+      "id": "scene2_006",
+      "scene": 2,
+      "timestamp": 4.1,
+      "name": "Card Slot 3",
+      "prompt": "quiet soft click, gentle slot sound, third variation",
+      "duration": 0.3
+    },
+    {
+      "id": "scene2_007",
+      "scene": 2,
+      "timestamp": 4.23,
+      "name": "Wallet Glow Pulse",
+      "prompt": "soft electronic pulse, gentle neon hum, brief",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_008",
+      "scene": 2,
+      "timestamp": 5.57,
+      "name": "Balance Cube Rise",
+      "prompt": "gentle upward whoosh, soft spring bounce, subtle arrival",
+      "duration": 1.0
+    },
+    {
+      "id": "scene2_009",
+      "scene": 2,
+      "timestamp": 5.9,
+      "name": "Icon Container",
+      "prompt": "soft fade-in tone, gentle digital appearance",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_010",
+      "scene": 2,
+      "timestamp": 6.03,
+      "name": "SOL Logo Appears",
+      "prompt": "delicate neon chime, soft glowing tone, crystalline",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_011",
+      "scene": 2,
+      "timestamp": 6.37,
+      "name": "Number Fades In",
+      "prompt": "quiet text reveal, soft ethereal tone",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_012",
+      "scene": 2,
+      "timestamp": 6.7,
+      "name": "Logo Pulse",
+      "prompt": "gentle glow intensification, soft shimmer",
+      "duration": 0.3
+    },
+    {
+      "id": "scene2_013",
+      "scene": 2,
+      "timestamp": 6.87,
+      "name": "Balance Highlight",
+      "prompt": "soft electronic pulse, gentle cube activation",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_014",
+      "scene": 2,
+      "timestamp": 7.63,
+      "name": "Program Cube Rise",
+      "prompt": "gentle upward whoosh, soft mechanical undertone, subtle",
+      "duration": 1.0
+    },
+    {
+      "id": "scene2_015",
+      "scene": 2,
+      "timestamp": 7.97,
+      "name": "Program Icon",
+      "prompt": "soft tech tone, gentle gear-like sound, minimal",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_016",
+      "scene": 2,
+      "timestamp": 8.1,
+      "name": "Gear Internals",
+      "prompt": "quiet mechanical click, soft inner mechanism",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_017",
+      "scene": 2,
+      "timestamp": 8.3,
+      "name": "Gear Teeth Sequence",
+      "prompt": "soft rapid clicking sequence, gentle mechanical teeth, building",
+      "duration": 0.8
+    },
+    {
+      "id": "scene2_018",
+      "scene": 2,
+      "timestamp": 8.7,
+      "name": "Brackets Draw",
+      "prompt": "quiet pen stroke sound, soft drawing line",
+      "duration": 0.5
+    },
+    {
+      "id": "scene2_019",
+      "scene": 2,
+      "timestamp": 8.97,
+      "name": "Code Dot 1",
+      "prompt": "tiny soft beep, minimal digital tone",
+      "duration": 0.2
+    },
+    {
+      "id": "scene2_020",
+      "scene": 2,
+      "timestamp": 9.0,
+      "name": "Code Dot 2",
+      "prompt": "tiny soft beep, slightly higher pitch",
+      "duration": 0.2
+    },
+    {
+      "id": "scene2_021",
+      "scene": 2,
+      "timestamp": 9.03,
+      "name": "Code Dot 3",
+      "prompt": "tiny soft beep, completing sequence",
+      "duration": 0.2
+    },
+    {
+      "id": "scene2_022",
+      "scene": 2,
+      "timestamp": 9.53,
+      "name": "All Three Pulse",
+      "prompt": "gentle unified resonance, soft triumphant glow, three tones harmonizing",
+      "duration": 1.0
+    },
+    {
+      "id": "scene2_023",
+      "scene": 2,
+      "timestamp": 9.2,
+      "name": "Particles Fade In",
+      "prompt": "very soft ambient sparkle, gentle floating texture",
+      "duration": 1.5
+    },
+    {
+      "id": "scene2_024",
+      "scene": 2,
+      "timestamp": 9.53,
+      "name": "Final Emphasis",
+      "prompt": "soft electric shimmer, gentle concluding pulse",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_001",
+      "scene": 3,
+      "timestamp": 11.0,
+      "name": "BG Layers Init",
+      "prompt": "soft ambient drone beginning, gentle electronic warmth building",
+      "duration": 2.0
+    },
+    {
+      "id": "scene3_002",
+      "scene": 3,
+      "timestamp": 11.17,
+      "name": "Hex Grid Fade",
+      "prompt": "delicate crystalline texture, soft grid materializing",
+      "duration": 1.0
+    },
+    {
+      "id": "scene3_003",
+      "scene": 3,
+      "timestamp": 11.33,
+      "name": "Hero Box Appears",
+      "prompt": "gentle resonant low tone with soft shimmer, subtle materialization",
+      "duration": 1.0
+    },
+    {
+      "id": "scene3_004",
+      "scene": 3,
+      "timestamp": 11.67,
+      "name": "Orbit Particles",
+      "prompt": "quiet sparkle circling, soft orbital movement, ambient",
+      "duration": 1.5
+    },
+    {
+      "id": "scene3_005",
+      "scene": 3,
+      "timestamp": 12.67,
+      "name": "Box Rotates",
+      "prompt": "soft whoosh, gentle mechanical turn, subtle",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_006",
+      "scene": 3,
+      "timestamp": 13.0,
+      "name": "Inner Structure",
+      "prompt": "soft UI reveal tone, gentle interior appearing",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_007",
+      "scene": 3,
+      "timestamp": 13.5,
+      "name": "Address Bar",
+      "prompt": "quiet neon hum, soft glowing bar sound",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_008",
+      "scene": 3,
+      "timestamp": 13.67,
+      "name": "Bar Fills",
+      "prompt": "gentle data flow ascending, soft filling tone",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_009",
+      "scene": 3,
+      "timestamp": 13.93,
+      "name": "0x Prefix",
+      "prompt": "tiny soft tech chime, minimal",
+      "duration": 0.2
+    },
+    {
+      "id": "scene3_010",
+      "scene": 3,
+      "timestamp": 13.97,
+      "name": "Hex Char 1",
+      "prompt": "quiet keystroke, soft typing sound",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_011",
+      "scene": 3,
+      "timestamp": 14.0,
+      "name": "Hex Char 2",
+      "prompt": "quiet keystroke, soft typing",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_012",
+      "scene": 3,
+      "timestamp": 14.03,
+      "name": "Hex Char 3",
+      "prompt": "quiet keystroke",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_013",
+      "scene": 3,
+      "timestamp": 14.07,
+      "name": "Hex Char 4",
+      "prompt": "quiet keystroke",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_014",
+      "scene": 3,
+      "timestamp": 14.1,
+      "name": "Hex Char 5",
+      "prompt": "quiet keystroke",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_015",
+      "scene": 3,
+      "timestamp": 14.13,
+      "name": "Hex Char 6",
+      "prompt": "quiet keystroke",
+      "duration": 0.1
+    },
+    {
+      "id": "scene3_016",
+      "scene": 3,
+      "timestamp": 14.17,
+      "name": "Cursor Blink",
+      "prompt": "very soft pulse tone, gentle cursor",
+      "duration": 0.2
+    },
+    {
+      "id": "scene3_017",
+      "scene": 3,
+      "timestamp": 14.33,
+      "name": "Data Layer Appears",
+      "prompt": "soft whoosh overlay, gentle layer revealing",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_018",
+      "scene": 3,
+      "timestamp": 14.67,
+      "name": "Data Blocks In",
+      "prompt": "quiet sequential block sounds, soft stacking",
+      "duration": 0.8
+    },
+    {
+      "id": "scene3_019",
+      "scene": 3,
+      "timestamp": 14.83,
+      "name": "Circuit Lines Draw",
+      "prompt": "soft electronic line drawing, gentle oscilloscope tone",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_020",
+      "scene": 3,
+      "timestamp": 15.0,
+      "name": "Content Lines",
+      "prompt": "quiet lighter line drawing sound",
+      "duration": 0.3
+    },
+    {
+      "id": "scene3_021",
+      "scene": 3,
+      "timestamp": 15.17,
+      "name": "Binary Bits",
+      "prompt": "soft digital bleeps, gentle bit sounds, staccato",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_022",
+      "scene": 3,
+      "timestamp": 15.33,
+      "name": "Data Flow Beziers",
+      "prompt": "gentle flowing stream sound, soft data moving",
+      "duration": 1.0
+    },
+    {
+      "id": "scene3_023",
+      "scene": 3,
+      "timestamp": 15.5,
+      "name": "Hero Pulse",
+      "prompt": "soft resonant glow tone, gentle",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_024",
+      "scene": 3,
+      "timestamp": 16.0,
+      "name": "Box Transitions",
+      "prompt": "soft reverse materialization, gentle shrinking",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_025",
+      "scene": 3,
+      "timestamp": 16.5,
+      "name": "Comparison Reveals",
+      "prompt": "gentle dramatic reveal, soft unveiling tone",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_026",
+      "scene": 3,
+      "timestamp": 16.83,
+      "name": "Exec Box Halo",
+      "prompt": "soft multi-ring activation, gentle concentric expansion, power building quietly",
+      "duration": 1.0
+    },
+    {
+      "id": "scene3_027",
+      "scene": 3,
+      "timestamp": 16.93,
+      "name": "Glow Rays",
+      "prompt": "quiet radiating beam sounds, soft light spreading",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_028",
+      "scene": 3,
+      "timestamp": 17.33,
+      "name": "Code Brackets",
+      "prompt": "soft pen drawing strokes, gentle",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_029",
+      "scene": 3,
+      "timestamp": 17.5,
+      "name": "Code Lines Inside",
+      "prompt": "quiet rapid staccato lines, soft drawing",
+      "duration": 0.3
+    },
+    {
+      "id": "scene3_030",
+      "scene": 3,
+      "timestamp": 18.33,
+      "name": "Data Boxes Pop",
+      "prompt": "gentle cascade of six soft box sounds, quiet staggered appearance",
+      "duration": 1.0
+    },
+    {
+      "id": "scene3_031",
+      "scene": 3,
+      "timestamp": 18.83,
+      "name": "Divider Draws",
+      "prompt": "soft sharp line sound, gentle division",
+      "duration": 0.3
+    },
+    {
+      "id": "scene3_032",
+      "scene": 3,
+      "timestamp": 19.0,
+      "name": "Connection Beziers",
+      "prompt": "gentle flowing connection sounds, soft cable-like data flow",
+      "duration": 0.8
+    },
+    {
+      "id": "scene3_033",
+      "scene": 3,
+      "timestamp": 19.33,
+      "name": "Exec Emphasis",
+      "prompt": "soft electric charge, gentle power emphasis",
+      "duration": 0.5
+    },
+    {
+      "id": "scene3_034",
+      "scene": 3,
+      "timestamp": 19.6,
+      "name": "Final Exec Pulse",
+      "prompt": "gentle resonant hum, soft sustained power tone",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_001",
+      "scene": 4,
+      "timestamp": 20.33,
+      "name": "Program Box Appears",
+      "prompt": "gentle deep resonant tone, soft materialization",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_002",
+      "scene": 4,
+      "timestamp": 20.67,
+      "name": "Brain Emphasized",
+      "prompt": "soft building electrical energy, gentle tension rising",
+      "duration": 0.8
+    },
+    {
+      "id": "scene4_003",
+      "scene": 4,
+      "timestamp": 21.17,
+      "name": "Shatter Impact",
+      "prompt": "glass shattering gently, soft crystalline break with subtle tonal burst, not harsh",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_004",
+      "scene": 4,
+      "timestamp": 21.17,
+      "name": "Flash Effect",
+      "prompt": "soft bright flash tone, gentle burst of light sound",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_005",
+      "scene": 4,
+      "timestamp": 21.33,
+      "name": "Shards Flying",
+      "prompt": "quiet whooshing fragments, soft pieces dispersing",
+      "duration": 0.8
+    },
+    {
+      "id": "scene4_006",
+      "scene": 4,
+      "timestamp": 21.67,
+      "name": "Shards Fade",
+      "prompt": "gentle descending particles dissipating, soft fading",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_007",
+      "scene": 4,
+      "timestamp": 21.5,
+      "name": "X Mark Draws",
+      "prompt": "soft pen crossing strokes, gentle X shape",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_008",
+      "scene": 4,
+      "timestamp": 21.6,
+      "name": "X Pulses",
+      "prompt": "quiet electrical pulse, gentle",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_009",
+      "scene": 4,
+      "timestamp": 22.33,
+      "name": "Becomes Hollow",
+      "prompt": "soft reverse materialization, gentle hollow echo effect, empty interior",
+      "duration": 0.8
+    },
+    {
+      "id": "scene4_010",
+      "scene": 4,
+      "timestamp": 22.5,
+      "name": "Interior Reveals",
+      "prompt": "quiet eerie tone, soft cave-like emptiness",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_011",
+      "scene": 4,
+      "timestamp": 22.6,
+      "name": "Empty Symbol",
+      "prompt": "very soft void tone, gentle absence sound",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_012",
+      "scene": 4,
+      "timestamp": 22.67,
+      "name": "Code Brackets",
+      "prompt": "soft pen strokes drawing brackets",
+      "duration": 0.4
+    },
+    {
+      "id": "scene4_013",
+      "scene": 4,
+      "timestamp": 22.77,
+      "name": "Code Lines",
+      "prompt": "quiet rapid line drawing, soft staccato",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_014",
+      "scene": 4,
+      "timestamp": 23.0,
+      "name": "Code Dots",
+      "prompt": "three soft tech beeps, gentle sequence",
+      "duration": 0.4
+    },
+    {
+      "id": "scene4_015",
+      "scene": 4,
+      "timestamp": 23.1,
+      "name": "Instruction Arrows",
+      "prompt": "quiet arrow pop sounds, soft direction indicators",
+      "duration": 0.4
+    },
+    {
+      "id": "scene4_016",
+      "scene": 4,
+      "timestamp": 23.17,
+      "name": "Threads Launch",
+      "prompt": "soft beam launch sounds, gentle threads shooting outward, five quiet whooshes",
+      "duration": 0.8
+    },
+    {
+      "id": "scene4_017",
+      "scene": 4,
+      "timestamp": 24.0,
+      "name": "Threads Form",
+      "prompt": "quiet sustained energy tone, soft connection humming",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_018",
+      "scene": 4,
+      "timestamp": 24.17,
+      "name": "Particles Travel",
+      "prompt": "gentle data flowing through channels, soft movement left to right",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_019",
+      "scene": 4,
+      "timestamp": 24.33,
+      "name": "Endpoints Light",
+      "prompt": "soft arrival tones, gentle connection confirmations, five quiet pings",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_020",
+      "scene": 4,
+      "timestamp": 24.5,
+      "name": "Data Boxes Pop",
+      "prompt": "gentle cascade of five soft box appearances, quiet falling into place",
+      "duration": 0.8
+    },
+    {
+      "id": "scene4_021",
+      "scene": 4,
+      "timestamp": 24.83,
+      "name": "Boxes Light Up",
+      "prompt": "soft electric glow activation, gentle illumination",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_022",
+      "scene": 4,
+      "timestamp": 24.93,
+      "name": "Endpoint Pulses",
+      "prompt": "quiet synchronized pulses, soft energy at endpoints",
+      "duration": 0.4
+    },
+    {
+      "id": "scene4_023",
+      "scene": 4,
+      "timestamp": 25.33,
+      "name": "Fill Animation Start",
+      "prompt": "soft water beginning to pour, gentle liquid fill starting",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_024",
+      "scene": 4,
+      "timestamp": 25.43,
+      "name": "Main Fill",
+      "prompt": "gentle satisfying liquid fill sound, soft water rising in container, calming",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_025",
+      "scene": 4,
+      "timestamp": 25.5,
+      "name": "Labels Appear",
+      "prompt": "quiet text pop sounds, soft labels revealing",
+      "duration": 0.3
+    },
+    {
+      "id": "scene4_026",
+      "scene": 4,
+      "timestamp": 25.83,
+      "name": "Program Dims",
+      "prompt": "soft descending pitch, gentle fading tone showing emptiness",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_027",
+      "scene": 4,
+      "timestamp": 26.0,
+      "name": "Data Boxes Bright",
+      "prompt": "gentle energetic pulse, soft triumphant glow, emphasis",
+      "duration": 0.5
+    },
+    {
+      "id": "scene4_028",
+      "scene": 4,
+      "timestamp": 26.17,
+      "name": "Ambient Particles",
+      "prompt": "very soft shimmer sparkle layer, gentle floating",
+      "duration": 1.0
+    },
+    {
+      "id": "scene4_029",
+      "scene": 4,
+      "timestamp": 26.33,
+      "name": "Data Stream",
+      "prompt": "quiet flowing ambient tone, soft river-like data",
+      "duration": 1.5
+    },
+    {
+      "id": "scene5_001",
+      "scene": 5,
+      "timestamp": 27.0,
+      "name": "Envelope Appears",
+      "prompt": "soft paper materialization, gentle envelope arriving",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_002",
+      "scene": 5,
+      "timestamp": 27.17,
+      "name": "Seal Appears",
+      "prompt": "quiet sealing sound, soft wax stamp",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_003",
+      "scene": 5,
+      "timestamp": 27.33,
+      "name": "Seal Breaks",
+      "prompt": "gentle pop sound, soft seal opening",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_004",
+      "scene": 5,
+      "timestamp": 27.43,
+      "name": "Opening Lines",
+      "prompt": "quiet paper unfolding, soft envelope opening",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_005",
+      "scene": 5,
+      "timestamp": 27.5,
+      "name": "Target List",
+      "prompt": "soft cascading reveal, gentle list appearing with dots",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_006",
+      "scene": 5,
+      "timestamp": 28.0,
+      "name": "Boxes A B C D",
+      "prompt": "four gentle box pop sounds, soft sequential appearance",
+      "duration": 0.8
+    },
+    {
+      "id": "scene5_007",
+      "scene": 5,
+      "timestamp": 28.33,
+      "name": "Envelope Shrinks",
+      "prompt": "quiet miniaturization sound, soft fading aside",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_008",
+      "scene": 5,
+      "timestamp": 29.0,
+      "name": "Users Appear",
+      "prompt": "three soft silhouette materializations, gentle arrivals",
+      "duration": 0.6
+    },
+    {
+      "id": "scene5_009",
+      "scene": 5,
+      "timestamp": 29.5,
+      "name": "Beam 1 Launch",
+      "prompt": "soft energy beam launching, gentle directed whoosh",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_010",
+      "scene": 5,
+      "timestamp": 29.53,
+      "name": "Beam 1 Extends",
+      "prompt": "quiet energetic extension, soft beam traveling",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_011",
+      "scene": 5,
+      "timestamp": 29.6,
+      "name": "Beam 2 Launch",
+      "prompt": "soft second beam launching, gentle parallel whoosh",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_012",
+      "scene": 5,
+      "timestamp": 29.67,
+      "name": "Particles Travel",
+      "prompt": "gentle data flowing through beams, soft ascending arrival",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_013",
+      "scene": 5,
+      "timestamp": 29.83,
+      "name": "Boxes A B Light",
+      "prompt": "soft activation tones, two gentle glows",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_014",
+      "scene": 5,
+      "timestamp": 30.0,
+      "name": "Checkmark 1",
+      "prompt": "gentle satisfying confirmation tone, soft success chime",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_015",
+      "scene": 5,
+      "timestamp": 30.17,
+      "name": "Two Beams Launch",
+      "prompt": "soft simultaneous beam launches, gentle parallel whooshes",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_016",
+      "scene": 5,
+      "timestamp": 30.33,
+      "name": "Particles Travel 2",
+      "prompt": "gentle data flowing, soft movement",
+      "duration": 0.4
+    },
+    {
+      "id": "scene5_017",
+      "scene": 5,
+      "timestamp": 30.5,
+      "name": "Boxes C D Light",
+      "prompt": "soft activation tones, two gentle glows",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_018",
+      "scene": 5,
+      "timestamp": 30.67,
+      "name": "Checkmark 2",
+      "prompt": "gentle satisfying confirmation, soft parallel success tone",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_019",
+      "scene": 5,
+      "timestamp": 31.0,
+      "name": "Dashed Beam Tries",
+      "prompt": "soft uncertain beam launch, gentle hesitant energy",
+      "duration": 0.4
+    },
+    {
+      "id": "scene5_020",
+      "scene": 5,
+      "timestamp": 31.17,
+      "name": "Beam Hits Barrier",
+      "prompt": "soft collision impact, gentle shield block sound, not harsh",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_021",
+      "scene": 5,
+      "timestamp": 31.33,
+      "name": "Barrier Appears",
+      "prompt": "quiet barrier materialization, soft blocking wall",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_022",
+      "scene": 5,
+      "timestamp": 31.43,
+      "name": "X Mark Draws",
+      "prompt": "soft crossing pen strokes",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_023",
+      "scene": 5,
+      "timestamp": 31.5,
+      "name": "Conflict Wave 1",
+      "prompt": "gentle expanding ring tone, soft ripple",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_024",
+      "scene": 5,
+      "timestamp": 31.53,
+      "name": "Conflict Wave 2",
+      "prompt": "gentle expanding ring, slightly higher",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_025",
+      "scene": 5,
+      "timestamp": 31.57,
+      "name": "Conflict Wave 3",
+      "prompt": "gentle expanding ring completing sequence",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_026",
+      "scene": 5,
+      "timestamp": 31.67,
+      "name": "BLOCKED Text",
+      "prompt": "soft authoritative tone, gentle denial sound",
+      "duration": 0.4
+    },
+    {
+      "id": "scene5_027",
+      "scene": 5,
+      "timestamp": 31.83,
+      "name": "Wait Icon",
+      "prompt": "quiet waiting sound, soft timer tone",
+      "duration": 0.3
+    },
+    {
+      "id": "scene5_028",
+      "scene": 5,
+      "timestamp": 31.87,
+      "name": "Clock Tick 1",
+      "prompt": "soft clock tick",
+      "duration": 0.2
+    },
+    {
+      "id": "scene5_029",
+      "scene": 5,
+      "timestamp": 31.93,
+      "name": "Clock Tick 2",
+      "prompt": "soft clock tick",
+      "duration": 0.2
+    },
+    {
+      "id": "scene5_030",
+      "scene": 5,
+      "timestamp": 32.0,
+      "name": "Clock Complete",
+      "prompt": "gentle waiting resolution",
+      "duration": 0.2
+    },
+    {
+      "id": "scene5_031",
+      "scene": 5,
+      "timestamp": 32.33,
+      "name": "Transition Clear",
+      "prompt": "soft descending clearing tone, gentle space making",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_032",
+      "scene": 5,
+      "timestamp": 32.83,
+      "name": "Data Stream Activates",
+      "prompt": "gentle streaming data layer beginning, soft ambient flow",
+      "duration": 1.0
+    },
+    {
+      "id": "scene5_033",
+      "scene": 5,
+      "timestamp": 33.0,
+      "name": "Flow Beams Draw",
+      "prompt": "soft cascading beam draws, gentle lines painting across screen, multiple quiet whooshes",
+      "duration": 2.0
+    },
+    {
+      "id": "scene5_034",
+      "scene": 5,
+      "timestamp": 34.6,
+      "name": "Secondary Beams",
+      "prompt": "quiet additional layer of soft beam sounds",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_035",
+      "scene": 5,
+      "timestamp": 34.67,
+      "name": "All Particles Flow",
+      "prompt": "gentle massive parallel data flow, soft river network streaming, directional movement",
+      "duration": 1.5
+    },
+    {
+      "id": "scene5_036",
+      "scene": 5,
+      "timestamp": 34.77,
+      "name": "Endpoint Glows",
+      "prompt": "soft arrival impact sounds, eight gentle confirmations",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_037",
+      "scene": 5,
+      "timestamp": 35.33,
+      "name": "All Boxes Pulse",
+      "prompt": "gentle triumphant resonance, soft unified glow",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_038",
+      "scene": 5,
+      "timestamp": 35.67,
+      "name": "Ambient Layer",
+      "prompt": "very soft sparkle shimmer adding richness",
+      "duration": 1.0
+    },
+    {
+      "id": "scene5_039",
+      "scene": 5,
+      "timestamp": 36.0,
+      "name": "Final Flow Pulse",
+      "prompt": "soft energy pulse across all beams, gentle conclusion",
+      "duration": 0.5
+    },
+    {
+      "id": "scene5_040",
+      "scene": 5,
+      "timestamp": 36.17,
+      "name": "Final Glow",
+      "prompt": "gentle climactic hum, soft resonant ending",
+      "duration": 1.0
+    },
+    {
+      "id": "scene6_001",
+      "scene": 6,
+      "timestamp": 37.0,
+      "name": "BG Glow",
+      "prompt": "very soft ambient hum beginning, gentle warmth",
+      "duration": 0.5
+    },
+    {
+      "id": "scene6_002",
+      "scene": 6,
+      "timestamp": 37.17,
+      "name": "Logo Scales In",
+      "prompt": "gentle grand entrance tone, soft brand reveal, elegant",
+      "duration": 0.5
+    },
+    {
+      "id": "scene6_003",
+      "scene": 6,
+      "timestamp": 37.33,
+      "name": "Logo Fills",
+      "prompt": "soft neon glow sound, gentle energetic fill",
+      "duration": 0.3
+    },
+    {
+      "id": "scene6_004",
+      "scene": 6,
+      "timestamp": 37.5,
+      "name": "Particles",
+      "prompt": "quiet sparkle shimmer, soft floating particles",
+      "duration": 0.5
+    },
+    {
+      "id": "scene6_005",
+      "scene": 6,
+      "timestamp": 37.67,
+      "name": "Logo Pulse",
+      "prompt": "gentle resonant pulse, soft heartbeat-like brand signature",
+      "duration": 0.5
+    },
+    {
+      "id": "scene6_006",
+      "scene": 6,
+      "timestamp": 37.83,
+      "name": "Hold Ambient",
+      "prompt": "soft sustained ambient tone, gentle conclusion",
+      "duration": 0.5
+    }
+  ]
+}

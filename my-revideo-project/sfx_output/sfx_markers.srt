@@ -1,0 +1,579 @@
+1
+00:00:00,000 --> 00:00:02,000
+[SFX] scene1_001_bg_glow_init.mp3
+
+2
+00:00:00,100 --> 00:00:01,100
+[SFX] scene1_002_hero_cube_appears.mp3
+
+3
+00:00:00,270 --> 00:00:00,770
+[SFX] scene1_003_shadow_settles.mp3
+
+4
+00:00:00,430 --> 00:00:01,430
+[SFX] scene1_004_logo_fade_in.mp3
+
+5
+00:00:00,670 --> 00:00:01,170
+[SFX] scene1_005_logo_pulse.mp3
+
+6
+00:00:01,370 --> 00:00:01,870
+[SFX] scene1_006_cube_shrinks.mp3
+
+7
+00:00:01,730 --> 00:00:03,730
+[SFX] scene1_007_grid_ripple_start.mp3
+
+8
+00:00:02,170 --> 00:00:03,170
+[SFX] scene1_008_grid_complete.mp3
+
+9
+00:00:02,670 --> 00:00:03,670
+[SFX] scene1_009_wave_glow_1.mp3
+
+10
+00:00:02,870 --> 00:00:03,870
+[SFX] scene1_010_wave_glow_2.mp3
+
+11
+00:00:02,930 --> 00:00:04,930
+[SFX] scene1_011_particles_appear.mp3
+
+12
+00:00:03,000 --> 00:00:04,500
+[SFX] scene1_012_final_lightning_pulse.mp3
+
+13
+00:00:03,500 --> 00:00:04,500
+[SFX] scene2_001_wallet_cube_rise.mp3
+
+14
+00:00:03,770 --> 00:00:04,270
+[SFX] scene2_002_wallet_icon_appears.mp3
+
+15
+00:00:03,900 --> 00:00:04,400
+[SFX] scene2_003_clasp_reveals.mp3
+
+16
+00:00:04,030 --> 00:00:04,530
+[SFX] scene2_004_card_slot_1.mp3
+
+17
+00:00:04,070 --> 00:00:04,570
+[SFX] scene2_005_card_slot_2.mp3
+
+18
+00:00:04,100 --> 00:00:04,600
+[SFX] scene2_006_card_slot_3.mp3
+
+19
+00:00:04,230 --> 00:00:04,730
+[SFX] scene2_007_wallet_glow_pulse.mp3
+
+20
+00:00:05,570 --> 00:00:06,570
+[SFX] scene2_008_balance_cube_rise.mp3
+
+21
+00:00:05,900 --> 00:00:06,400
+[SFX] scene2_009_icon_container.mp3
+
+22
+00:00:06,030 --> 00:00:06,530
+[SFX] scene2_010_sol_logo_appears.mp3
+
+23
+00:00:06,370 --> 00:00:06,870
+[SFX] scene2_011_number_fades_in.mp3
+
+24
+00:00:06,700 --> 00:00:07,000
+[SFX] scene2_012_logo_pulse.mp3
+
+25
+00:00:06,870 --> 00:00:07,370
+[SFX] scene2_013_balance_highlight.mp3
+
+26
+00:00:07,630 --> 00:00:08,630
+[SFX] scene2_014_program_cube_rise.mp3
+
+27
+00:00:07,970 --> 00:00:08,470
+[SFX] scene2_015_program_icon.mp3
+
+28
+00:00:08,100 --> 00:00:08,600
+[SFX] scene2_016_gear_internals.mp3
+
+29
+00:00:08,300 --> 00:00:09,100
+[SFX] scene2_017_gear_teeth_sequence.mp3
+
+30
+00:00:08,700 --> 00:00:09,200
+[SFX] scene2_018_brackets_draw.mp3
+
+31
+00:00:08,970 --> 00:00:09,170
+[SFX] scene2_019_code_dot_1.mp3
+
+32
+00:00:09,000 --> 00:00:09,200
+[SFX] scene2_020_code_dot_2.mp3
+
+33
+00:00:09,030 --> 00:00:09,230
+[SFX] scene2_021_code_dot_3.mp3
+
+34
+00:00:09,530 --> 00:00:10,530
+[SFX] scene2_022_all_three_pulse.mp3
+
+35
+00:00:09,200 --> 00:00:10,700
+[SFX] scene2_023_particles_fade_in.mp3
+
+36
+00:00:09,530 --> 00:00:10,030
+[SFX] scene2_024_final_emphasis.mp3
+
+37
+00:00:11,000 --> 00:00:13,000
+[SFX] scene3_001_bg_layers_init.mp3
+
+38
+00:00:11,170 --> 00:00:12,170
+[SFX] scene3_002_hex_grid_fade.mp3
+
+39
+00:00:11,330 --> 00:00:12,330
+[SFX] scene3_003_hero_box_appears.mp3
+
+40
+00:00:11,670 --> 00:00:13,170
+[SFX] scene3_004_orbit_particles.mp3
+
+41
+00:00:12,670 --> 00:00:13,170
+[SFX] scene3_005_box_rotates.mp3
+
+42
+00:00:13,000 --> 00:00:13,500
+[SFX] scene3_006_inner_structure.mp3
+
+43
+00:00:13,500 --> 00:00:14,000
+[SFX] scene3_007_address_bar.mp3
+
+44
+00:00:13,670 --> 00:00:14,170
+[SFX] scene3_008_bar_fills.mp3
+
+45
+00:00:13,930 --> 00:00:14,130
+[SFX] scene3_009_0x_prefix.mp3
+
+46
+00:00:13,970 --> 00:00:14,070
+[SFX] scene3_010_hex_char_1.mp3
+
+47
+00:00:14,000 --> 00:00:14,100
+[SFX] scene3_011_hex_char_2.mp3
+
+48
+00:00:14,030 --> 00:00:14,130
+[SFX] scene3_012_hex_char_3.mp3
+
+49
+00:00:14,070 --> 00:00:14,170
+[SFX] scene3_013_hex_char_4.mp3
+
+50
+00:00:14,100 --> 00:00:14,200
+[SFX] scene3_014_hex_char_5.mp3
+
+51
+00:00:14,130 --> 00:00:14,230
+[SFX] scene3_015_hex_char_6.mp3
+
+52
+00:00:14,170 --> 00:00:14,370
+[SFX] scene3_016_cursor_blink.mp3
+
+53
+00:00:14,330 --> 00:00:14,830
+[SFX] scene3_017_data_layer_appears.mp3
+
+54
+00:00:14,670 --> 00:00:15,470
+[SFX] scene3_018_data_blocks_in.mp3
+
+55
+00:00:14,830 --> 00:00:15,330
+[SFX] scene3_019_circuit_lines_draw.mp3
+
+56
+00:00:15,000 --> 00:00:15,300
+[SFX] scene3_020_content_lines.mp3
+
+57
+00:00:15,170 --> 00:00:15,670
+[SFX] scene3_021_binary_bits.mp3
+
+58
+00:00:15,330 --> 00:00:16,330
+[SFX] scene3_022_data_flow_beziers.mp3
+
+59
+00:00:15,500 --> 00:00:16,000
+[SFX] scene3_023_hero_pulse.mp3
+
+60
+00:00:16,000 --> 00:00:16,500
+[SFX] scene3_024_box_transitions.mp3
+
+61
+00:00:16,500 --> 00:00:17,000
+[SFX] scene3_025_comparison_reveals.mp3
+
+62
+00:00:16,830 --> 00:00:17,830
+[SFX] scene3_026_exec_box_halo.mp3
+
+63
+00:00:16,930 --> 00:00:17,430
+[SFX] scene3_027_glow_rays.mp3
+
+64
+00:00:17,330 --> 00:00:17,830
+[SFX] scene3_028_code_brackets.mp3
+
+65
+00:00:17,500 --> 00:00:17,800
+[SFX] scene3_029_code_lines_inside.mp3
+
+66
+00:00:18,330 --> 00:00:19,330
+[SFX] scene3_030_data_boxes_pop.mp3
+
+67
+00:00:18,830 --> 00:00:19,130
+[SFX] scene3_031_divider_draws.mp3
+
+68
+00:00:19,000 --> 00:00:19,800
+[SFX] scene3_032_connection_beziers.mp3
+
+69
+00:00:19,330 --> 00:00:19,830
+[SFX] scene3_033_exec_emphasis.mp3
+
+70
+00:00:19,600 --> 00:00:20,600
+[SFX] scene3_034_final_exec_pulse.mp3
+
+71
+00:00:20,330 --> 00:00:21,330
+[SFX] scene4_001_program_box_appears.mp3
+
+72
+00:00:20,670 --> 00:00:21,470
+[SFX] scene4_002_brain_emphasized.mp3
+
+73
+00:00:21,170 --> 00:00:22,170
+[SFX] scene4_003_shatter_impact.mp3
+
+74
+00:00:21,170 --> 00:00:21,470
+[SFX] scene4_004_flash_effect.mp3
+
+75
+00:00:21,330 --> 00:00:22,130
+[SFX] scene4_005_shards_flying.mp3
+
+76
+00:00:21,670 --> 00:00:22,170
+[SFX] scene4_006_shards_fade.mp3
+
+77
+00:00:21,500 --> 00:00:21,800
+[SFX] scene4_007_x_mark_draws.mp3
+
+78
+00:00:21,600 --> 00:00:21,900
+[SFX] scene4_008_x_pulses.mp3
+
+79
+00:00:22,330 --> 00:00:23,130
+[SFX] scene4_009_becomes_hollow.mp3
+
+80
+00:00:22,500 --> 00:00:23,000
+[SFX] scene4_010_interior_reveals.mp3
+
+81
+00:00:22,600 --> 00:00:22,900
+[SFX] scene4_011_empty_symbol.mp3
+
+82
+00:00:22,670 --> 00:00:23,070
+[SFX] scene4_012_code_brackets.mp3
+
+83
+00:00:22,770 --> 00:00:23,070
+[SFX] scene4_013_code_lines.mp3
+
+84
+00:00:23,000 --> 00:00:23,400
+[SFX] scene4_014_code_dots.mp3
+
+85
+00:00:23,100 --> 00:00:23,500
+[SFX] scene4_015_instruction_arrows.mp3
+
+86
+00:00:23,170 --> 00:00:23,970
+[SFX] scene4_016_threads_launch.mp3
+
+87
+00:00:24,000 --> 00:00:25,000
+[SFX] scene4_017_threads_form.mp3
+
+88
+00:00:24,170 --> 00:00:25,170
+[SFX] scene4_018_particles_travel.mp3
+
+89
+00:00:24,330 --> 00:00:24,830
+[SFX] scene4_019_endpoints_light.mp3
+
+90
+00:00:24,500 --> 00:00:25,300
+[SFX] scene4_020_data_boxes_pop.mp3
+
+91
+00:00:24,830 --> 00:00:25,330
+[SFX] scene4_021_boxes_light_up.mp3
+
+92
+00:00:24,930 --> 00:00:25,330
+[SFX] scene4_022_endpoint_pulses.mp3
+
+93
+00:00:25,330 --> 00:00:25,830
+[SFX] scene4_023_fill_animation_start.mp3
+
+94
+00:00:25,430 --> 00:00:26,430
+[SFX] scene4_024_main_fill.mp3
+
+95
+00:00:25,500 --> 00:00:25,800
+[SFX] scene4_025_labels_appear.mp3
+
+96
+00:00:25,830 --> 00:00:26,330
+[SFX] scene4_026_program_dims.mp3
+
+97
+00:00:26,000 --> 00:00:26,500
+[SFX] scene4_027_data_boxes_bright.mp3
+
+98
+00:00:26,170 --> 00:00:27,170
+[SFX] scene4_028_ambient_particles.mp3
+
+99
+00:00:26,330 --> 00:00:27,830
+[SFX] scene4_029_data_stream.mp3
+
+100
+00:00:27,000 --> 00:00:27,500
+[SFX] scene5_001_envelope_appears.mp3
+
+101
+00:00:27,170 --> 00:00:27,470
+[SFX] scene5_002_seal_appears.mp3
+
+102
+00:00:27,330 --> 00:00:27,630
+[SFX] scene5_003_seal_breaks.mp3
+
+103
+00:00:27,430 --> 00:00:27,930
+[SFX] scene5_004_opening_lines.mp3
+
+104
+00:00:27,500 --> 00:00:28,000
+[SFX] scene5_005_target_list.mp3
+
+105
+00:00:28,000 --> 00:00:28,800
+[SFX] scene5_006_boxes_a_b_c_d.mp3
+
+106
+00:00:28,330 --> 00:00:28,630
+[SFX] scene5_007_envelope_shrinks.mp3
+
+107
+00:00:29,000 --> 00:00:29,600
+[SFX] scene5_008_users_appear.mp3
+
+108
+00:00:29,500 --> 00:00:30,000
+[SFX] scene5_009_beam_1_launch.mp3
+
+109
+00:00:29,530 --> 00:00:29,830
+[SFX] scene5_010_beam_1_extends.mp3
+
+110
+00:00:29,600 --> 00:00:30,100
+[SFX] scene5_011_beam_2_launch.mp3
+
+111
+00:00:29,670 --> 00:00:30,170
+[SFX] scene5_012_particles_travel.mp3
+
+112
+00:00:29,830 --> 00:00:30,130
+[SFX] scene5_013_boxes_a_b_light.mp3
+
+113
+00:00:30,000 --> 00:00:30,500
+[SFX] scene5_014_checkmark_1.mp3
+
+114
+00:00:30,170 --> 00:00:30,670
+[SFX] scene5_015_two_beams_launch.mp3
+
+115
+00:00:30,330 --> 00:00:30,730
+[SFX] scene5_016_particles_travel_2.mp3
+
+116
+00:00:30,500 --> 00:00:30,800
+[SFX] scene5_017_boxes_c_d_light.mp3
+
+117
+00:00:30,670 --> 00:00:31,170
+[SFX] scene5_018_checkmark_2.mp3
+
+118
+00:00:31,000 --> 00:00:31,400
+[SFX] scene5_019_dashed_beam_tries.mp3
+
+119
+00:00:31,170 --> 00:00:31,670
+[SFX] scene5_020_beam_hits_barrier.mp3
+
+120
+00:00:31,330 --> 00:00:31,630
+[SFX] scene5_021_barrier_appears.mp3
+
+121
+00:00:31,430 --> 00:00:31,730
+[SFX] scene5_022_x_mark_draws.mp3
+
+122
+00:00:31,500 --> 00:00:31,800
+[SFX] scene5_023_conflict_wave_1.mp3
+
+123
+00:00:31,530 --> 00:00:31,830
+[SFX] scene5_024_conflict_wave_2.mp3
+
+124
+00:00:31,570 --> 00:00:31,870
+[SFX] scene5_025_conflict_wave_3.mp3
+
+125
+00:00:31,670 --> 00:00:32,070
+[SFX] scene5_026_blocked_text.mp3
+
+126
+00:00:31,830 --> 00:00:32,130
+[SFX] scene5_027_wait_icon.mp3
+
+127
+00:00:31,870 --> 00:00:32,070
+[SFX] scene5_028_clock_tick_1.mp3
+
+128
+00:00:31,930 --> 00:00:32,130
+[SFX] scene5_029_clock_tick_2.mp3
+
+129
+00:00:32,000 --> 00:00:32,200
+[SFX] scene5_030_clock_complete.mp3
+
+130
+00:00:32,330 --> 00:00:32,830
+[SFX] scene5_031_transition_clear.mp3
+
+131
+00:00:32,830 --> 00:00:33,830
+[SFX] scene5_032_data_stream_activates.mp3
+
+132
+00:00:33,000 --> 00:00:35,000
+[SFX] scene5_033_flow_beams_draw.mp3
+
+133
+00:00:34,600 --> 00:00:35,100
+[SFX] scene5_034_secondary_beams.mp3
+
+134
+00:00:34,670 --> 00:00:36,170
+[SFX] scene5_035_all_particles_flow.mp3
+
+135
+00:00:34,770 --> 00:00:35,270
+[SFX] scene5_036_endpoint_glows.mp3
+
+136
+00:00:35,330 --> 00:00:35,830
+[SFX] scene5_037_all_boxes_pulse.mp3
+
+137
+00:00:35,670 --> 00:00:36,670
+[SFX] scene5_038_ambient_layer.mp3
+
+138
+00:00:36,000 --> 00:00:36,500
+[SFX] scene5_039_final_flow_pulse.mp3
+
+139
+00:00:36,170 --> 00:00:37,170
+[SFX] scene5_040_final_glow.mp3
+
+140
+00:00:37,000 --> 00:00:37,500
+[SFX] scene6_001_bg_glow.mp3
+
+141
+00:00:37,170 --> 00:00:37,670
+[SFX] scene6_002_logo_scales_in.mp3
+
+142
+00:00:37,330 --> 00:00:37,630
+[SFX] scene6_003_logo_fills.mp3
+
+143
+00:00:37,500 --> 00:00:38,000
+[SFX] scene6_004_particles.mp3
+
+144
+00:00:37,670 --> 00:00:38,170
+[SFX] scene6_005_logo_pulse.mp3
+
+145
+00:00:37,830 --> 00:00:38,330
+[SFX] scene6_006_hold_ambient.mp3

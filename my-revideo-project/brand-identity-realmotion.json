@@ -1,0 +1,322 @@
+{
+  "brandName": "Real Motion",
+  "tagline": "Web3 Digital Marketing Agency",
+  "industry": "Web3 / Blockchain / Digital Marketing",
+
+  "colors": {
+    "primary": {
+      "yellow": {
+        "hex": "#FFFF00",
+        "rgb": "255, 255, 0",
+        "usage": "Primary brand color, logo background, highlights, CTAs"
+      },
+      "magenta": {
+        "hex": "#FF00FF",
+        "rgb": "255, 0, 255",
+        "usage": "Primary accent, duotone overlays, gradients"
+      },
+      "purple": {
+        "hex": "#800080",
+        "rgb": "128, 0, 128",
+        "usage": "Secondary accent, depth, shadows"
+      }
+    },
+    "secondary": {
+      "pink": {
+        "hex": "#E94E87",
+        "rgb": "233, 78, 135",
+        "usage": "Accent highlights, icons, interactive elements"
+      },
+      "gold": {
+        "hex": "#F9C632",
+        "rgb": "249, 198, 50",
+        "usage": "Warm accents, premium feel, highlights"
+      },
+      "darkNavy": {
+        "hex": "#0F0E1F",
+        "rgb": "15, 14, 31",
+        "usage": "Dark backgrounds, text on light, depth"
+      },
+      "neonGreen": {
+        "hex": "#55FF33",
+        "rgb": "85, 255, 51",
+        "usage": "Tech accents, data visualization, success states"
+      },
+      "lime": {
+        "hex": "#CCFF00",
+        "rgb": "204, 255, 0",
+        "usage": "Alternative highlight, energy, calls to action"
+      },
+      "teal": {
+        "hex": "#2B9FB8",
+        "rgb": "43, 159, 184",
+        "usage": "Cool contrast, links, secondary buttons"
+      }
+    },
+    "neutral": {
+      "white": {
+        "hex": "#FFFFFF",
+        "rgb": "255, 255, 255",
+        "usage": "Text on dark, clean space, contrast"
+      },
+      "black": {
+        "hex": "#000000",
+        "rgb": "0, 0, 0",
+        "usage": "Text, outlines, maximum contrast"
+      },
+      "darkPurple": {
+        "hex": "#1A1A2E",
+        "rgb": "26, 26, 46",
+        "usage": "Dark mode backgrounds, cards"
+      }
+    },
+    "gradients": [
+      {
+        "name": "Sunset Vaporwave",
+        "colors": ["#FF00FF", "#FFFF00"],
+        "direction": "135deg",
+        "usage": "Hero sections, featured content"
+      },
+      {
+        "name": "Neon Night",
+        "colors": ["#800080", "#FF00FF", "#E94E87"],
+        "direction": "180deg",
+        "usage": "Backgrounds, overlays"
+      },
+      {
+        "name": "Cyber Glow",
+        "colors": ["#55FF33", "#CCFF00", "#FFFF00"],
+        "direction": "90deg",
+        "usage": "Accents, highlights, tech elements"
+      }
+    ]
+  },
+
+  "typography": {
+    "primary": {
+      "family": "Bold Sans-Serif (Bebas Neue / Oswald / Industry style)",
+      "weights": ["Bold", "Black"],
+      "usage": "Headlines, logo wordmark, impact text",
+      "characteristics": "All-caps, condensed, high impact"
+    },
+    "secondary": {
+      "family": "Clean Sans-Serif (Inter / Roboto / DM Sans)",
+      "weights": ["Regular", "Medium", "SemiBold"],
+      "usage": "Body text, UI elements, descriptions"
+    },
+    "accent": {
+      "family": "Pixel / Retro Font (Press Start 2P / VCR OSD Mono)",
+      "weights": ["Regular"],
+      "usage": "Special callouts, retro elements, gaming references"
+    },
+    "style": {
+      "headingCase": "UPPERCASE",
+      "letterSpacing": "Tight to normal",
+      "lineHeight": "1.1 - 1.2 for headlines, 1.5 - 1.6 for body"
+    }
+  },
+
+  "logo": {
+    "description": "Circular emblem with walking figure silhouette, surrounded by stars, on yellow background",
+    "elements": [
+      "Walking/striding human figure in motion",
+      "Circular badge/emblem shape",
+      "Star decorations around figure",
+      "Bold 'REAL MOTION' wordmark below"
+    ],
+    "variations": [
+      "Full color on yellow background",
+      "Inverted for dark backgrounds",
+      "Icon only (circle emblem)",
+      "Wordmark only"
+    ],
+    "clearSpace": "Minimum padding equal to height of 'R' in wordmark",
+    "minimumSize": "24px height for digital, 10mm for print"
+  },
+
+  "visualStyle": {
+    "aesthetic": "Retro-Futuristic Vaporwave meets Web3",
+    "era": "80s/90s inspired with modern crypto edge",
+    "keywords": [
+      "Vaporwave",
+      "Retro-futurism",
+      "Pixel art",
+      "Glitch",
+      "Synthwave",
+      "Neo-Tokyo",
+      "Cyberpunk",
+      "Web3 native"
+    ],
+    "influences": [
+      "Japanese city pop aesthetics",
+      "80s arcade games",
+      "VHS and CRT distortion",
+      "Memphis design",
+      "Outrun/Synthwave culture",
+      "Crypto punk culture"
+    ]
+  },
+
+  "imagery": {
+    "illustrationStyle": {
+      "primary": "Bold duotone illustrations with magenta/yellow palette",
+      "secondary": "Pixel art characters and icons",
+      "characteristics": [
+        "High contrast",
+        "Limited color palettes (2-3 colors)",
+        "Flat design with bold outlines",
+        "Retro halftone textures",
+        "Scanline effects"
+      ]
+    },
+    "motifs": [
+      "UFOs and flying saucers",
+      "Pyramids and ancient structures",
+      "Cats (especially pixel art cats)",
+      "Astronauts and space themes",
+      "Japanese text and kanji",
+      "Retro computers and tech",
+      "Palm trees and sunsets",
+      "Grid patterns (Tron-style)",
+      "Stars and cosmic elements"
+    ],
+    "photography": {
+      "treatment": "Heavy color grading with brand colors",
+      "effects": [
+        "Duotone overlays",
+        "Glitch distortion",
+        "VHS artifacts",
+        "Chromatic aberration",
+        "Scanlines"
+      ]
+    },
+    "iconography": {
+      "style": "Pixel art or bold flat icons",
+      "colors": "Brand palette with high contrast",
+      "strokeWeight": "Bold, 2-3px minimum"
+    }
+  },
+
+  "effects": {
+    "glitch": {
+      "usage": "Transitions, hover states, emphasis",
+      "types": ["RGB split", "Horizontal displacement", "Block corruption"]
+    },
+    "scanlines": {
+      "usage": "Background texture, retro feel",
+      "opacity": "5-15%"
+    },
+    "grain": {
+      "usage": "Subtle texture on backgrounds",
+      "intensity": "Light, film-like"
+    },
+    "glow": {
+      "usage": "Neon text, buttons, highlights",
+      "colors": ["#FF00FF", "#FFFF00", "#55FF33"]
+    },
+    "chromaticAberration": {
+      "usage": "Image edges, text emphasis",
+      "offset": "2-5px RGB channel separation"
+    }
+  },
+
+  "motion": {
+    "style": "Energetic, glitchy, retro-inspired",
+    "characteristics": [
+      "Quick cuts and transitions",
+      "Glitch transitions between scenes",
+      "Pixel-perfect animations",
+      "VHS-style tracking errors",
+      "Bouncy, arcade-game feel"
+    ],
+    "timing": {
+      "default": "200-300ms",
+      "emphasis": "400-600ms with overshoot",
+      "easing": "Snappy bezier curves, slight bounce"
+    },
+    "transitions": [
+      "Glitch wipe",
+      "Pixel dissolve",
+      "RGB split slide",
+      "CRT power on/off",
+      "Scanline reveal"
+    ]
+  },
+
+  "tone": {
+    "voice": "Bold, confident, irreverent, crypto-native",
+    "personality": [
+      "Cutting-edge but nostalgic",
+      "Professional but playful",
+      "Tech-savvy and crypto-fluent",
+      "Direct and impactful"
+    ],
+    "vocabulary": [
+      "Web3 terminology",
+      "Crypto/DeFi language",
+      "Marketing jargon with self-awareness",
+      "Gaming and internet culture references"
+    ]
+  },
+
+  "applications": {
+    "socialMedia": {
+      "style": "Bold graphics, high contrast, brand colors prominent",
+      "elements": "Duotone images, pixel art, glitch effects"
+    },
+    "presentations": {
+      "background": "Dark (#0F0E1F) with neon accents",
+      "headlines": "Yellow or magenta on dark",
+      "imagery": "Full-bleed duotone illustrations"
+    },
+    "website": {
+      "background": "Dark mode primary",
+      "accents": "Neon highlights, gradient buttons",
+      "interactions": "Glitch hovers, smooth scroll, parallax"
+    },
+    "video": {
+      "lowerThirds": "Glitch-in animations, pixel fonts",
+      "transitions": "CRT/VHS effects, RGB splits",
+      "overlays": "Scanlines, grain, chromatic aberration"
+    }
+  },
+
+  "doAndDont": {
+    "do": [
+      "Use bold, high-contrast color combinations",
+      "Embrace retro aesthetics with modern execution",
+      "Apply glitch and VHS effects tastefully",
+      "Keep designs energetic and impactful",
+      "Use pixel art for icons and accents",
+      "Maintain the magenta/yellow core palette"
+    ],
+    "dont": [
+      "Use muted or pastel colors",
+      "Create overly corporate or sterile designs",
+      "Overuse effects to the point of illegibility",
+      "Mix too many competing visual styles",
+      "Use generic stock photography without treatment",
+      "Abandon the retro-futuristic aesthetic"
+    ]
+  },
+
+  "technicalSpecs": {
+    "colorSpace": "sRGB for digital, CMYK for print (colors will shift)",
+    "fileFormats": {
+      "images": "PNG for transparency, JPG for photos, SVG for icons",
+      "video": "MP4 H.264/H.265, 1080p minimum",
+      "animation": "JSON (Lottie), GIF for simple loops"
+    },
+    "aspectRatios": {
+      "social": "1:1 (Instagram), 9:16 (Stories/Reels), 16:9 (YouTube)",
+      "web": "Responsive, 16:9 heroes"
+    }
+  },
+
+  "metadata": {
+    "extractedFrom": "Brand asset images",
+    "extractionDate": "2026-01-18",
+    "version": "1.0",
+    "confidenceLevel": "High - explicit color codes and extensive visual assets provided"
+  }
+}

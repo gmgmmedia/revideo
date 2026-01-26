@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fcpxml>
+<fcpxml version="1.9">
+  <resources>
+    <format id="r1" name="FFVideoFormat1080p30" frameDuration="1/30s" width="1920" height="1080"/>
+    <asset id="a1" name="BG Glow Init" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_001_bg_glow_init.mp3" duration="60/30s" hasAudio="1"/>
+    <asset id="a2" name="Hero Cube Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_002_hero_cube_appears.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a3" name="Shadow Settles" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_003_shadow_settles.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a4" name="Logo Fade In" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_004_logo_fade_in.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a5" name="Logo Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_005_logo_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a6" name="Cube Shrinks" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_006_cube_shrinks.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a7" name="Grid Ripple Start" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_007_grid_ripple_start.mp3" duration="60/30s" hasAudio="1"/>
+    <asset id="a8" name="Grid Complete" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_008_grid_complete.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a9" name="Wave Glow 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_009_wave_glow_1.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a10" name="Wave Glow 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_010_wave_glow_2.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a11" name="Particles Appear" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_011_particles_appear.mp3" duration="60/30s" hasAudio="1"/>
+    <asset id="a12" name="Final Lightning Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene1_012_final_lightning_pulse.mp3" duration="45/30s" hasAudio="1"/>
+    <asset id="a13" name="Wallet Cube Rise" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_001_wallet_cube_rise.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a14" name="Wallet Icon Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_002_wallet_icon_appears.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a15" name="Clasp Reveals" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_003_clasp_reveals.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a16" name="Card Slot 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_004_card_slot_1.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a17" name="Card Slot 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_005_card_slot_2.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a18" name="Card Slot 3" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_006_card_slot_3.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a19" name="Wallet Glow Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_007_wallet_glow_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a20" name="Balance Cube Rise" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_008_balance_cube_rise.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a21" name="Icon Container" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_009_icon_container.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a22" name="SOL Logo Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_010_sol_logo_appears.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a23" name="Number Fades In" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_011_number_fades_in.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a24" name="Logo Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_012_logo_pulse.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a25" name="Balance Highlight" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_013_balance_highlight.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a26" name="Program Cube Rise" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_014_program_cube_rise.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a27" name="Program Icon" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_015_program_icon.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a28" name="Gear Internals" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_016_gear_internals.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a29" name="Gear Teeth Sequence" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_017_gear_teeth_sequence.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a30" name="Brackets Draw" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_018_brackets_draw.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a31" name="Code Dot 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_019_code_dot_1.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a32" name="Code Dot 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_020_code_dot_2.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a33" name="Code Dot 3" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_021_code_dot_3.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a34" name="All Three Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_022_all_three_pulse.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a35" name="Particles Fade In" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_023_particles_fade_in.mp3" duration="45/30s" hasAudio="1"/>
+    <asset id="a36" name="Final Emphasis" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene2_024_final_emphasis.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a37" name="BG Layers Init" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_001_bg_layers_init.mp3" duration="60/30s" hasAudio="1"/>
+    <asset id="a38" name="Hex Grid Fade" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_002_hex_grid_fade.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a39" name="Hero Box Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_003_hero_box_appears.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a40" name="Orbit Particles" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_004_orbit_particles.mp3" duration="45/30s" hasAudio="1"/>
+    <asset id="a41" name="Box Rotates" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_005_box_rotates.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a42" name="Inner Structure" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_006_inner_structure.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a43" name="Address Bar" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_007_address_bar.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a44" name="Bar Fills" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_008_bar_fills.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a45" name="0x Prefix" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_009_0x_prefix.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a46" name="Hex Char 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_010_hex_char_1.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a47" name="Hex Char 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_011_hex_char_2.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a48" name="Hex Char 3" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_012_hex_char_3.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a49" name="Hex Char 4" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_013_hex_char_4.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a50" name="Hex Char 5" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_014_hex_char_5.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a51" name="Hex Char 6" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_015_hex_char_6.mp3" duration="3/30s" hasAudio="1"/>
+    <asset id="a52" name="Cursor Blink" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_016_cursor_blink.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a53" name="Data Layer Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_017_data_layer_appears.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a54" name="Data Blocks In" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_018_data_blocks_in.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a55" name="Circuit Lines Draw" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_019_circuit_lines_draw.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a56" name="Content Lines" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_020_content_lines.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a57" name="Binary Bits" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_021_binary_bits.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a58" name="Data Flow Beziers" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_022_data_flow_beziers.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a59" name="Hero Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_023_hero_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a60" name="Box Transitions" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_024_box_transitions.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a61" name="Comparison Reveals" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_025_comparison_reveals.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a62" name="Exec Box Halo" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_026_exec_box_halo.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a63" name="Glow Rays" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_027_glow_rays.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a64" name="Code Brackets" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_028_code_brackets.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a65" name="Code Lines Inside" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_029_code_lines_inside.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a66" name="Data Boxes Pop" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_030_data_boxes_pop.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a67" name="Divider Draws" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_031_divider_draws.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a68" name="Connection Beziers" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_032_connection_beziers.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a69" name="Exec Emphasis" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_033_exec_emphasis.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a70" name="Final Exec Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene3_034_final_exec_pulse.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a71" name="Program Box Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_001_program_box_appears.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a72" name="Brain Emphasized" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_002_brain_emphasized.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a73" name="Shatter Impact" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_003_shatter_impact.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a74" name="Flash Effect" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_004_flash_effect.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a75" name="Shards Flying" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_005_shards_flying.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a76" name="Shards Fade" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_006_shards_fade.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a77" name="X Mark Draws" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_007_x_mark_draws.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a78" name="X Pulses" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_008_x_pulses.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a79" name="Becomes Hollow" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_009_becomes_hollow.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a80" name="Interior Reveals" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_010_interior_reveals.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a81" name="Empty Symbol" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_011_empty_symbol.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a82" name="Code Brackets" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_012_code_brackets.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a83" name="Code Lines" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_013_code_lines.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a84" name="Code Dots" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_014_code_dots.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a85" name="Instruction Arrows" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_015_instruction_arrows.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a86" name="Threads Launch" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_016_threads_launch.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a87" name="Threads Form" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_017_threads_form.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a88" name="Particles Travel" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_018_particles_travel.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a89" name="Endpoints Light" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_019_endpoints_light.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a90" name="Data Boxes Pop" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_020_data_boxes_pop.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a91" name="Boxes Light Up" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_021_boxes_light_up.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a92" name="Endpoint Pulses" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_022_endpoint_pulses.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a93" name="Fill Animation Start" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_023_fill_animation_start.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a94" name="Main Fill" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_024_main_fill.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a95" name="Labels Appear" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_025_labels_appear.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a96" name="Program Dims" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_026_program_dims.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a97" name="Data Boxes Bright" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_027_data_boxes_bright.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a98" name="Ambient Particles" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_028_ambient_particles.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a99" name="Data Stream" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene4_029_data_stream.mp3" duration="45/30s" hasAudio="1"/>
+    <asset id="a100" name="Envelope Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_001_envelope_appears.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a101" name="Seal Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_002_seal_appears.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a102" name="Seal Breaks" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_003_seal_breaks.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a103" name="Opening Lines" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_004_opening_lines.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a104" name="Target List" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_005_target_list.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a105" name="Boxes A B C D" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_006_boxes_a_b_c_d.mp3" duration="24/30s" hasAudio="1"/>
+    <asset id="a106" name="Envelope Shrinks" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_007_envelope_shrinks.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a107" name="Users Appear" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_008_users_appear.mp3" duration="18/30s" hasAudio="1"/>
+    <asset id="a108" name="Beam 1 Launch" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_009_beam_1_launch.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a109" name="Beam 1 Extends" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_010_beam_1_extends.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a110" name="Beam 2 Launch" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_011_beam_2_launch.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a111" name="Particles Travel" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_012_particles_travel.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a112" name="Boxes A B Light" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_013_boxes_a_b_light.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a113" name="Checkmark 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_014_checkmark_1.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a114" name="Two Beams Launch" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_015_two_beams_launch.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a115" name="Particles Travel 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_016_particles_travel_2.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a116" name="Boxes C D Light" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_017_boxes_c_d_light.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a117" name="Checkmark 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_018_checkmark_2.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a118" name="Dashed Beam Tries" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_019_dashed_beam_tries.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a119" name="Beam Hits Barrier" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_020_beam_hits_barrier.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a120" name="Barrier Appears" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_021_barrier_appears.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a121" name="X Mark Draws" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_022_x_mark_draws.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a122" name="Conflict Wave 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_023_conflict_wave_1.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a123" name="Conflict Wave 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_024_conflict_wave_2.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a124" name="Conflict Wave 3" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_025_conflict_wave_3.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a125" name="BLOCKED Text" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_026_blocked_text.mp3" duration="12/30s" hasAudio="1"/>
+    <asset id="a126" name="Wait Icon" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_027_wait_icon.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a127" name="Clock Tick 1" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_028_clock_tick_1.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a128" name="Clock Tick 2" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_029_clock_tick_2.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a129" name="Clock Complete" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_030_clock_complete.mp3" duration="6/30s" hasAudio="1"/>
+    <asset id="a130" name="Transition Clear" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_031_transition_clear.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a131" name="Data Stream Activates" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_032_data_stream_activates.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a132" name="Flow Beams Draw" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_033_flow_beams_draw.mp3" duration="60/30s" hasAudio="1"/>
+    <asset id="a133" name="Secondary Beams" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_034_secondary_beams.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a134" name="All Particles Flow" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_035_all_particles_flow.mp3" duration="45/30s" hasAudio="1"/>
+    <asset id="a135" name="Endpoint Glows" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_036_endpoint_glows.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a136" name="All Boxes Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_037_all_boxes_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a137" name="Ambient Layer" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_038_ambient_layer.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a138" name="Final Flow Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_039_final_flow_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a139" name="Final Glow" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene5_040_final_glow.mp3" duration="30/30s" hasAudio="1"/>
+    <asset id="a140" name="BG Glow" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_001_bg_glow.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a141" name="Logo Scales In" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_002_logo_scales_in.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a142" name="Logo Fills" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_003_logo_fills.mp3" duration="9/30s" hasAudio="1"/>
+    <asset id="a143" name="Particles" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_004_particles.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a144" name="Logo Pulse" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_005_logo_pulse.mp3" duration="15/30s" hasAudio="1"/>
+    <asset id="a145" name="Hold Ambient" src="file:///Users/rolandgal/Desktop/revideo/my-revideo-project/sfx_output/scene6_006_hold_ambient.mp3" duration="15/30s" hasAudio="1"/>
+  </resources>
+  <library>
+    <event name="SFX Import - 2026-01-18">
+      <project name="Solana Boxes Explainer">
+        <sequence format="r1" duration="1209/30s" tcStart="0s" tcFormat="NDF">
+          <spine>
+            <gap name="Timeline" duration="1209/30s" start="0s"/>
+          </spine>
+          <asset-clip ref="a1" name="BG Glow Init" offset="0/30s" duration="60/30s" lane="1" start="0s"/>
+          <asset-clip ref="a2" name="Hero Cube Appears" offset="3/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a3" name="Shadow Settles" offset="8/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a4" name="Logo Fade In" offset="12/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a5" name="Logo Pulse" offset="20/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a6" name="Cube Shrinks" offset="41/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a7" name="Grid Ripple Start" offset="51/30s" duration="60/30s" lane="1" start="0s"/>
+          <asset-clip ref="a8" name="Grid Complete" offset="65/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a9" name="Wave Glow 1" offset="80/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a10" name="Wave Glow 2" offset="86/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a11" name="Particles Appear" offset="87/30s" duration="60/30s" lane="1" start="0s"/>
+          <asset-clip ref="a12" name="Final Lightning Pulse" offset="90/30s" duration="45/30s" lane="1" start="0s"/>
+          <asset-clip ref="a13" name="Wallet Cube Rise" offset="105/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a14" name="Wallet Icon Appears" offset="113/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a15" name="Clasp Reveals" offset="117/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a16" name="Card Slot 1" offset="120/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a17" name="Card Slot 2" offset="122/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a18" name="Card Slot 3" offset="122/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a19" name="Wallet Glow Pulse" offset="126/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a20" name="Balance Cube Rise" offset="167/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a21" name="Icon Container" offset="177/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a22" name="SOL Logo Appears" offset="180/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a23" name="Number Fades In" offset="191/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a24" name="Logo Pulse" offset="201/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a25" name="Balance Highlight" offset="206/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a26" name="Program Cube Rise" offset="228/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a27" name="Program Icon" offset="239/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a28" name="Gear Internals" offset="243/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a29" name="Gear Teeth Sequence" offset="249/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a30" name="Brackets Draw" offset="261/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a31" name="Code Dot 1" offset="269/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a32" name="Code Dot 2" offset="270/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a33" name="Code Dot 3" offset="270/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a34" name="All Three Pulse" offset="285/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a35" name="Particles Fade In" offset="276/30s" duration="45/30s" lane="1" start="0s"/>
+          <asset-clip ref="a36" name="Final Emphasis" offset="285/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a37" name="BG Layers Init" offset="330/30s" duration="60/30s" lane="1" start="0s"/>
+          <asset-clip ref="a38" name="Hex Grid Fade" offset="335/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a39" name="Hero Box Appears" offset="339/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a40" name="Orbit Particles" offset="350/30s" duration="45/30s" lane="1" start="0s"/>
+          <asset-clip ref="a41" name="Box Rotates" offset="380/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a42" name="Inner Structure" offset="390/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a43" name="Address Bar" offset="405/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a44" name="Bar Fills" offset="410/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a45" name="0x Prefix" offset="417/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a46" name="Hex Char 1" offset="419/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a47" name="Hex Char 2" offset="420/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a48" name="Hex Char 3" offset="420/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a49" name="Hex Char 4" offset="422/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a50" name="Hex Char 5" offset="423/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a51" name="Hex Char 6" offset="423/30s" duration="3/30s" lane="1" start="0s"/>
+          <asset-clip ref="a52" name="Cursor Blink" offset="425/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a53" name="Data Layer Appears" offset="429/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a54" name="Data Blocks In" offset="440/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a55" name="Circuit Lines Draw" offset="444/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a56" name="Content Lines" offset="450/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a57" name="Binary Bits" offset="455/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a58" name="Data Flow Beziers" offset="459/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a59" name="Hero Pulse" offset="465/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a60" name="Box Transitions" offset="480/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a61" name="Comparison Reveals" offset="495/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a62" name="Exec Box Halo" offset="504/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a63" name="Glow Rays" offset="507/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a64" name="Code Brackets" offset="519/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a65" name="Code Lines Inside" offset="525/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a66" name="Data Boxes Pop" offset="549/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a67" name="Divider Draws" offset="564/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a68" name="Connection Beziers" offset="570/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a69" name="Exec Emphasis" offset="579/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a70" name="Final Exec Pulse" offset="588/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a71" name="Program Box Appears" offset="609/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a72" name="Brain Emphasized" offset="620/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a73" name="Shatter Impact" offset="635/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a74" name="Flash Effect" offset="635/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a75" name="Shards Flying" offset="639/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a76" name="Shards Fade" offset="650/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a77" name="X Mark Draws" offset="645/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a78" name="X Pulses" offset="648/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a79" name="Becomes Hollow" offset="669/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a80" name="Interior Reveals" offset="675/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a81" name="Empty Symbol" offset="678/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a82" name="Code Brackets" offset="680/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a83" name="Code Lines" offset="683/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a84" name="Code Dots" offset="690/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a85" name="Instruction Arrows" offset="693/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a86" name="Threads Launch" offset="695/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a87" name="Threads Form" offset="720/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a88" name="Particles Travel" offset="725/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a89" name="Endpoints Light" offset="729/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a90" name="Data Boxes Pop" offset="735/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a91" name="Boxes Light Up" offset="744/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a92" name="Endpoint Pulses" offset="747/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a93" name="Fill Animation Start" offset="759/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a94" name="Main Fill" offset="762/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a95" name="Labels Appear" offset="765/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a96" name="Program Dims" offset="774/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a97" name="Data Boxes Bright" offset="780/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a98" name="Ambient Particles" offset="785/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a99" name="Data Stream" offset="789/30s" duration="45/30s" lane="1" start="0s"/>
+          <asset-clip ref="a100" name="Envelope Appears" offset="810/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a101" name="Seal Appears" offset="815/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a102" name="Seal Breaks" offset="819/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a103" name="Opening Lines" offset="822/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a104" name="Target List" offset="825/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a105" name="Boxes A B C D" offset="840/30s" duration="24/30s" lane="1" start="0s"/>
+          <asset-clip ref="a106" name="Envelope Shrinks" offset="849/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a107" name="Users Appear" offset="870/30s" duration="18/30s" lane="1" start="0s"/>
+          <asset-clip ref="a108" name="Beam 1 Launch" offset="885/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a109" name="Beam 1 Extends" offset="885/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a110" name="Beam 2 Launch" offset="888/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a111" name="Particles Travel" offset="890/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a112" name="Boxes A B Light" offset="894/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a113" name="Checkmark 1" offset="900/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a114" name="Two Beams Launch" offset="905/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a115" name="Particles Travel 2" offset="909/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a116" name="Boxes C D Light" offset="915/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a117" name="Checkmark 2" offset="920/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a118" name="Dashed Beam Tries" offset="930/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a119" name="Beam Hits Barrier" offset="935/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a120" name="Barrier Appears" offset="939/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a121" name="X Mark Draws" offset="942/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a122" name="Conflict Wave 1" offset="945/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a123" name="Conflict Wave 2" offset="945/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a124" name="Conflict Wave 3" offset="947/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a125" name="BLOCKED Text" offset="950/30s" duration="12/30s" lane="1" start="0s"/>
+          <asset-clip ref="a126" name="Wait Icon" offset="954/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a127" name="Clock Tick 1" offset="956/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a128" name="Clock Tick 2" offset="957/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a129" name="Clock Complete" offset="960/30s" duration="6/30s" lane="1" start="0s"/>
+          <asset-clip ref="a130" name="Transition Clear" offset="969/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a131" name="Data Stream Activates" offset="984/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a132" name="Flow Beams Draw" offset="990/30s" duration="60/30s" lane="1" start="0s"/>
+          <asset-clip ref="a133" name="Secondary Beams" offset="1038/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a134" name="All Particles Flow" offset="1040/30s" duration="45/30s" lane="1" start="0s"/>
+          <asset-clip ref="a135" name="Endpoint Glows" offset="1043/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a136" name="All Boxes Pulse" offset="1059/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a137" name="Ambient Layer" offset="1070/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a138" name="Final Flow Pulse" offset="1080/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a139" name="Final Glow" offset="1085/30s" duration="30/30s" lane="1" start="0s"/>
+          <asset-clip ref="a140" name="BG Glow" offset="1110/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a141" name="Logo Scales In" offset="1115/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a142" name="Logo Fills" offset="1119/30s" duration="9/30s" lane="1" start="0s"/>
+          <asset-clip ref="a143" name="Particles" offset="1125/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a144" name="Logo Pulse" offset="1130/30s" duration="15/30s" lane="1" start="0s"/>
+          <asset-clip ref="a145" name="Hold Ambient" offset="1134/30s" duration="15/30s" lane="1" start="0s"/>
+        </sequence>
+      </project>
+    </event>
+  </library>
+</fcpxml>

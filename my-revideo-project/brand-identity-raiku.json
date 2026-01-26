@@ -1,0 +1,211 @@
+{
+  "company": {
+    "name": "Raiku",
+    "url": "https://www.raiku.com",
+    "tagline": "Understanding The Solana Programming Model",
+    "description": "Raiku is a Solana-focused infrastructure and education platform that helps developers and users understand blockchain architecture through clear, analogy-driven content. They specialize in making complex technical concepts accessible while maintaining technical depth, bridging the gap between Solana's advanced parallel execution model and developer comprehension.",
+    "industry": "Blockchain Infrastructure / Developer Education",
+    "industry_category": "Infrastructure",
+    "target_audience": "Blockchain developers, Web3 builders, technical users seeking to understand Solana's programming model, and teams building on Solana infrastructure",
+    "brand_personality": ["technical", "accessible", "innovative", "builder-focused", "educational"],
+    "key_messages": [
+      "Making Solana's architecture understandable through clear mental models",
+      "Parallel execution through separation of code and state",
+      "Building understanding from the ground up"
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#C0FF38",
+      "name": "Raiku Neon",
+      "usage": "Primary accent color, highlights, interactive elements, logo fills, key visual indicators, CTAs",
+      "source": "brand_specification"
+    },
+    "secondary": {
+      "hex": "#000204",
+      "name": "Raiku Black",
+      "usage": "Primary backgrounds, containers, negative space",
+      "source": "brand_specification"
+    },
+    "accent": {
+      "hex": "#C0FF38",
+      "name": "Raiku Neon",
+      "usage": "Same as primary - single accent color system",
+      "source": "brand_specification"
+    },
+    "background": {
+      "dark": "#000204",
+      "light": "#FDFDFF",
+      "preferred": "dark"
+    },
+    "text": {
+      "primary": "#FDFDFF",
+      "secondary": "#FDFDFF",
+      "on_dark": "#FDFDFF",
+      "on_light": "#000204",
+      "on_accent": "#000204"
+    },
+    "data_colors": {
+      "positive": "#C0FF38",
+      "negative": "#C0FF38",
+      "highlight": "#C0FF38"
+    },
+    "gradients": [],
+    "core_palette": {
+      "black": "#000204",
+      "white": "#FDFDFF",
+      "neon": "#C0FF38"
+    },
+    "palette_mood": "Ultra-minimal three-color system. Pure black (#000204) provides depth and technical gravitas. Crisp white (#FDFDFF) ensures maximum readability. Electric neon (#C0FF38) delivers instant recognition and creates a signature look that cuts through typical Web3 visual noise. No gradients, no grays, no compromise - every element is definitively one of three colors."
+  },
+
+  "typography": {
+    "heading": {
+      "family": "Monospace / Technical Sans-Serif",
+      "weights": [500, 600, 700],
+      "letter_spacing": "normal",
+      "text_transform": "none"
+    },
+    "body": {
+      "family": "System Sans-Serif",
+      "weights": [400, 500],
+      "line_height": "relaxed"
+    },
+    "data": {
+      "family": "Monospace",
+      "usage": "Code examples, technical specs, blockchain addresses, timing metrics (50ms)"
+    },
+    "style_notes": "Typography emphasizes technical credibility with monospace elements for code and data while maintaining readability for educational long-form content. The style balances developer-tool aesthetics with approachable body copy for explanatory content."
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Dark-mode technical infrastructure meets isometric world-building. Three-color-only system (black, white, neon) creates unmistakable brand recognition.",
+    "imagery": {
+      "photography": "None - entirely illustration-based visual system",
+      "illustration_style": "Isometric 3D, wireframe hybrid, technical diagrams",
+      "illustration_examples": "Isometric cityscapes representing blockchain networks, white wireframe vehicles and infrastructure with neon (#C0FF38) accent highlights, technical flow diagrams with dot-grid patterns, global network maps with hexagonal node markers, layered card stacks representing accounts/data structures"
+    },
+    "iconography": {
+      "style": "Custom geometric with hexagonal motif",
+      "stroke_width": "thin to medium",
+      "notes": "Checkmarks in lime circles for confirmations, hexagonal containers for key elements, consistent wireframe aesthetic"
+    },
+    "shapes": {
+      "language": "geometric",
+      "border_radius": "4-8px for UI elements, hexagonal for brand marks",
+      "signature_shape": "Hexagon with embedded chevron/arrow - appears as logo mark"
+    },
+    "effects": {
+      "shadows": "subtle",
+      "glassmorphism": false,
+      "grain_texture": false,
+      "glow_accents": true,
+      "wireframe_overlay": true,
+      "grid_patterns": true
+    }
+  },
+
+  "components": {
+    "buttons": {
+      "primary": "Black (#000204) background with neon (#C0FF38) text/border, neon glow on hover",
+      "secondary": "Transparent with white (#FDFDFF) border, neon (#C0FF38) accent on interaction",
+      "states": "Hover: neon glow effect. Active: filled neon with black text. Disabled: reduced opacity white"
+    },
+    "cards": {
+      "style": "Black (#000204) backgrounds, white (#FDFDFF) wireframe borders, subtle rounded corners",
+      "variants": "Information cards with neon accent headers, layered stack visualizations"
+    },
+    "inputs": {
+      "style": "Black backgrounds with white borders",
+      "focus_state": "Neon (#C0FF38) border highlight"
+    },
+    "navigation": {
+      "style": "Minimal, dark background",
+      "mobile": "Responsive"
+    },
+    "diagrams": {
+      "style": "Dot-grid backgrounds, flow arrows, labeled sections (AOT/JIT), timing indicators",
+      "colors": "Neon (#C0FF38) for active/highlighted states, white (#FDFDFF) for wireframes/labels on black (#000204) backgrounds"
+    }
+  },
+
+  "brand_voice": {
+    "tone": ["technical", "educational", "accessible", "precise"],
+    "language_style": "Uses analogies to explain complex concepts (warehouse analogy for accounts). Technical accuracy without jargon overload. Builds understanding progressively from fundamentals to advanced topics. Direct and confident while remaining approachable.",
+    "key_phrases": [
+      "Understanding the programming model",
+      "Build a mental model",
+      "Once it clicks, everything else makes sense",
+      "Same program, different accounts",
+      "Parallel execution"
+    ],
+    "avoid": ["Hype language", "Moon/lambo references", "Oversimplification that sacrifices accuracy", "Vague marketing speak"],
+    "energy_level": "moderate"
+  },
+
+  "sources": {
+    "url": "https://www.raiku.com",
+    "url_pages_fetched": [],
+    "images_provided": 6,
+    "image_types_detected": ["brand_asset", "brand_asset", "brand_asset", "brand_asset", "brand_asset", "brand_asset"]
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "medium",
+    "visual_style": "high",
+    "components": "medium",
+    "brand_voice": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "images",
+    "confidence": "high",
+    "confidence_notes": "Six brand illustration assets show highly consistent visual language: isometric 3D style, wireframe aesthetics, single neon accent color, pure black backgrounds. Color palette refined to exact brand specification: black (#000204), white (#FDFDFF), neon (#C0FF38). Social content confirms technical-educational brand positioning focused on Solana infrastructure.",
+    "extracted_at": "2026-01-15"
+  },
+
+  "web3_signals": {
+    "is_web3_brand": true,
+    "crypto_native_indicators": [
+      "Dark mode dominant (100% across all assets)",
+      "Distinctive lime accent (differentiates from typical blue/purple Web3)",
+      "Builder/developer-focused language",
+      "Solana-specific technical content",
+      "Infrastructure/protocol-level positioning",
+      "Educational content about blockchain architecture",
+      "Technical diagrams explaining validator sidecars, JIT compilation"
+    ],
+    "tech_stack_hints": [
+      "Isometric 3D illustrations (likely Blender or similar)",
+      "Consistent design system across all assets",
+      "Technical diagram tooling"
+    ],
+    "positioning": "Infrastructure / Developer Education",
+    "anti_patterns": [
+      "Avoids typical Web3 color schemes (no purple/blue gradients, no grays)",
+      "Three-color-only system - no color variations or tints",
+      "No hype or speculative language",
+      "No meme references",
+      "No get-rich-quick messaging",
+      "Prioritizes technical accuracy over marketing fluff"
+    ]
+  },
+
+  "illustration_system": {
+    "primary_style": "Isometric 3D",
+    "rendering": "White (#FDFDFF) wireframe base on black (#000204) with solid neon (#C0FF38) accent fills",
+    "subjects": [
+      "Urban cityscapes (representing network/infrastructure)",
+      "Vehicles (cars, trucks - representing transactions/data)",
+      "Buildings and factories (representing validators/nodes)",
+      "Global maps with connected nodes",
+      "Technical flow diagrams",
+      "Stacked layers (representing accounts/data structures)"
+    ],
+    "grid_system": "Triangular/isometric grid pattern in white wireframe on black backgrounds",
+    "accent_application": "Neon (#C0FF38) fills highlight active/important elements while white wireframes show context/structure",
+    "logo_treatment": "Hexagonal container with embedded chevron/arrow shape, filled with neon (#C0FF38) accent"
+  }
+}
