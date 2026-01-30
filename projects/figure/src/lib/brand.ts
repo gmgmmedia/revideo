@@ -1,41 +1,66 @@
 /**
  * Figure Markets Brand System
- * Premium fintech meets Web3 - institutional credibility with modern digital asset energy
+ * Clean, bright, institutional look with white/light backgrounds and single purple accent
  *
  * @description Shared constants for all Figure/FGRD video animations
  */
 
 // ============================================
-// BRAND COLORS - Figure Markets Palette
+// BRAND COLORS - Clean & Bright Palette
 // ============================================
 export const FIGURE = {
-  indigo: '#6366F1',      // Primary brand
-  violet: '#8B5CF6',      // Secondary accent
-  cyan: '#06B6D4',        // Interactive accent
-  dark: '#0F0F23',        // Background
-  white: '#FFFFFF',       // Primary text
-  muted: '#94A3B8',       // Secondary text
-  indigoDark: '#4F46E5',  // Dark variant
-  indigoLight: '#818CF8', // Light variant
+  // Primary brand purple
+  purple: '#6366F1',
+  purpleLight: '#8B8FFA',
+  purpleDark: '#4F46E5',
+
+  // Backgrounds
+  white: '#FFFFFF',
+  backgroundAlt: '#F8F7FF',  // Subtle purple tint
+
+  // Text colors
+  textDark: '#1A1A2E',       // Dark text on light bg
+  textLight: '#FFFFFF',       // White text on purple elements
+  textMuted: '#64648B',       // Muted secondary text
+
+  // UI elements (for phone mockup)
+  uiDark: '#0F0F23',         // Dark UI inside phone
+  success: '#22C55E',         // Green for APR numbers
 } as const;
 
 export const colors = {
-  primary: FIGURE.indigo,
-  secondary: FIGURE.violet,
-  accent: FIGURE.cyan,
-  background: FIGURE.dark,
-  text: FIGURE.white,
-  textMuted: FIGURE.muted,
-  glow: FIGURE.indigo,
-  glowSecondary: FIGURE.violet,
+  // Main colors
+  background: FIGURE.white,
+  backgroundAlt: FIGURE.backgroundAlt,
+  primary: FIGURE.purple,
+  primaryLight: FIGURE.purpleLight,
+  primaryDark: FIGURE.purpleDark,
+  secondary: FIGURE.purpleLight,   // Unified to purple (was violet)
+  accent: FIGURE.purpleLight,      // Unified to purple (was cyan)
+
+  // Text
+  text: FIGURE.textDark,
+  textLight: FIGURE.textLight,
+  textMuted: FIGURE.textMuted,
+
+  // UI
+  uiDark: FIGURE.uiDark,
+  success: FIGURE.success,
+
+  // Glow (single purple family)
+  glow: FIGURE.purple,
+  glowLight: FIGURE.purpleLight,
+  glowSecondary: FIGURE.purpleLight,  // For backward compatibility
 } as const;
 
 // ============================================
 // GRADIENT DEFINITIONS
 // ============================================
 export const gradients = {
-  brand: [FIGURE.indigo, FIGURE.violet, '#A78BFA'],
-  subtle: [FIGURE.indigo, FIGURE.indigoDark],
+  // Light background gradient with subtle purple tint
+  background: [FIGURE.white, FIGURE.backgroundAlt],
+  // Purple gradient for accents
+  brand: [FIGURE.purple, FIGURE.purpleLight],
 } as const;
 
 // ============================================
@@ -65,19 +90,19 @@ export const fontWeights = {
 } as const;
 
 // ============================================
-// ANIMATION TIMING
+// ANIMATION TIMING (~25-30% faster)
 // ============================================
 export const timing = {
-  beat: 0.3,
-  microBeat: 0.1,
-  entrance: 0.4,
-  exit: 0.3,
-  stagger: 0.08,
-  hold: 0.2,
-  crossfade: 0.2,
-  fast: 0.15,
-  smooth: 0.6,
-  premium: 0.8,
+  beat: 0.22,           // Was 0.3
+  microBeat: 0.08,      // Was 0.1
+  entrance: 0.3,        // Was 0.4
+  exit: 0.22,           // Was 0.3
+  stagger: 0.06,        // Was 0.08
+  hold: 0.15,           // Was 0.2
+  crossfade: 0.15,      // Was 0.2
+  fast: 0.12,           // Was 0.15
+  smooth: 0.45,         // Was 0.6
+  premium: 0.6,         // Was 0.8
 } as const;
 
 // ============================================
@@ -85,13 +110,13 @@ export const timing = {
 // ============================================
 export const effects = {
   glowBlur: 30,
-  glowOpacity: 0.5,
+  glowOpacity: 0.3,
   glowBlurLarge: 60,
   glowBlurSmall: 15,
-  glowOpacitySubtle: 0.25,
-  glowOpacityBright: 0.7,
-  pulseScale: 1.03,
-  glassmorphBlur: 20,
+  glowOpacitySubtle: 0.15,
+  glowOpacityBright: 0.5,
+  shadowBlur: 40,
+  shadowOpacity: 0.15,
 } as const;
 
 // ============================================
@@ -111,10 +136,21 @@ export const layout = {
 // ============================================
 export const cube = {
   size: 300,
-  perspective: 800,
-  faceGap: 2,
-  strokeWidth: 2,
-  cornerRadius: 16,
+  cornerRadius: 12,
+  pedestalWidth: 200,
+  pedestalHeight: 60,
+} as const;
+
+// ============================================
+// PHONE MOCKUP SETTINGS (for scene 4)
+// ============================================
+export const phone = {
+  width: 320,
+  height: 640,
+  borderRadius: 40,
+  screenPadding: 12,
+  notchWidth: 120,
+  notchHeight: 24,
 } as const;
 
 // ============================================
@@ -122,41 +158,8 @@ export const cube = {
 // ============================================
 
 /**
- * Create a radial gradient color string for backgrounds
- */
-export function radialGlow(
-  color: string,
-  opacity: number = 0.15
-): string {
-  return `radial-gradient(circle, ${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}, transparent)`;
-}
-
-/**
  * Generate stagger delays for array of elements
  */
 export function staggerDelays(count: number, baseDelay: number = timing.stagger): number[] {
   return Array.from({ length: count }, (_, i) => i * baseDelay);
-}
-
-/**
- * Interpolate between two colors
- */
-export function lerpColor(from: string, to: string, t: number): string {
-  const parseHex = (hex: string) => {
-    const h = hex.replace('#', '');
-    return {
-      r: parseInt(h.slice(0, 2), 16),
-      g: parseInt(h.slice(2, 4), 16),
-      b: parseInt(h.slice(4, 6), 16),
-    };
-  };
-
-  const f = parseHex(from);
-  const toC = parseHex(to);
-
-  const r = Math.round(f.r + (toC.r - f.r) * t);
-  const g = Math.round(f.g + (toC.g - f.g) * t);
-  const b = Math.round(f.b + (toC.b - f.b) * t);
-
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }

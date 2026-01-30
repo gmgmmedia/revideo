@@ -294,7 +294,7 @@ export default makeScene2D('scene3', function* (view) {
       <Circle
         ref={vignetteTopLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={-layout.height / 2}
@@ -303,7 +303,7 @@ export default makeScene2D('scene3', function* (view) {
       <Circle
         ref={vignetteTopRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={-layout.height / 2}
@@ -312,7 +312,7 @@ export default makeScene2D('scene3', function* (view) {
       <Circle
         ref={vignetteBottomLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={layout.height / 2}
@@ -321,7 +321,7 @@ export default makeScene2D('scene3', function* (view) {
       <Circle
         ref={vignetteBottomRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={layout.height / 2}
@@ -583,7 +583,7 @@ export default makeScene2D('scene3', function* (view) {
               ref={faceRects[i]}
               width={CUBE_SIZE}
               height={CUBE_SIZE}
-              fill={colors.background}
+              fill={colors.backgroundAlt}
               stroke={face.color}
               lineWidth={2}
               radius={12}
@@ -685,11 +685,12 @@ export default makeScene2D('scene3', function* (view) {
     </>
   );
 
+  // Reduced vignette opacity for light background
   yield* all(
-    vignetteTopLeft().opacity(0.28, timing.smooth),
-    vignetteTopRight().opacity(0.28, timing.smooth),
-    vignetteBottomLeft().opacity(0.28, timing.smooth),
-    vignetteBottomRight().opacity(0.28, timing.smooth),
+    vignetteTopLeft().opacity(0.05, timing.smooth),
+    vignetteTopRight().opacity(0.05, timing.smooth),
+    vignetteBottomLeft().opacity(0.05, timing.smooth),
+    vignetteBottomRight().opacity(0.05, timing.smooth),
   );
 
   yield* all(
@@ -937,9 +938,9 @@ export default makeScene2D('scene3', function* (view) {
     bgGlow().opacity(0.03, timing.exit),
     bgGlowSecondary().opacity(0.02, timing.exit),
     bgGlowTertiary().opacity(0, timing.exit),
-    vignetteTopLeft().opacity(0.18, timing.exit),
-    vignetteTopRight().opacity(0.18, timing.exit),
-    vignetteBottomLeft().opacity(0.18, timing.exit),
-    vignetteBottomRight().opacity(0.18, timing.exit),
+    vignetteTopLeft().opacity(0.03, timing.exit),
+    vignetteTopRight().opacity(0.03, timing.exit),
+    vignetteBottomLeft().opacity(0.03, timing.exit),
+    vignetteBottomRight().opacity(0.03, timing.exit),
   );
 });

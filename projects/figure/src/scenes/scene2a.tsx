@@ -8,7 +8,7 @@
  */
 
 import { makeScene2D } from '@revideo/2d';
-import { Rect, Node, Circle, Txt, Img, blur } from '@revideo/2d';
+import { Rect, Node, Circle, Txt, Img, blur, brightness, invert } from '@revideo/2d';
 import {
   all,
   delay,
@@ -180,7 +180,7 @@ export default makeScene2D('scene2a', function* (view) {
       <Circle
         ref={vignetteTopLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={-layout.height / 2}
@@ -189,7 +189,7 @@ export default makeScene2D('scene2a', function* (view) {
       <Circle
         ref={vignetteTopRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={-layout.height / 2}
@@ -198,7 +198,7 @@ export default makeScene2D('scene2a', function* (view) {
       <Circle
         ref={vignetteBottomLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={layout.height / 2}
@@ -207,7 +207,7 @@ export default makeScene2D('scene2a', function* (view) {
       <Circle
         ref={vignetteBottomRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={layout.height / 2}
@@ -534,11 +534,13 @@ export default makeScene2D('scene2a', function* (view) {
           filters={[blur(4)]}
         />
 
+        {/* WHITE logo - brightness(0) makes black, invert(1) makes white */}
         <Img
           ref={logo}
           src={fgrdLogo}
           width={380}
           opacity={1}
+          filters={[brightness(0), invert(1)]}
         />
       </Node>
 
@@ -647,12 +649,12 @@ export default makeScene2D('scene2a', function* (view) {
   // V4: FASTER TIMELINE - "Introducing" FIRST, then logo
   // ============================================
 
-  // Beat 0 - Setup background
+  // Beat 0 - Setup background (reduced vignette opacity for light bg)
   yield* all(
-    vignetteTopLeft().opacity(0.3, timing.fast),
-    vignetteTopRight().opacity(0.3, timing.fast),
-    vignetteBottomLeft().opacity(0.3, timing.fast),
-    vignetteBottomRight().opacity(0.3, timing.fast),
+    vignetteTopLeft().opacity(0.05, timing.fast),
+    vignetteTopRight().opacity(0.05, timing.fast),
+    vignetteBottomLeft().opacity(0.05, timing.fast),
+    vignetteBottomRight().opacity(0.05, timing.fast),
     bgGlow().opacity(0.06, timing.fast),
     portalContainer().opacity(1, timing.fast),
     ...portalRings.map((ring, i) =>
@@ -783,9 +785,9 @@ export default makeScene2D('scene2a', function* (view) {
     bgGlow().opacity(0.03, timing.fast),
     bgGlowSecondary().opacity(0.02, timing.fast),
     bgGlowTertiary().opacity(0, timing.fast),
-    vignetteTopLeft().opacity(0.18, timing.fast),
-    vignetteTopRight().opacity(0.18, timing.fast),
-    vignetteBottomLeft().opacity(0.18, timing.fast),
-    vignetteBottomRight().opacity(0.18, timing.fast),
+    vignetteTopLeft().opacity(0.03, timing.fast),
+    vignetteTopRight().opacity(0.03, timing.fast),
+    vignetteBottomLeft().opacity(0.03, timing.fast),
+    vignetteBottomRight().opacity(0.03, timing.fast),
   );
 });

@@ -10,7 +10,7 @@
  */
 
 import { makeScene2D } from '@revideo/2d';
-import { Rect, Node, Circle, Txt, Img, blur } from '@revideo/2d';
+import { Rect, Node, Circle, Txt, Img, blur, brightness, invert } from '@revideo/2d';
 import {
   all,
   delay,
@@ -159,7 +159,7 @@ export default makeScene2D('scene5', function* (view) {
       <Circle
         ref={vignetteTopLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={-layout.height / 2}
@@ -168,7 +168,7 @@ export default makeScene2D('scene5', function* (view) {
       <Circle
         ref={vignetteTopRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={-layout.height / 2}
@@ -177,7 +177,7 @@ export default makeScene2D('scene5', function* (view) {
       <Circle
         ref={vignetteBottomLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={layout.height / 2}
@@ -186,7 +186,7 @@ export default makeScene2D('scene5', function* (view) {
       <Circle
         ref={vignetteBottomRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={layout.height / 2}
@@ -532,10 +532,12 @@ export default makeScene2D('scene5', function* (view) {
           opacity={0}
         />
 
+        {/* WHITE logo - brightness(0) makes black, invert(1) makes white */}
         <Img
           ref={logo}
           src={fgrdLogo}
           width={400}
+          filters={[brightness(0), invert(1)]}
         />
       </Node>
 
@@ -697,11 +699,12 @@ export default makeScene2D('scene5', function* (view) {
     </>
   );
 
+  // Reduced vignette opacity for light background
   yield* all(
-    vignetteTopLeft().opacity(0.28, timing.smooth),
-    vignetteTopRight().opacity(0.28, timing.smooth),
-    vignetteBottomLeft().opacity(0.28, timing.smooth),
-    vignetteBottomRight().opacity(0.28, timing.smooth),
+    vignetteTopLeft().opacity(0.05, timing.smooth),
+    vignetteTopRight().opacity(0.05, timing.smooth),
+    vignetteBottomLeft().opacity(0.05, timing.smooth),
+    vignetteBottomRight().opacity(0.05, timing.smooth),
   );
 
   yield* all(

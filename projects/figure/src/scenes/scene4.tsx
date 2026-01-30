@@ -270,11 +270,11 @@ export default makeScene2D('scene4', function* (view) {
         y={0}
       />
 
-      {/* ===== LAYER 1: Corner Vignettes ===== */}
+      {/* ===== LAYER 1: Corner Vignettes (subtle purple on white bg) ===== */}
       <Circle
         ref={vignetteTopLeft}
         size={700}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={-layout.height / 2}
@@ -283,7 +283,7 @@ export default makeScene2D('scene4', function* (view) {
       <Circle
         ref={vignetteTopRight}
         size={700}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={-layout.height / 2}
@@ -292,7 +292,7 @@ export default makeScene2D('scene4', function* (view) {
       <Circle
         ref={vignetteBottomLeft}
         size={700}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={layout.height / 2}
@@ -301,7 +301,7 @@ export default makeScene2D('scene4', function* (view) {
       <Circle
         ref={vignetteBottomRight}
         size={700}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={layout.height / 2}
@@ -995,12 +995,12 @@ export default makeScene2D('scene4', function* (view) {
   // ANIMATION TIMELINE - 35+ Beats
   // ============================================
 
-  // Beat 0 (0:00) - Vignettes and initial background
+  // Beat 0 (0:00) - Vignettes and initial background (reduced opacity for light bg)
   yield* all(
-    vignetteTopLeft().opacity(0.25, timing.smooth),
-    vignetteTopRight().opacity(0.25, timing.smooth),
-    vignetteBottomLeft().opacity(0.25, timing.smooth),
-    vignetteBottomRight().opacity(0.25, timing.smooth),
+    vignetteTopLeft().opacity(0.05, timing.smooth),
+    vignetteTopRight().opacity(0.05, timing.smooth),
+    vignetteBottomLeft().opacity(0.05, timing.smooth),
+    vignetteBottomRight().opacity(0.05, timing.smooth),
   );
 
   // Beat 1 (0:06) - Network grid connections appear
@@ -1318,9 +1318,9 @@ export default makeScene2D('scene4', function* (view) {
     bgGlow().opacity(0.03, timing.exit),
     bgGlowSecondary().opacity(0.02, timing.exit),
     bgGlowTertiary().opacity(0, timing.exit),
-    vignetteTopLeft().opacity(0.15, timing.exit),
-    vignetteTopRight().opacity(0.15, timing.exit),
-    vignetteBottomLeft().opacity(0.15, timing.exit),
-    vignetteBottomRight().opacity(0.15, timing.exit),
+    vignetteTopLeft().opacity(0.03, timing.exit),
+    vignetteTopRight().opacity(0.03, timing.exit),
+    vignetteBottomLeft().opacity(0.03, timing.exit),
+    vignetteBottomRight().opacity(0.03, timing.exit),
   );
 });

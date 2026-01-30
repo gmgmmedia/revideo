@@ -152,11 +152,11 @@ export default makeScene2D('scene1', function* (view) {
         y={0}
       />
 
-      {/* ===== LAYER 1: Corner Vignettes ===== */}
+      {/* ===== LAYER 1: Corner Vignettes (subtle purple on white bg) ===== */}
       <Circle
         ref={vignetteTopLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={-layout.height / 2}
@@ -165,7 +165,7 @@ export default makeScene2D('scene1', function* (view) {
       <Circle
         ref={vignetteTopRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={-layout.height / 2}
@@ -174,7 +174,7 @@ export default makeScene2D('scene1', function* (view) {
       <Circle
         ref={vignetteBottomLeft}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={-layout.width / 2}
         y={layout.height / 2}
@@ -183,7 +183,7 @@ export default makeScene2D('scene1', function* (view) {
       <Circle
         ref={vignetteBottomRight}
         size={800}
-        fill={'#000000'}
+        fill={colors.primary}
         opacity={0}
         x={layout.width / 2}
         y={layout.height / 2}
@@ -554,11 +554,11 @@ export default makeScene2D('scene1', function* (view) {
 
   // V5: Beat 0 - EVERYTHING starts together: vignettes, background, lines AND text
   yield* all(
-    // Vignettes + background
-    vignetteTopLeft().opacity(0.3, timing.fast),
-    vignetteTopRight().opacity(0.3, timing.fast),
-    vignetteBottomLeft().opacity(0.3, timing.fast),
-    vignetteBottomRight().opacity(0.3, timing.fast),
+    // Vignettes + background (reduced opacity for light bg)
+    vignetteTopLeft().opacity(0.05, timing.fast),
+    vignetteTopRight().opacity(0.05, timing.fast),
+    vignetteBottomLeft().opacity(0.05, timing.fast),
+    vignetteBottomRight().opacity(0.05, timing.fast),
     bgGlowPrimary().opacity(0.08, timing.fast),
     bgGlowPrimary().size(1400, timing.entrance, easeOutQuart),
     bgGlowSecondary().opacity(0.05, timing.fast),
@@ -710,9 +710,9 @@ export default makeScene2D('scene1', function* (view) {
     bgGlowPrimary().opacity(0.05, timing.fast),
     bgGlowSecondary().opacity(0.03, timing.fast),
     bgGlowAccent().opacity(0.02, timing.fast),
-    vignetteTopLeft().opacity(0.15, timing.fast),
-    vignetteTopRight().opacity(0.15, timing.fast),
-    vignetteBottomLeft().opacity(0.15, timing.fast),
-    vignetteBottomRight().opacity(0.15, timing.fast),
+    vignetteTopLeft().opacity(0.03, timing.fast),
+    vignetteTopRight().opacity(0.03, timing.fast),
+    vignetteBottomLeft().opacity(0.03, timing.fast),
+    vignetteBottomRight().opacity(0.03, timing.fast),
   );
 });
