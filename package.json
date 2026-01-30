@@ -6,6 +6,8 @@
     "raiku:start": "npm run start -w projects/raiku",
     "raiku:render": "npm run render -w projects/raiku",
     "realmotion:start": "npm run start -w projects/realmotion",
-    "realmotion:render": "npm run render -w projects/realmotion"
+    "realmotion:render": "npm run render -w projects/realmotion",
+    "figure:start": "npm run start -w projects/figure",
+    "figure:render": "npm run render -w projects/figure"
   }
 }

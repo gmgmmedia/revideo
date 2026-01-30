@@ -1,0 +1,349 @@
+{
+  "company": {
+    "name": "Figure Markets",
+    "parent_company": "Figure Technology Solutions, Inc.",
+    "url": "https://www.figuremarkets.com",
+    "tagline": "Real Yield. Real Assets. Real Ownership.",
+    "description": "A vertically integrated capital markets trading platform offering cryptocurrency trading, yield-bearing stablecoins (YLDS), crypto-backed loans, and real-world asset tokenization. Built on Provenance Blockchain with decentralized custody and SEC-registered securities.",
+    "industry": "Fintech / Decentralized Finance / Digital Asset Management",
+    "industry_category": "Crypto/Web3",
+    "target_audience": {
+      "primary": "Retail crypto investors seeking institutional-grade yields and regulated products",
+      "secondary": "Institutional investors, capital markets participants",
+      "characteristics": ["Yield-focused", "Compliance-conscious", "Crypto-native but wants regulatory clarity"]
+    },
+    "brand_personality": ["trustworthy", "innovative", "institutional", "accessible", "compliant"],
+    "key_messages": [
+      "Real Yield, Real Assets, Real Ownership",
+      "Institutional quality yields now accessible to everyone",
+      "First SEC-registered yield-bearing stablecoin",
+      "S&P AAA-rated blockchain assets",
+      "Decentralized custody - you control your assets"
+    ],
+    "founded_by": "Mike Cagney (Co-Founder of SoFi), June Ou",
+    "headquarters": "650 California, Suite 200, San Francisco CA 94108",
+    "key_products": [
+      {
+        "name": "YLDS",
+        "description": "SEC-registered yield-bearing stablecoin paying SOFR minus 50bps"
+      },
+      {
+        "name": "Democratized Prime",
+        "description": "Yield backed by HELOC pools, including AAA-rated HELOC+"
+      },
+      {
+        "name": "Figure Exchange",
+        "description": "Trading platform for crypto, HASH, and tokenized RWAs"
+      },
+      {
+        "name": "Crypto-Backed Loans",
+        "description": "Lowest fixed rates with decentralized MPC wallet custody"
+      }
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#6366F1",
+      "name": "Figure Indigo",
+      "usage": "Brand backgrounds, hero sections, marketing materials, app backgrounds",
+      "source": "image_dominant",
+      "rgb": "rgb(99, 102, 241)",
+      "variants": {
+        "light": "#818CF8",
+        "dark": "#4F46E5"
+      }
+    },
+    "secondary": {
+      "hex": "#8B5CF6",
+      "name": "Figure Violet",
+      "usage": "Accent gradients, 3D elements, hover states",
+      "source": "image_only"
+    },
+    "accent": {
+      "hex": "#06B6D4",
+      "name": "Cyan Accent",
+      "usage": "Links, interactive elements, 'Learn more' CTAs",
+      "source": "url_extraction"
+    },
+    "background": {
+      "dark": "#0F0F23",
+      "light": "#FFFFFF",
+      "preferred": "dark",
+      "app_ui": "#1A1A2E"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#94A3B8",
+      "on_light": "#1E293B",
+      "on_primary": "#FFFFFF",
+      "muted": "#64748B"
+    },
+    "data_colors": {
+      "positive": "#22C55E",
+      "negative": "#EF4444",
+      "highlight": "#6366F1",
+      "yield_accent": "#06B6D4"
+    },
+    "gradients": [
+      {
+        "name": "Primary Brand Gradient",
+        "type": "linear",
+        "direction": "135deg",
+        "stops": ["#6366F1", "#8B5CF6", "#A78BFA"],
+        "usage": "Hero backgrounds, marketing materials"
+      },
+      {
+        "name": "Subtle Purple Wash",
+        "type": "linear",
+        "direction": "180deg",
+        "stops": ["#6366F1", "#4338CA"],
+        "usage": "Cards, UI backgrounds"
+      }
+    ],
+    "palette_mood": "Professional fintech with crypto-native energy. The indigo-violet spectrum conveys trust, innovation, and premium positioning. Monochromatic purple treatments in 3D renders create cohesive brand recognition across marketing materials. The palette bridges institutional finance credibility with Web3 modernity."
+  },
+
+  "typography": {
+    "heading": {
+      "family": "Inter",
+      "fallback": "system-ui, -apple-system, sans-serif",
+      "weights": [500, 600, 700],
+      "letter_spacing": "-0.02em",
+      "text_transform": "none"
+    },
+    "body": {
+      "family": "Inter",
+      "fallback": "system-ui, -apple-system, sans-serif",
+      "weights": [400, 500],
+      "line_height": "1.6"
+    },
+    "display": {
+      "family": "Inter",
+      "weights": [700],
+      "usage": "Hero headlines, marketing statements",
+      "letter_spacing": "-0.03em"
+    },
+    "data": {
+      "family": "Inter",
+      "weights": [500, 600],
+      "usage": "APY displays, statistics, financial data",
+      "tabular_nums": true
+    },
+    "wordmark": {
+      "treatment": "All caps, wide letter-spacing",
+      "weight": 600,
+      "letter_spacing": "0.15em"
+    },
+    "style_notes": "Inter provides clarity and modernity appropriate for fintech. The wordmark 'FIGURE' uses generous letter-spacing to convey premium positioning. Headlines use tight negative tracking for impact. Financial data uses tabular figures for alignment."
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Premium fintech meets Web3 - institutional credibility with modern digital asset energy. Monochromatic purple 3D renders, glassmorphism, and clean UI create cohesive visual identity.",
+    "imagery": {
+      "photography": "Minimal - brand relies on 3D renders and abstract visuals",
+      "illustration_style": "3D rendered scenes with monochromatic purple/lavender palette",
+      "illustration_examples": [
+        "YLDS coin as 3D glass token with glow effects",
+        "3D bar charts with confetti celebrations",
+        "Metaphorical scenes (keys unlocking doors, coins floating)",
+        "Device mockups showing app UI"
+      ],
+      "3d_style": {
+        "aesthetic": "Soft, premium, frosted glass",
+        "lighting": "Soft ambient with subtle highlights",
+        "materials": ["Glass/transparent", "Matte surfaces", "Subtle reflections"],
+        "color_treatment": "Monochromatic purple/lavender with white accents"
+      }
+    },
+    "iconography": {
+      "style": "outlined",
+      "stroke_width": "1.5-2px",
+      "corners": "rounded"
+    },
+    "shapes": {
+      "language": "geometric with soft edges",
+      "border_radius": "8px standard, 12px cards, 16px modals",
+      "logo_geometry": "Blocky, pixel-inspired F mark"
+    },
+    "effects": {
+      "shadows": "subtle",
+      "glassmorphism": true,
+      "grain_texture": false,
+      "glow_accents": true,
+      "blur_effects": "backdrop-blur on navigation, cards"
+    },
+    "motion": {
+      "style": "Smooth, professional transitions",
+      "easing": "ease-out",
+      "duration": "200-300ms for UI, longer for hero animations"
+    }
+  },
+
+  "components": {
+    "buttons": {
+      "primary": "White or light background, dark text, 8px radius, subtle shadow on hover",
+      "secondary": "Transparent with border, text matches primary color",
+      "ghost": "No background, text only with hover underline",
+      "states": "Hover: slight lift/shadow. Focus: ring outline. Disabled: 50% opacity"
+    },
+    "cards": {
+      "style": "Dark glass effect with subtle border, 12px radius",
+      "variants": ["Feature cards", "Product cards", "Stat cards", "News cards"],
+      "hover": "Subtle lift and border glow"
+    },
+    "inputs": {
+      "style": "Dark background (#1A1A2E), subtle border, 6px radius",
+      "focus_state": "Cyan/indigo border glow",
+      "label_style": "Above input, muted color"
+    },
+    "navigation": {
+      "style": "Sticky header with backdrop blur",
+      "background": "Semi-transparent dark with blur",
+      "mobile": "Hamburger menu with slide-out drawer"
+    },
+    "banners": {
+      "style": "Full-width, gradient background, dismissible",
+      "usage": "Promotional announcements, new product launches"
+    }
+  },
+
+  "brand_voice": {
+    "tone": ["professional", "confident", "accessible", "innovative"],
+    "language_style": "Clear, direct financial language made accessible. Avoids crypto jargon when possible, explains complex concepts simply. Emphasizes regulatory compliance and institutional backing.",
+    "key_phrases": [
+      "Real Yield",
+      "Industry First",
+      "Institutional quality",
+      "Democratized",
+      "On-chain",
+      "SEC-registered",
+      "Decentralized custody"
+    ],
+    "avoid": [
+      "Hype language",
+      "Unsubstantiated claims",
+      "Excessive crypto slang",
+      "Promises of guaranteed returns"
+    ],
+    "energy_level": "moderate-high",
+    "personality_traits": {
+      "trustworthy": "Emphasizes regulation, ratings, institutional backing",
+      "innovative": "First-mover positioning (first SEC stablecoin, first AAA rating)",
+      "accessible": "Democratizing institutional products for retail",
+      "confident": "Bold claims backed by credentials"
+    }
+  },
+
+  "logos": {
+    "primary_mark": {
+      "description": "Stylized 'F' constructed from geometric rectangular blocks",
+      "style": "Blocky, modernist, slightly pixel-inspired",
+      "usage": "App icon, social avatars, favicon",
+      "clear_space": "Minimum padding equal to height of bottom F bar"
+    },
+    "wordmark": {
+      "text": "FIGURE",
+      "treatment": "All caps, wide letter-spacing (0.15em), weight 600",
+      "usage": "Marketing materials, website header, co-branding"
+    },
+    "secondary_marks": {
+      "ylds_coin": {
+        "description": "Stylized Y with geometric construction, often rendered as 3D glass coin",
+        "usage": "YLDS product marketing, token representation"
+      }
+    },
+    "logo_on_backgrounds": {
+      "on_dark": "White",
+      "on_light": "Primary indigo (#6366F1)",
+      "on_primary": "White"
+    }
+  },
+
+  "sources": {
+    "url": "https://www.figuremarkets.com",
+    "url_pages_fetched": ["homepage", "about"],
+    "images_provided": 5,
+    "image_types_detected": [
+      {
+        "image": "SCR-20260129-sjkd.png",
+        "type": "brand_asset",
+        "subtype": "logo_mark",
+        "detection_confidence": "high"
+      },
+      {
+        "image": "SCR-20260129-skrw.jpeg",
+        "type": "marketing_material",
+        "subtype": "product_announcement",
+        "detection_confidence": "high"
+      },
+      {
+        "image": "SCR-20260129-skqw.jpeg",
+        "type": "brand_asset",
+        "subtype": "3d_token_render",
+        "detection_confidence": "high"
+      },
+      {
+        "image": "SCR-20260129-skos.png",
+        "type": "marketing_material",
+        "subtype": "achievement_announcement",
+        "detection_confidence": "high"
+      },
+      {
+        "image": "SCR-20260129-skmp.jpeg",
+        "type": "marketing_material",
+        "subtype": "product_illustration",
+        "detection_confidence": "high"
+      }
+    ]
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "high",
+    "visual_style": "high",
+    "components": "medium-high",
+    "brand_voice": "high",
+    "logos": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "combined",
+    "confidence": "high",
+    "confidence_notes": "Strong consistency across all 5 images - monochromatic purple palette confirmed across logo, marketing materials, and 3D renders. Website content provides detailed company information, product descriptions, and tone examples. The YLDS coin and F logo mark are clearly defined brand assets. Typography identified as Inter from visual analysis (standard fintech choice). Component styles inferred from product UI visible in marketing material.",
+    "extracted_at": "2026-01-29",
+    "agent_version": "brand-extractor-v1"
+  },
+
+  "web3_signals": {
+    "is_web3_brand": true,
+    "crypto_native_indicators": [
+      "Built on Provenance Blockchain",
+      "YLDS yield-bearing stablecoin",
+      "Tokenized real-world assets (RWAs)",
+      "MPC wallet / decentralized custody",
+      "HASH token trading",
+      "On-chain settlement",
+      "DeFi marketplace (Democratized Prime)"
+    ],
+    "tech_stack_hints": [
+      "Provenance Blockchain",
+      "MPC wallets",
+      "React (likely)",
+      "DatoCMS (asset hosting)"
+    ],
+    "positioning": "Regulated DeFi - bridging traditional finance compliance (SEC, S&P ratings) with Web3 infrastructure",
+    "regulatory_approach": "Compliance-first: SEC-registered securities, AAA S&P ratings, FINRA membership",
+    "anti_patterns": [
+      "No anonymous team",
+      "No meme coin energy",
+      "No 'degen' positioning",
+      "No unregistered securities"
+    ],
+    "community_presence": {
+      "twitter": "@FigureMarkets",
+      "linkedin": "figure-markets",
+      "telegram": "FigureTechnologySolutions"
+    }
+  }
+}
