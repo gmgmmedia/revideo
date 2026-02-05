@@ -126,18 +126,36 @@ Examples:
 
 ## Output Structure
 
-Generate multi-file output:
+Generate multi-file output using video-specific subfolders to support parallel code generation:
 
 ```
 /src
-├── project.tsx         # Project configuration
 ├── scenes/
-│   ├── scene1.tsx      # Scene 1
-│   ├── scene2.tsx      # Scene 2
-│   └── ...
+│   ├── {VIDEO-ID}/                    # Subfolder per video (e.g., NEAR-1, NEAR-2)
+│   │   ├── project-{videoid}.tsx      # Project config for this video
+│   │   ├── {VideoId}_scene1.tsx       # Scene files prefixed with video ID
+│   │   ├── {VideoId}_scene2.tsx
+│   │   └── ...
+│   └── {VIDEO-ID-2}/                  # Another video can run in parallel
+│       └── ...
 └── lib/
-    └── brand.ts        # Shared brand constants & utilities
+    └── brand.ts                       # Shared brand constants (unchanged)
 ```
+
+### Video Naming Convention
+
+To support parallel code generation, use this naming pattern:
+
+| Component | Format | Example |
+|-----------|--------|---------|
+| Folder | `{VIDEO-ID}/` | `NEAR-1/`, `NEAR-2/`, `RAIKU-1/` |
+| Project file | `project-{videoid}.tsx` | `project-near3.tsx` |
+| Scene files | `{VideoId}_scene{N}.tsx` | `Near3_scene1.tsx`, `Near3_scene2.tsx` |
+
+**Rules:**
+- VIDEO-ID: Uppercase with hyphen (e.g., `NEAR-1`)
+- VideoId in files: PascalCase or camelCase (e.g., `Near3`, `Raiku1`)
+- Never overwrite `scenes/scene1.tsx` directly - always use subfolders
 
 ---
 
@@ -252,19 +270,21 @@ export function staggerDelays(count: number, baseDelay: number = timing.stagger)
 }
 ```
 
-### 2. `project.tsx` — Project Configuration
+### 2. `project-{videoid}.tsx` — Project Configuration
+
+Located in the video's subfolder (e.g., `scenes/NEAR-3/project-near3.tsx`):
 
 ```typescript
 import { makeProject } from '@revideo/core';
 
-import scene1 from './scenes/scene1?scene';
-import scene2 from './scenes/scene2?scene';
-// ... import all scenes
+import Near3_scene1 from './Near3_scene1?scene';
+import Near3_scene2 from './Near3_scene2?scene';
+// ... import all scenes with VideoId prefix
 
 export default makeProject({
   scenes: [
-    scene1,
-    scene2,
+    Near3_scene1,
+    Near3_scene2,
     // ... all scenes in order
   ],
 });
@@ -411,6 +431,8 @@ yield* all(
 
 ## Critical Learnings & Error Prevention
 
+> **AGENT INSTRUCTION:** Apply ALL of these patterns automatically. Never generate code that violates these rules.
+
 ### 1. Filter Syntax (CRITICAL)
 
 ```typescript
@@ -437,6 +459,7 @@ import scene1 from './scenes/scene1?scene';
 ```typescript
 // ❌ WRONG - Will cause "unknown format: transparent" error
 fill="transparent"
+fill={'transparent'}
 
 // ✅ CORRECT - Use null for transparent
 fill={null}
@@ -463,7 +486,7 @@ fill={null}
 import { makeScene2D } from '@revideo/2d';
 import { Rect, Node, Line, Circle, Path, Txt, blur } from '@revideo/2d';
 
-// From @revideo/core - Animation utilities
+// From @revideo/core - Animation utilities + types
 import {
   all,
   chain,
@@ -480,6 +503,8 @@ import {
   easeOutExpo,
   easeOutBack,
   linear,
+  SimpleSignal,      // For signal array types
+  ThreadGenerator,   // For animation array types
 } from '@revideo/core';
 ```
 
@@ -516,6 +541,166 @@ view.add(
 );
 ```
 
+### 8. Signal Type Annotation (CRITICAL)
+
+```typescript
+// ❌ WRONG - Returns unknown type, causes JSX errors
+const mySignal = createSignal(0);
+
+// ✅ CORRECT - Explicit type parameter
+const mySignal = createSignal<number>(0);
+const myString = createSignal<string>('');
+```
+
+**Rule:** ALWAYS include `<number>` or appropriate type with `createSignal()`.
+
+### 9. Signal Array Type Declaration (CRITICAL)
+
+```typescript
+// ❌ WRONG - Returns unknown type
+const positions: ReturnType<typeof createSignal>[] = [];
+
+// ✅ CORRECT - Use SimpleSignal type
+import { SimpleSignal } from '@revideo/core';
+const positions: SimpleSignal<number>[] = [];
+```
+
+**Rule:** Use `SimpleSignal<number>[]` for arrays of signals, never `ReturnType`.
+
+### 10. RefArray Access Patterns (CRITICAL)
+
+```typescript
+const dots = createRefArray<Circle>();
+
+// ❌ WRONG - dot is already the node in .map()
+dots.map(dot => dot().opacity(1))
+
+// ✅ CORRECT - no parentheses
+dots.map(dot => dot.opacity(1))
+
+// ❌ WRONG - layers[0] is already the node
+layers[0]().scale(1.5)
+
+// ✅ CORRECT - no parentheses after index
+layers[0].scale(1.5)
+```
+
+**Summary Table:**
+| Type | Access Pattern | Example |
+|------|----------------|---------|
+| `createRef<T>()` | Callable - use `()` | `myRef().opacity(1)` |
+| `createRefArray<T>()` | Direct access - NO `()` | `myArray[i].opacity(1)` |
+| `createRefArray<T>()` in `.map()` | Direct access - NO `()` | `arr.map(el => el.opacity(1))` |
+
+### 11. Generator Type for Animation Arrays
+
+```typescript
+// ❌ WRONG - Type error with all()
+const animations: Generator[] = [];
+yield* all(...animations);
+
+// ✅ CORRECT - Use ThreadGenerator or any[]
+import { ThreadGenerator } from '@revideo/core';
+const animations: ThreadGenerator[] = [];
+// OR
+const animations: any[] = [];
+```
+
+### 12. JSX Lambda Array Safety (CRITICAL - RUNTIME)
+
+```typescript
+// ❌ WRONG - Crashes if signal undefined
+{Array.from({ length: COUNT }).map((_, i) => (
+  <Node
+    x={() => posX[i]()}
+    y={() => posY[i]()}
+    scale={() => scaleArr[i]() * pulseArr[i]()}
+  />
+))}
+
+// ✅ CORRECT - Always add null checks
+{Array.from({ length: COUNT }).map((_, i) => (
+  <Node
+    x={() => posX[i] ? posX[i]() : 0}
+    y={() => posY[i] ? posY[i]() : 0}
+    scale={() => (scaleArr[i] ? scaleArr[i]() : 0) * (pulseArr[i] ? pulseArr[i]() : 1)}
+  />
+))}
+```
+
+**Rule:** EVERY signal array access in JSX must have null check with fallback.
+
+### 13. Object Property Safety (CRITICAL - RUNTIME)
+
+```typescript
+// ❌ WRONG - Crashes if zone undefined
+const zone = ZONES[idx % ZONES.length];
+const x = zone.x + offset;
+const r = zone.radius * 0.5;
+
+// ✅ CORRECT - Guard clause + nullish coalescing
+const zone = ZONES[idx % ZONES.length];
+if (!zone) continue;  // or return
+const x = (zone.x ?? 0) + offset;
+const r = (zone.radius ?? 100) * 0.5;
+```
+
+**Rule:** Check object existence before property access, use `??` for fallbacks.
+
+### 14. Array Size Must Match Total Usage (CRITICAL - RUNTIME)
+
+```typescript
+// ❌ WRONG - Array too small for total spawns
+const DOT_COUNT = 250;
+const wave1 = 50;   // indices 0-49
+const wave2 = 80;   // indices 50-129
+const wave3 = 100;  // indices 130-229
+const wave4 = 50;   // indices 230-279 ← EXCEEDS 250!
+
+// ✅ CORRECT - Calculate total FIRST
+const wave1 = 50, wave2 = 80, wave3 = 100, wave4 = 50;
+const DOT_COUNT = wave1 + wave2 + wave3 + wave4; // = 280
+```
+
+**Rule:** Before setting array size constants, calculate the sum of all elements that will be added.
+
+### 15. Helper Function Bounds Checking (CRITICAL - RUNTIME)
+
+```typescript
+// ❌ WRONG - No bounds check
+function* spawnDot(index: number, x: number, y: number) {
+  dotX[index](x);  // Crashes if index >= DOT_COUNT
+  dotY[index](y);
+}
+
+// ✅ CORRECT - Guard at function start
+function* spawnDot(index: number, x: number, y: number) {
+  if (index < 0 || index >= DOT_COUNT || !dotX[index]) return;
+  dotX[index](x);
+  dotY[index](y);
+}
+```
+
+**Rule:** Every function accessing arrays by index must validate bounds first.
+
+### 16. Loop Array Access Safety (CRITICAL - RUNTIME)
+
+```typescript
+// ❌ WRONG - activeDotCount may exceed array size
+for (let i = 0; i < activeDotCount; i++) {
+  const x = dotX[i]();  // Crashes when i >= DOT_COUNT
+}
+
+// ✅ CORRECT - Clamp to array size
+const maxDots = Math.min(activeDotCount, DOT_COUNT);
+for (let i = 0; i < maxDots; i++) {
+  if (!dotX[i]) continue;
+  const x = dotX[i]();
+}
+```
+
+**Rule:** Use `Math.min(counter, ARRAY_SIZE)` when counter can grow independently.
+
 ---
 
 ## Quality Iteration Loop
@@ -551,14 +736,40 @@ To increase quality:
 
 ## Common Errors & Solutions
 
+### Compile-Time Errors
+
 | Error | Cause | Fix |
 |-------|-------|-----|
 | `Cannot find module '../lib/brand'` | brand.ts in wrong location | Move to `src/lib/brand.ts` |
 | `'radius' does not exist in type 'Filter'` | Object syntax for filters | Use `blur(20)` function |
-| `unknown format: transparent` | String "transparent" for colors | Use `null` instead |
+| `unknown format: transparent` | String "transparent" for colors | Use `fill={null}` instead |
 | `Duplicated node key` | Keys not unique in nested loops | Include ALL loop indices: `key={\`group-${i}-item-${j}\`}` |
 | Scene not loading | Missing `?scene` suffix | Add `?scene` to imports |
 | Animations not playing | Missing `yield*` | Always use `yield*` for animations |
+| `'() => unknown' not assignable to 'SignalValue<number>'` | Missing type on createSignal | Use `createSignal<number>(0)` |
+| `Type 'Generator[]' not assignable to 'ThreadGenerator'` | Wrong array type for animations | Use `ThreadGenerator[]` or `any[]` |
+
+### Runtime Errors (CRITICAL - Prevent These)
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `arr[i] is not a function` | Signal array element undefined | Add null check: `arr[i] ? arr[i]() : 0` |
+| `undefined is not an object (evaluating 'obj.prop')` | Object doesn't exist | Add guard: `if (!obj) return;` + use `obj?.prop ?? fallback` |
+| `Cannot read property 'x' of undefined` | Array index out of bounds | Add bounds check: `if (i >= ARRAY_SIZE) return;` |
+| Index out of bounds in loop | Counter exceeds array size | Use `Math.min(counter, ARRAY_SIZE)` |
+| Random crashes during animation | Missing null checks in JSX lambdas | Always use ternary: `() => arr[i] ? arr[i]() : 0` |
+
+### Runtime Error Prevention Checklist
+
+Before finalizing any scene, verify:
+
+- [ ] All `createSignal()` calls have explicit type: `createSignal<number>()`
+- [ ] All signal arrays use `SimpleSignal<number>[]` type
+- [ ] All JSX lambdas with array access have null checks
+- [ ] All helper functions check bounds before array access
+- [ ] All loops use `Math.min()` to clamp to array size
+- [ ] All object property access uses optional chaining (`?.`) or guards
+- [ ] Array size constants are >= sum of all elements that will be added
 
 ---
 
