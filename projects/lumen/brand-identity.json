@@ -1,0 +1,174 @@
+{
+  "company": {
+    "name": "Lumen",
+    "url": "https://lumen.health",
+    "tagline": "Quietly intelligent health.",
+    "description": "Lumen is an AI-powered personal health companion that surfaces meaningful patterns in your daily biomarkers. Built for adults who want a calm, evidence-aware view of their wellbeing rather than gamified notifications.",
+    "industry": "Health & Wellness / Consumer AI",
+    "industry_category": "Health AI",
+    "target_audience": "Health-conscious adults 30-55 who prefer evidence over hype; users of Oura, Whoop, or Apple Watch who want a less competitive interpretation layer.",
+    "brand_personality": ["calm", "intelligent", "warm", "premium", "trustworthy"],
+    "key_messages": [
+      "Pattern recognition without panic",
+      "Built around your nervous system, not your streaks",
+      "Quietly intelligent — never loud"
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#1F2A26",
+      "name": "Forest Dusk",
+      "usage": "Text, headlines, deep accents",
+      "source": "css_confirmed_by_image"
+    },
+    "secondary": {
+      "hex": "#7A9E8E",
+      "name": "Sage Mist",
+      "usage": "Supporting illustrations, secondary text",
+      "source": "css_confirmed_by_image"
+    },
+    "accent": {
+      "hex": "#D4B98C",
+      "name": "Warm Linen",
+      "usage": "Highlights, glow accents",
+      "source": "image_dominant"
+    },
+    "background_light": {
+      "hex": "#F7F4EC",
+      "name": "Calm Cream",
+      "usage": "Primary backgrounds, breathing space",
+      "source": "css_confirmed_by_image"
+    },
+    "background_white": {
+      "hex": "#FBFBF8",
+      "name": "Off-white",
+      "usage": "Cards, surfaces",
+      "source": "css_only"
+    },
+    "soft_neutral": {
+      "hex": "#E8E2D5",
+      "name": "Stone Whisper",
+      "usage": "Divider lines, soft shadows",
+      "source": "image_dominant"
+    }
+  },
+
+  "typography": {
+    "headings": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 500,
+      "letter_spacing": "-0.02em",
+      "notes": "Used at large sizes with tight tracking for an editorial feel"
+    },
+    "body": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 400,
+      "letter_spacing": "0em"
+    },
+    "accent": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 300,
+      "letter_spacing": "0.04em",
+      "notes": "Used for labels and metadata at smaller sizes"
+    }
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Calm, premium, editorial. Generous whitespace, low contrast, soft warm neutrals. Reads like a wellness book cover rather than a fitness app.",
+    "shapes": {
+      "border_radius": "16-24px on cards; near-pill (999px) on tags; sharp 0px on dividers",
+      "stroke_weight": "1px hairlines"
+    },
+    "effects": {
+      "glow_accents": false,
+      "shadows": "soft, large-blur, low-opacity (0.04-0.08)",
+      "glassmorphism": false,
+      "gradients": "rare; only soft warm cream-to-linen for background ambience",
+      "scanlines": false
+    },
+    "imagery": "Soft photography of light and texture; line illustrations; no charts with sharp peaks"
+  },
+
+  "components": {
+    "buttons": "Filled forest-dusk with cream label; or ghost with hairline border",
+    "cards": "Off-white surface with 16-24px radius and 0.04 shadow",
+    "data_viz": "Smooth bezier curves over soft sage gridlines; no dots; no labels above 12pt"
+  },
+
+  "brand_voice": {
+    "tone": ["calm", "considered", "warm"],
+    "language_style": "Editorial, sentence-cased, never imperative. Avoids exclamation. Uses second-person sparingly.",
+    "key_phrases": [
+      "Quietly intelligent",
+      "Pattern recognition without panic",
+      "What your body has been trying to tell you"
+    ],
+    "avoid": ["Hype", "Fitness gamification jargon", "Streaks", "Goals you missed", "Aggressive metrics"],
+    "energy_level": "calm"
+  },
+
+  "motion_design": {
+    "philosophy": "Quietly intelligent — soft mask reveals, generous holds, no overshoot. Camera moves are subtle and editorial.",
+    "energy_curve": "calm",
+    "pace": {
+      "average_beat_duration": "0.45",
+      "beat_density": "sparse",
+      "vo_lead_time_ms": 40
+    },
+    "easing_personality": {
+      "primary": "easeInOutCubic",
+      "secondary": "easeOutCubic",
+      "spring_config": "OrganicSpring",
+      "use_overshoot": false,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "fade",
+      "section_change": "wipe",
+      "scene_change": "fade",
+      "matched_cut_friendly": true,
+      "avoid": ["glitch", "whipPan", "hardCut without matched motion"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["pushIn", "pullOut"],
+      "intensity": "subtle",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "subtle",
+      "follow_through": true,
+      "ambient_particle_density": "sparse"
+    },
+    "sound_aesthetic_hint": "Minimal & Subtle",
+    "reference_brands": ["Apple Health editorial", "Aesop", "Headspace"],
+    "schema_version": "1.0"
+  },
+
+  "sources": {
+    "url": "https://lumen.health (fabricated for system validation)",
+    "url_pages_fetched": ["homepage"],
+    "images_provided": 0,
+    "image_types_detected": []
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "high",
+    "visual_style": "high",
+    "components": "medium",
+    "brand_voice": "high",
+    "motion_design": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "synthesized for validation test",
+    "confidence": "high",
+    "confidence_notes": "Fabricated brief authored by validation workflow; values internally consistent.",
+    "extracted_at": "2026-05-11T00:00:00Z"
+  }
+}

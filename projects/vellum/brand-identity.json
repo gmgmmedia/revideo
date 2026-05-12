@@ -1,0 +1,188 @@
+{
+  "company": {
+    "name": "Vellum",
+    "url": "https://vellum.magazine",
+    "tagline": "On stillness, attention, and writing for the long hours.",
+    "description": "Vellum is a curated bi-monthly digital magazine for slow readers — long-form literary essays paired with considered fashion editorials. Each issue gathers three writers from three cities; the publication ships every other month and keeps an archival cadence rather than a feed.",
+    "industry": "Editorial / Fashion & Literature",
+    "industry_category": "Independent Magazine",
+    "target_audience": "Readers in their 30s-50s who subscribe to The Drift, Apartamento, and Aesop's reading list; people who own physical books and consider design a literary discipline.",
+    "brand_personality": ["refined", "considered", "editorial", "quiet", "warm"],
+    "key_messages": [
+      "Issue No. 27 — three writers, three cities.",
+      "Read on Vellum.",
+      "On stillness, attention, and writing for the long hours."
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#1A1612",
+      "name": "Deep Ink",
+      "usage": "Headlines, body text, deepest accents",
+      "source": "image_dominant"
+    },
+    "secondary": {
+      "hex": "#6B6358",
+      "name": "Warm Taupe",
+      "usage": "Sublines, sublabels, secondary text",
+      "source": "image_dominant"
+    },
+    "accent": {
+      "hex": "#B85042",
+      "name": "Terracotta",
+      "usage": "Quiet emphasis, single dots, color shift on emphasis",
+      "source": "image_dominant"
+    },
+    "background_warm": {
+      "hex": "#F4EFE6",
+      "name": "Book Paper",
+      "usage": "Primary paper-feel background",
+      "source": "image_dominant"
+    },
+    "background_cream": {
+      "hex": "#ECE5D5",
+      "name": "Aged Cream",
+      "usage": "Mid-tone of gradient, card surfaces",
+      "source": "image_dominant"
+    },
+    "soft_neutral": {
+      "hex": "#D9CFB8",
+      "name": "Hairline Taupe",
+      "usage": "1px dividers, faint structure",
+      "source": "image_dominant"
+    },
+    "quiet": {
+      "hex": "#9C9385",
+      "name": "Reader's Gray",
+      "usage": "Captions, micro-labels",
+      "source": "image_dominant"
+    }
+  },
+
+  "typography": {
+    "headings": {
+      "family": "Times New Roman, Georgia, serif",
+      "fallback": "serif",
+      "weight": 400,
+      "letter_spacing": "0em",
+      "notes": "Editorial serif. Starts loose (8-16px) then tightens during emphasis."
+    },
+    "body": {
+      "family": "Georgia, serif",
+      "fallback": "serif",
+      "weight": 400,
+      "letter_spacing": "0em"
+    },
+    "accent": {
+      "family": "Inter, sans-serif",
+      "fallback": "sans-serif",
+      "weight": 300,
+      "letter_spacing": "0.18em",
+      "notes": "Used for institutional micro-labels, all caps, very wide tracking."
+    }
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Editorial restraint. Generous negative space, asymmetric staging, soft hairline dividers. Feels like a magazine spread, not a dashboard.",
+    "shapes": {
+      "border_radius": "2-4px max on cards (almost sharp); never pill",
+      "stroke_weight": "1px hairlines exclusively"
+    },
+    "effects": {
+      "glow_accents": true,
+      "glow_style": "atmospheric haze, very soft, warm",
+      "shadows": "barely present; only on hero cards (low-opacity, large-blur)",
+      "glassmorphism": false,
+      "gradients": "subtle warm cream-to-paper mesh background",
+      "scanlines": false
+    },
+    "imagery": "Single-color portrait cards labeled with city. No photographs. Hairline dividers. Single accent terracotta dots used as quiet punctuation."
+  },
+
+  "components": {
+    "buttons": "Hairline ghost only; serif label, terracotta on hover",
+    "cards": "Cream rectangle with 1px taupe stroke and tiny serif label below",
+    "data_viz": "Not used. Vellum is not data-driven."
+  },
+
+  "brand_voice": {
+    "tone": ["considered", "warm", "editorial"],
+    "language_style": "Sentence-cased serif copy. Periods, not exclamations. Single sentences carry whole paragraphs of weight.",
+    "key_phrases": [
+      "Read on Vellum",
+      "On stillness, attention",
+      "Three writers, three cities"
+    ],
+    "avoid": ["Imperatives", "Sales language", "Buzzwords", "Hype"],
+    "energy_level": "calm"
+  },
+
+  "motion_design": {
+    "philosophy": "Editorial restraint — character-by-character reveals, generous holds, asymmetric staging, soft mask wipes, no overshoot",
+    "energy_curve": "moderate",
+    "pace": {
+      "average_beat_duration": "0.55",
+      "beat_density": "sparse",
+      "vo_lead_time_ms": 60
+    },
+    "easing_personality": {
+      "primary": "easeOutQuint",
+      "secondary": "easeInOutCubic",
+      "spring_config": "none",
+      "use_overshoot": false,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "wipe",
+      "section_change": "fade",
+      "scene_change": "fade",
+      "matched_cut_friendly": true,
+      "avoid": ["glitch", "shake", "overshoot"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["pan", "focusPull", "pullOut"],
+      "intensity": "subtle",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "subtle",
+      "follow_through": true,
+      "ambient_particle_density": "sparse"
+    },
+    "animation_vocabulary": {
+      "text_entrance": "character-stagger",
+      "emphasis_technique": "tracking-tighten",
+      "camera_beat_sync": "visual-narrative",
+      "color_transition": "shift-on-emphasis",
+      "shape_language": "organic",
+      "lighting_style": "atmospheric-haze"
+    },
+    "sound_aesthetic_hint": "Minimal & Subtle",
+    "reference_brands": ["Aesop", "Apartamento", "Drift", "Ssense", "MR PORTER editorial"],
+    "schema_version": "1.1"
+  },
+
+  "sources": {
+    "url": "https://vellum.magazine",
+    "url_pages_fetched": ["homepage"],
+    "images_provided": 0,
+    "image_types_detected": []
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "high",
+    "visual_style": "high",
+    "components": "high",
+    "brand_voice": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "spec",
+    "confidence": "high",
+    "confidence_notes": "Brand spec is fictional but fully specified. Warm paper-tone palette confirmed. Times/Georgia serif stack chosen for portable render fidelity.",
+    "extracted_at": "2026-05-12"
+  }
+}

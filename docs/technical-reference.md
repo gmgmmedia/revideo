@@ -26,7 +26,7 @@ A complete technical reference for creating high-quality animations. This guide 
 8. [Flow Control](#flow-control)
 9. [Timing Functions](#timing-functions)
 10. [Transitions](#transitions)
-11. [Camera System](#camera-system)
+11. [Camera Patterns (Wrapper Layout)](#camera-patterns-wrapper-layout)
 12. [Media Components](#media-components)
 13. [Code & LaTeX](#code--latex)
 14. [Curves & Paths](#curves--paths)
@@ -37,17 +37,37 @@ A complete technical reference for creating high-quality animations. This guide 
 19. [Custom Components](#custom-components)
 20. [Configuration](#configuration)
 
+**Agency-Grade Motion Design (v1):**
+21. [Motion Design Patterns (Spring, Secondary Motion, Hierarchy)](#motion-design-patterns)
+22. [Masking, Wipe Transitions & Matched Cuts](#masking-wipe-transitions--matched-cuts)
+23. [Easing Personalities & Decision Tables](#easing-personalities--decision-tables)
+24. [Performance & Gotchas](#performance--gotchas)
+
+**Extended APIs (v2):**
+25. [Rive, Icon & Grid Components](#rive-icon--grid-components)
+26. [Standalone Audio Component (Extended)](#standalone-audio-component-extended)
+27. [Composite Blend Modes Reference](#composite-blend-modes-reference)
+28. [Advanced APIs (drawHooks, Shaders, CurvePoint, Random, useContext, Layout Shortcuts)](#advanced-apis)
+29. [Filter Stacking](#filter-stacking)
+
+**Stunning HQ Motion Craft (v2):**
+30. [Typography Animation Vocabulary](#typography-animation-vocabulary)
+31. [Cinematic Lighting & Glow Systems](#cinematic-lighting--glow-systems)
+32. [Color Animation Rules (60-30-10, Semantic, Gradient Mesh)](#color-animation-rules)
+33. [Composition Discipline (Rule of Thirds, Asymmetry, Negative Space)](#composition-discipline)
+34. [Audio-Driven Animation Sync (beatGrid)](#audio-driven-animation-sync)
+
 **Revideo-Specific Features:**
-21. [Revideo Overview](#revideo-overview)
-22. [Headless Video Rendering](#headless-video-rendering)
-23. [Parameterized Videos](#parameterized-videos)
-24. [CLI Commands](#cli-commands)
-25. [Render Endpoint API](#render-endpoint-api)
-26. [Player Components](#player-components)
-27. [Audio Component](#audio-component)
-28. [FFmpeg Configuration](#ffmpeg-configuration)
-29. [Deployment & Production](#deployment--production)
-30. [Revideo API Quick Reference](#revideo-api-quick-reference)
+35. [Revideo Overview](#revideo-overview)
+36. [Headless Video Rendering](#headless-video-rendering)
+37. [Parameterized Videos](#parameterized-videos)
+38. [CLI Commands](#cli-commands)
+39. [Render Endpoint API](#render-endpoint-api)
+40. [Player Components](#player-components)
+41. [Audio Component](#audio-component)
+42. [FFmpeg Configuration](#ffmpeg-configuration)
+43. [Deployment & Production](#deployment--production)
+44. [Revideo API Quick Reference](#revideo-api-quick-reference)
 
 ---
 
@@ -398,8 +418,10 @@ yield* tween(2, value => {
 ```
 
 ### Spring Animations
+> **For agency-grade spring usage**, see **Section 21 → Spring Physics Production Patterns** for tuned configs (`LogoLandSpring`, `UISpring`, `OrganicSpring`) and decision rules on when to use spring vs. `easeOutBack` vs. cubic easings.
+
 ```typescript
-import {spring, PlopSpring, SmoothSpring} from '@motion-canvas/core';
+import {spring, PlopSpring, SmoothSpring} from '@revideo/core';
 
 yield* spring(PlopSpring, fromValue, toValue, settleTolerance, value => {
   node.position.x(value);
@@ -615,6 +637,8 @@ Vector2.arcLerp(v1, v2, t);  // Curved path
 
 ## Transitions
 
+> **For transition decision rules and custom transition patterns** (masking, wipes, matched cuts), see **Section 22 → Masking, Wipe Transitions & Matched Cuts**.
+
 Scene transitions are performed at the beginning of a new scene:
 
 ### Built-in Transitions
@@ -685,78 +709,105 @@ export default makeScene2D(function* (view) {
 
 ---
 
-## Camera System
+## Camera Patterns (Wrapper Layout)
 
-### Basic Camera
+> **Revideo does NOT ship a built-in `Camera` component.** Verified against `@revideo/2d/lib/components/`. The legacy Motion Canvas `Camera` and `Camera.Stage` APIs are unavailable here. Virtual camera moves must use a wrapper `<Layout>` and animate its transform — the "camera" is the inverse transform of the world wrapper.
+
+### Basic Wrapper-Layout Camera
 ```typescript
-import {Camera, Circle, Rect} from '@motion-canvas/2d';
-import {createRef} from '@motion-canvas/core';
+import {Layout, Rect, Circle, makeScene2D} from '@revideo/2d';
+import {createRef, easeInOutCubic} from '@revideo/core';
 
-const camera = createRef<Camera>();
+export default makeScene2D('cameraDemo', function* (view) {
+  const world = createRef<Layout>();
 
-view.add(
-  <Camera ref={camera}>
-    <Rect position={[-100, 0]} />
-    <Circle position={[100, 0]} />
-  </Camera>
-);
+  view.add(
+    <Layout ref={world} size={[1920, 1080]}>
+      <Rect position={[-400, 0]} size={300} fill={'#22e'} />
+      <Circle position={[400, 0]} size={300} fill={'#e22'} />
+    </Layout>,
+  );
 
-// Move camera
-yield* camera().position([100, 50], 1);
+  // PUSH IN (zoom on hero) — scale up world
+  yield* world().scale(1.8, 1.2, easeInOutCubic);
 
-// Center on node
-yield* camera().centerOn(circleRef(), 1);
-yield* camera().centerOn([x, y], 1);  // Or position
+  // PAN — translate world (opposite direction of intended camera move)
+  yield* world().position([-300, 0], 1, easeInOutCubic);
 
-// Zoom
-yield* camera().zoom(2, 1);      // Zoom in
-yield* camera().zoom(0.5, 1);    // Zoom out
-
-// Rotate
-yield* camera().rotation(45, 1);
-
-// Reset all
-yield* camera().reset(1);
-
-// Follow path
-yield* camera().followCurve(splineRef(), 2, linear);
+  // RESET
+  yield* all(
+    world().position(0, 0.6, easeInOutCubic),
+    world().scale(1, 0.6, easeInOutCubic),
+  );
+});
 ```
 
-### Multiple Cameras
+### Named Camera Moves
+
 ```typescript
-const scene = (
-  <Node>
-    <Rect />
-    <Circle />
-  </Node>
-);
+// PUSH-IN: dolly forward onto a subject (importance/emphasis)
+yield* world().scale(1.8, 1.2, easeInOutCubic);
 
-const camera1 = createRef<Camera>();
-const camera2 = createRef<Camera>();
+// PULL-OUT: reveal wider context
+yield* world().scale(0.7, 1.5, easeInOutCubic);
 
-view.add(
-  <>
-    <Camera.Stage
-      cameraRef={camera1}
-      scene={scene}
-      size={[300, 200]}
-      position={[-180, 0]}
-    />
-    <Camera.Stage
-      cameraRef={camera2}
-      scene={scene}
-      size={[300, 200]}
-      position={[180, 0]}
-    />
-  </>
-);
+// PAN: lateral move across composition (follow reading direction)
+yield* world().position([targetX, targetY], 1, easeInOutCubic);
 
-// Animate independently
+// WHIP-PAN: fast pan with motion blur (energy)
+import {blur} from '@revideo/2d';
 yield* all(
-  camera1().centerOn(rect(), 1),
-  camera2().centerOn(circle(), 1),
+  world().filters([blur(0)]).filters([blur(12)], 0.15),
+  world().position([targetX, targetY], 0.3, easeInOutQuart),
+);
+yield* world().filters([blur(0)], 0.15);
+
+// FOCUS-PULL: lock attention on element (translate world so subject centers + zoom)
+const heroPos = heroElement().position();
+yield* all(
+  world().position(heroPos.scale(-1), 1.2, easeInOutCubic),
+  world().scale(2, 1.2, easeInOutCubic),
 );
 ```
+
+### Composition Rules
+
+1. **Rule of thirds for zoom targets** — don't center; offset target by ~1/3 of frame.
+2. **One layer at a time** — don't animate the camera AND the subject simultaneously. Pick one.
+3. **Reset between sections** — `yield* all(world().position(0, 0.6), world().scale(1, 0.6))`.
+4. **Pull-out before scene exit** — give context before a transition.
+5. **Hold after a camera move** — at least 0.3s of stillness so the audience reads what they were taken to.
+
+### Parallax via Nested Wrappers
+
+Layer multiple `<Layout>` wrappers; animate inner ones with a smaller scale delta than outer ones to fake depth:
+
+```typescript
+const bgWorld = createRef<Layout>();
+const fgWorld = createRef<Layout>();
+
+view.add(
+  <Layout ref={bgWorld}>
+    {/* background imagery */}
+    <Layout ref={fgWorld}>
+      {/* foreground imagery */}
+    </Layout>
+  </Layout>,
+);
+
+// Push in — foreground moves more than background → parallax depth
+yield* all(
+  bgWorld().scale(1.15, 1.2, easeInOutCubic),  // 15% scale
+  fgWorld().scale(1.4, 1.2, easeInOutCubic),   // 40% scale (relative to bg = ~22% over absolute)
+);
+```
+
+### Caveats
+
+- Wrapper transforms compound. If `fgWorld` is inside `bgWorld`, animating both stacks the effect.
+- The `<Layout>` must have an explicit `size` or its bounds depend on children.
+- For rotation, use small angles (≤10°) for cinematic feel; large rotations make compositions hard to read.
+- See **Section 21 (Motion Design Patterns) → Hierarchy Timing** for when to apply camera vs. subject animation.
 
 ---
 
@@ -1398,16 +1449,17 @@ import {
   // Transitions
   slideTransition, fadeTransition,
   zoomInTransition, zoomOutTransition,
+  waitTransition, useTransition, finishScene,
   Direction,
-} from '@motion-canvas/core';
+} from '@revideo/core';
 ```
 
 ### 2D Imports
 ```typescript
 import {
-  // Components
+  // Components (Revideo does NOT ship Camera; use wrapper <Layout> for camera moves)
   Node, Layout, Rect, Circle, Line, Polygon, Ray,
-  Txt, Img, Video, Icon, Camera,
+  Txt, Img, Video, Icon, Audio,
 
   // Curves
   QuadBezier, CubicBezier, Spline, Knot, Path,
@@ -1425,7 +1477,7 @@ import {
 
   // Utilities
   is, withDefaults,
-} from '@motion-canvas/2d';
+} from '@revideo/2d';
 ```
 
 ---
@@ -1443,7 +1495,1669 @@ import {
 
 ---
 
+## Motion Design Patterns
+
+This section is the agency-grade motion vocabulary the agents must use. It covers what separates "competent code-driven animation" from "indistinguishable-from-After-Effects" output: spring physics, secondary motion, follow-through, anticipation, and hierarchy timing.
+
+### The 12 Principles Mapped to Code
+
+| Principle | What it Means Visually | Revideo Implementation |
+|---|---|---|
+| **Anticipation** | Brief pre-motion in the opposite direction before the main action | Scale `0.95` for `0.08s` before scaling to `1.0` |
+| **Squash & Stretch** | Object deforms briefly under acceleration | Animate `scale.x` and `scale.y` independently with offset timing |
+| **Follow-Through** | Trailing elements arrive after the primary | `delay(0.05, glowRef().opacity(0.8, 0.15))` inside `all()` |
+| **Overshoot & Settle** | Element passes target, then settles back | `easeOutBack` to `1.1` → `easeInOutCubic` to `1.0` |
+| **Secondary Motion** | Subordinate elements move because primary did | Glow/particle/shadow trailing the parent shape |
+| **Staging** | Eye knows where to look | Hero element animates first; supporting elements lag 0.1–0.2s |
+| **Slow-In/Slow-Out** | Acceleration, not constant velocity | `easeInOutCubic`, never `linear` for entrances |
+| **Arcs** | Natural motion paths curve | Use `Vector2.arcLerp` or two-axis tweens with offset duration |
+| **Timing** | Duration encodes weight & intent | Heavy = slow (`0.4s+`); light = fast (`0.15s`); UI snap = `0.08-0.12s` |
+| **Exaggeration** | Push readability past realism | Overshoot to `1.15` on emphasis; never `1.0` flat |
+| **Appeal** | Designed to be looked at | Use signature shapes, glows, color variation — not stock primitives |
+| **Solid Drawing** | Sense of weight and 3D | Layer glows with cache + blur; use parallax wrappers |
+
+### Spring Physics Production Patterns
+
+Revideo's `spring()` from `@revideo/core` drives a signal with simulated mass-spring-damper physics. Three production-tuned configs to copy-paste:
+
+```typescript
+import {spring, PlopSpring, SmoothSpring, createSignal} from '@revideo/core';
+
+// LogoLandSpring: bouncy, organic drop. For hero entrances on playful/organic brands.
+const LogoLandSpring = {
+  mass: 0.04,
+  stiffness: 12,
+  damping: 0.6,
+  initialVelocity: 8,
+};
+
+// UISpring: snappy with one micro-overshoot. For UI elements, app demos.
+const UISpring = {
+  mass: 0.05,
+  stiffness: 25,
+  damping: 0.85,
+  initialVelocity: 4,
+};
+
+// OrganicSpring: soft, floaty. For calm/premium brands.
+const OrganicSpring = {
+  mass: 0.08,
+  stiffness: 8,
+  damping: 0.7,
+  initialVelocity: 2,
+};
+
+// Drive a scale signal with spring
+const heroScale = createSignal(0);
+heroBox().scale(heroScale);
+
+yield* spring(LogoLandSpring, 0, 1, value => heroScale(value));
+```
+
+**When to use spring vs. easeOutBack vs. cubic:**
+- `spring()` — organic/playful brands, hero entrances. Has natural physics overshoot.
+- `easeOutBack` — UI confirmation, stylized "tap-back" emphasis. Has stylized overshoot.
+- `easeOutCubic` — information delivery, everyday motion. No overshoot.
+
+You can drive multiple properties from one spring signal for compound motion:
+
+```typescript
+const dropProgress = createSignal(0);
+heroBox().scale(() => dropProgress());
+heroBox().y(() => -200 + dropProgress() * 200);  // drops from y=-200 to y=0
+
+yield* spring(LogoLandSpring, 0, 1, value => dropProgress(value));
+```
+
+### Secondary Motion & Follow-Through
+
+Primary element moves → dependent elements arrive on a slight delay. This is the single biggest lever for "feels alive" output.
+
+```typescript
+// Pattern A: Glow lags shape by 50ms
+yield* all(
+  heroBox().scale(1, 0.2, easeOutCubic),
+  delay(0.05, heroGlow().opacity(0.8, 0.15)),
+  delay(0.08, heroGlow().scale(1.2, 0.18)),
+);
+
+// Pattern B: Trailing particles arrive after parent lands
+yield* all(
+  heroBox().y(0, 0.25, easeOutCubic),
+  delay(0.1, sequence(0.04, ...trailParticles.map(p => p.opacity(1, 0.12)))),
+);
+
+// Pattern C: Overshoot + settle
+yield* heroBox().scale(1.1, 0.15, easeOutBack);
+yield* heroBox().scale(1.0, 0.12, easeInOutCubic);
+
+// Pattern D: Anticipation pre-load
+yield* heroBox().scale(0.95, 0.08, easeInOutCubic);  // wind-up
+yield* heroBox().scale(1.0, 0.2, easeOutBack);       // release
+```
+
+**Rules:**
+- Secondary motion lags primary by `0.04–0.12s`. Less = looks rigid; more = feels disconnected.
+- Three trailing elements max; beyond that, stagger them in a `sequence()` instead of stacking delays.
+- The glow/shadow should ALWAYS lag the shape it belongs to. Never simultaneous.
+
+### Hierarchy Timing
+
+Professional motion graphics moves elements in priority order: hero first, supporting next, ambient last.
+
+```typescript
+// Rule of thirds for entrance staging
+yield* all(
+  heroElement().scale(1, 0.25, easeOutBack),                          // 0ms
+  delay(0.1, supportingText().opacity(1, 0.2, easeOutCubic)),         // 100ms
+  delay(0.2, contextDetails().opacity(0.7, 0.2, easeOutCubic)),       // 200ms
+  delay(0.3, ambientParticles().opacity(0.4, 0.3, easeOutCubic)),     // 300ms
+);
+```
+
+### Named Cadences
+
+Four cadence patterns for stagger sequences:
+
+```typescript
+// Staccato: 0.04s stagger — rapid, machine-gun. For lists, code reveals.
+yield* sequence(0.04, ...items.map(item => item.opacity(1, 0.1)));
+
+// March: 0.08s stagger — confident, building. For 3-5 element reveals.
+yield* sequence(0.08, ...items.map(item => item.opacity(1, 0.15)));
+
+// Wave: 0.15s stagger — organic, breathing. For text lines, hero builds.
+yield* sequence(0.15, ...items.map(item => item.opacity(1, 0.2, easeInOutCubic)));
+
+// Cascade: exponential stagger — accelerating. For "explosion" reveals.
+function staggerExp(elements, base = 0.04, factor = 1.6) {
+  return elements.map((el, i) => delay(base * Math.pow(factor, i), el.opacity(1, 0.12)));
+}
+yield* all(...staggerExp(particles));
+```
+
+### Helper Functions to Copy into Project's brand.ts
+
+```typescript
+import {delay, all} from '@revideo/core';
+
+// Exponential stagger — accelerating reveal
+export function staggerExp(
+  generators: Generator[],
+  baseDelay = 0.04,
+  factor = 1.6,
+): Generator[] {
+  return generators.map((gen, i) =>
+    delay(baseDelay * Math.pow(factor, i), gen)
+  );
+}
+
+// Wave stagger — sinusoidal distribution (early/late items slower, middle items quicker)
+export function staggerWave(
+  generators: Generator[],
+  totalDuration = 1.0,
+): Generator[] {
+  const n = generators.length;
+  return generators.map((gen, i) => {
+    const t = i / Math.max(1, n - 1);
+    const offset = totalDuration * (t - 0.5 * Math.sin(2 * Math.PI * t) / (2 * Math.PI));
+    return delay(offset, gen);
+  });
+}
+```
+
+---
+
+## Masking, Wipe Transitions & Matched Cuts
+
+This section covers everything that's NOT a hard cut. Eliminating hard cuts is the second biggest lever for agency-quality output.
+
+### Revideo's Built-in Scene Transitions
+
+Revideo ships 4 prebuilt transitions plus `useTransition` for custom. Each implies a different meaning — pick deliberately, not by default:
+
+| Transition | When to Pick | Direction Semantics |
+|---|---|---|
+| `slideTransition(Direction, 0.6)` | Energy shift, new chapter | `Left` = reading forward (most common); `Up` = reveal to wider context; `Down` = collapse to detail; `Right` = backward (rarely correct) |
+| `zoomInTransition(0.6)` | Dive deeper, excitement, drill-into-detail | Lands on new scene at native scale |
+| `zoomOutTransition(0.6)` | Pull back, context reveal, conclusion | Pulls away from previous scene |
+| `fadeTransition(0.6)` | Neutral, time-passage, mood change | Lowest energy — use sparingly |
+| `waitTransition(0.6)` | No visual transition (hard cut after pause) | Pair with matched cut for continuity across a cut |
+
+```typescript
+import {makeScene2D} from '@revideo/2d';
+import {Direction, slideTransition} from '@revideo/core';
+
+export default makeScene2D('scene2', function* (view) {
+  // Yield transition BEFORE animating content
+  yield* slideTransition(Direction.Left, 0.6);
+
+  // Now build the scene's content
+  view.add(<Rect ... />);
+  yield* mainAnimation();
+});
+```
+
+### Masking with `compositeOperation`
+
+Mask reveals create cinematic "open up" moments. They require a `cache` parent and a child with `compositeOperation`.
+
+```typescript
+import {Rect, Circle, Node, makeScene2D} from '@revideo/2d';
+import {createRef, easeInOutCubic} from '@revideo/core';
+
+// Iris reveal — circle expands from center revealing content
+const mask = createRef<Circle>();
+
+view.add(
+  <Node cache>
+    {/* The content to reveal */}
+    <Rect size={[1600, 900]} fill={'#ee2'} />
+
+    {/* The mask — anything `source-in` shows ONLY where this shape exists */}
+    <Circle ref={mask} size={0} fill={'#fff'} compositeOperation={'destination-in'} />
+  </Node>,
+);
+
+yield* mask().size(2400, 0.6, easeInOutCubic);  // iris expands; size 2400 covers frame
+```
+
+```typescript
+// Wipe reveal — rectangle slides L-to-R revealing content
+const wipe = createRef<Rect>();
+
+view.add(
+  <Node cache>
+    <Txt text="REVEALED" fontSize={120} fill={'#fff'} />
+    <Rect ref={wipe} size={[0, 200]} x={-960} fill={'#fff'} compositeOperation={'destination-in'} />
+  </Node>,
+);
+
+yield* wipe().size([2400, 200], 0.5, easeInOutCubic);
+```
+
+```typescript
+// Text reveal — wipe mask animating L-to-R over text
+const textMask = createRef<Rect>();
+
+view.add(
+  <Node cache>
+    <Txt text="Quietly intelligent." fontSize={96} fill={'#fff'} />
+    <Rect
+      ref={textMask}
+      size={[0, 200]}
+      x={-600}
+      offsetX={-1}  // anchor left edge
+      fill={'#fff'}
+      compositeOperation={'destination-in'}
+    />
+  </Node>,
+);
+
+yield* textMask().size([1200, 200], 0.4, easeInOutCubic);
+```
+
+**Critical gotchas:**
+- Parent MUST have `cache` prop. Without it, the mask doesn't isolate.
+- `compositeOperation` values: `'destination-in'` (show only where mask exists), `'destination-out'` (hide where mask exists), `'source-in'` (clip mask to content).
+- For blur effects mixed with masks, also set `cachePadding` on the parent to `blurRadius × 2` minimum.
+
+### Custom Transitions with `useTransition`
+
+For brand-distinctive transitions (glitch, ink-bloom, shatter), write a custom transition generator.
+
+```typescript
+// lib/transitions.ts
+import {Direction, useTransition} from '@revideo/core';
+import {linear, easeInOutCubic} from '@revideo/core';
+
+export function* glitchTransition(duration = 0.4) {
+  const endTransition = useTransition(
+    ctx => {},                  // current scene transformation
+    ctx => {                    // next scene transformation
+      ctx.globalCompositeOperation = 'difference';
+    },
+  );
+
+  // Animate over duration — flicker effect
+  for (let t = 0; t < duration; t += 1/60) {
+    yield;
+  }
+
+  endTransition();
+}
+```
+
+Usage in scene:
+```typescript
+import {glitchTransition} from '../lib/transitions';
+
+export default makeScene2D('scene3', function* (view) {
+  yield* glitchTransition(0.35);
+  // scene content...
+});
+```
+
+Reference custom-transition templates worth building (~25 lines each in `lib/transitions.ts`):
+- `inkBloomTransition` — radial mask growing from a point with feathered edge
+- `iceShatterTransition` — voronoi-mask fragments scattering outward
+- `gradientWipeTransition` — animated gradient sweeping across with color shift
+
+### Matched Cuts (NEW Concept)
+
+Scene N ends with an element at transform X. Scene N+1 begins with the SAME element matching transform X. Result: a hard cut that feels continuous.
+
+Use `useScene().variables` to pass closing transform between scenes:
+
+```typescript
+// scene1.tsx — end of scene
+import {useScene} from '@revideo/core';
+
+export default makeScene2D('scene1', function* (view) {
+  // ... animations ...
+
+  // At end of scene, write closing transform for scene2
+  useScene().variables.set('matchedCut', {
+    anchor: 'heroBox',
+    position: heroBox().position(),
+    scale: heroBox().scale(),
+    rotation: heroBox().rotation(),
+  });
+
+  yield* waitFor(0.3);
+});
+```
+
+```typescript
+// scene2.tsx — start of scene
+import {useScene} from '@revideo/core';
+
+export default makeScene2D('scene2', function* (view) {
+  const variables = useScene().variables;
+  const entry = variables.get('matchedCut', null)();
+
+  const heroBox = createRef<Rect>();
+
+  view.add(
+    <Rect
+      ref={heroBox}
+      position={entry?.position ?? 0}
+      scale={entry?.scale ?? 1}
+      rotation={entry?.rotation ?? 0}
+      size={300}
+      fill={'#fff'}
+    />,
+  );
+
+  // Now animate FROM the matched position to scene2's intended position
+  yield* heroBox().position([0, 0], 0.4, easeInOutCubic);
+});
+```
+
+**Two patterns to apply:**
+1. **Shape-match cut**: logo at top-right of scene 1 → logo at top-right at scene 2 start (same screen position, different scale or color).
+2. **Color-match cut**: gradient end-color of scene 1 = gradient start-color of scene 2. Use the same hex value.
+
+---
+
+## Easing Personalities & Decision Tables
+
+Most under-used dimension in the existing scenes (94% are `easeOutCubic`). Use this table to drive easing choice:
+
+| Intent | Easing | When to Pick |
+|---|---|---|
+| Element lands and stays (default) | `easeOutCubic` | Clean, professional, information delivery |
+| Element overshoots, settles | `easeOutBack` → `easeInOutCubic` | UI confirmation, "ta-da" moments |
+| Bouncy/organic | `easeOutElastic` | Playful brands ONLY; max ~5% of animations |
+| Sharp impact/punch | `easeOutQuart`, `easeOutExpo` | Energetic brands, data emphasis, percussive hits |
+| Smooth two-way motion | `easeInOutCubic` | Camera moves, opacity transitions, mood shifts |
+| Mechanical/precise | `linear` | Loops, particle drift, NEVER for entrances |
+| Quick start, soft land | `easeOutQuint` | Fast text entrances |
+| Slow start, quick exit | `easeInQuart` | Element dismissals |
+| Spring with overshoot | `spring(UISpring, ...)` | Logo/hero entrances |
+| Anticipation + release | `easeInOutCubic` (wind-up) + `easeOutBack` (release) | Energy-building hero reveals |
+
+### Easing Diversity Quota
+
+In any single scene, no single easing function should exceed 50% of animations. Distribute across 4+ distinct functions for cinematic quality.
+
+Existing scenes audit baseline: 94% `easeOutCubic` is FAILING this quota — they should be redistributed:
+- ~40% `easeOutCubic` (default)
+- ~25% `easeInOutCubic` (camera/opacity)
+- ~15% `easeOutBack` or `spring()` (emphasis)
+- ~10% `easeOutQuart` or `easeOutExpo` (punch)
+- ~10% custom (linear for loops, easeInQuart for exits, etc.)
+
+---
+
+## Performance & Gotchas
+
+### Cache Discipline
+
+- **Required**: any parent of children using `compositeOperation`, `blur`, `dropShadow`, or other filters that read pixels.
+- **Killer**: caching a constantly-animating parent that contains many children — every frame re-renders the whole cache.
+- **Rule**: cache only when filter pixel-read is needed; never cache an animating parent.
+
+```typescript
+// GOOD — static parent, animating glow child
+<Rect cache>
+  <Circle filters={[blur(20)]} />  // glow blurs without re-caching parent
+  <Rect />                          // static content
+</Rect>
+
+// BAD — animating parent with cache
+<Rect cache scale={animatedSignal}>  // re-caches every frame; expensive
+  <Circle filters={[blur(20)]} />
+</Rect>
+```
+
+### `cachePadding` Rule
+
+Blur expands beyond bounding box. Without `cachePadding`, edges clip.
+
+```typescript
+<Rect cache cachePadding={40}>  // blur radius × 2
+  <Circle filters={[blur(20)]} />
+</Rect>
+```
+
+### Signal Determinism
+
+- Always seed `useRandom()`. Never use `Math.random()` — outputs differ frame-to-frame on re-render.
+- `useRandom(seed)` returns a deterministic generator; pass the same seed for reproducible animation.
+
+### Glow Layer Ceiling
+
+Heavy blurs are GPU-expensive. Hard ceiling: **8 simultaneous nodes with `blur(20)+`** at any one frame. Above that, render time degrades visibly.
+
+- Use one large blur for ambient background, not 10 small ones.
+- Layered glows on a single hero (3-4 blurs) are fine; that's one element.
+
+### Filter Array Stability
+
+Filters must be a stable array. Don't reconstruct on every frame:
+
+```typescript
+// BAD — new array per frame, breaks caching
+<Rect filters={() => [blur(blurAmount())]} />
+
+// GOOD — precompute, animate the blur amount via signal
+const blurFilter = blur(20);
+<Rect filters={[blurFilter]} />
+// Animate blurFilter's signal instead if available
+```
+
+### `createRefArray` over Manual Lists
+
+For a known number of similar refs, use `createRefArray<T>()` rather than `Generator[]` accumulator. It's optimized for batch operations.
+
+```typescript
+import {createRefArray} from '@revideo/core';
+
+const particles = createRefArray<Circle>();
+
+view.add(
+  <>
+    {range(20).map(i => <Circle ref={particles} ... />)}
+  </>,
+);
+
+// Animate all at once
+yield* sequence(0.03, ...particles.map(p => p.opacity(1, 0.15)));
+```
+
+### `yield*` vs `yield` Semantics
+
+- `yield*` — animation generator. Delegates to a generator and runs ALL its frames before continuing. Use for tweens, animations, sequences.
+- `yield` — single-frame yield. Pauses for one frame, then continues. Use only inside custom generators when you need per-frame logic.
+
+### Signal Reactivity Edge Cases
+
+- Signals captured in JSX closures may not update reactively. Use `createComputed()` for derived values, not inline arrow functions.
+- Reading a signal in a generator (`signal()`) returns the current value at that moment, not reactive.
+
+---
+
 *This reference covers Motion Canvas core capabilities. For detailed API documentation, see the [official API reference](https://motioncanvas.io/api/).*
+
+---
+
+# Extended APIs (v2)
+
+The following sections document Revideo components and APIs that aren't covered in the core Motion Canvas reference but ship with `@revideo/2d` and `@revideo/core`.
+
+---
+
+## Rive, Icon & Grid Components
+
+Three high-leverage components for production motion graphics.
+
+### Rive — Vector Animation Player
+
+Plays Rive vector animations natively. Pre-built animations from Rive editor (`.riv` files) are imported and triggered with signals.
+
+```typescript
+import {Rive} from '@revideo/2d';
+import {createRef, createSignal} from '@revideo/core';
+
+const riveRef = createRef<Rive>();
+const artboard = createSignal<string>('Main');
+const animation = createSignal<string>('Idle');
+
+view.add(
+  <Rive
+    ref={riveRef}
+    src={'./assets/logo.riv'}
+    artboardId={artboard}
+    animationId={animation}
+    size={[400, 400]}
+    autoplay={true}
+  />
+);
+
+// Switch to a different animation in the same artboard
+yield* animation('Bounce', 0.6);
+
+// Switch artboards entirely (e.g., logo states)
+yield* artboard('LogoActive', 0.6);
+```
+
+**When to use:**
+- Brand assets pre-animated in Rive
+- Logo state machines (idle/hover/active)
+- Complex character/illustration animation that would take 1000+ LOC in code
+
+**Performance note:** Rive is GPU-accelerated; cheap to render. But each `.riv` file loads asynchronously — preload via `awaitCanPlay` or scene `start()` hook.
+
+### Icon — Icônes.js (150k+ Icon Library)
+
+```typescript
+import {Icon} from '@revideo/2d';
+
+view.add(
+  <Icon
+    icon="mdi:check-circle"
+    color={'#4ade80'}
+    size={48}
+  />
+);
+```
+
+Icon names follow `{collection}:{name}` from [icones.js.org](https://icones.js.org/):
+- `mdi:*` — Material Design Icons (most comprehensive)
+- `ph:*` — Phosphor Icons (modern, weight variants)
+- `tabler:*` — Tabler Icons
+- `bi:*` — Bootstrap Icons
+- `lucide:*` — Lucide Icons
+- `simple-icons:*` — Brand logos
+- `carbon:*` — IBM Carbon
+
+**Animate color:**
+```typescript
+yield* iconRef().color('#f87171', 0.3);  // color tweens automatically
+```
+
+**Common collections by use case:**
+- Tech/dev: `tabler:brand-typescript`, `simple-icons:github`
+- UI: `mdi:menu`, `ph:caret-right-bold`
+- Status: `mdi:check-circle`, `mdi:alert-circle`
+- Data: `tabler:chart-line`, `carbon:dashboard`
+
+### Grid — Geometric Patterns
+
+```typescript
+import {Grid} from '@revideo/2d';
+import {createRef, createSignal} from '@revideo/core';
+
+const grid = createRef<Grid>();
+const gridEnd = createSignal<number>(0);  // 0-1, controls how much grid is drawn
+
+view.add(
+  <Grid
+    ref={grid}
+    width={1920}
+    height={1080}
+    spacing={80}
+    stroke={'#E8E2D5'}
+    lineWidth={1}
+    start={0}
+    end={gridEnd}
+  />
+);
+
+// Draw grid in over 0.8s — lines appear progressively
+yield* gridEnd(1, 0.8, easeOutCubic);
+```
+
+**Properties:**
+- `spacing` — distance between grid lines (px)
+- `start`/`end` — 0..1 range; controls which portion of grid is rendered (for drawing-in animations)
+- `stroke`, `lineWidth` — appearance
+- `width`/`height` — bounds
+
+**When to use:**
+- Background structure for data dashboards
+- Sci-fi/tech aesthetic patterns
+- Stage-setting before content arrives
+
+---
+
+## Standalone Audio Component (Extended)
+
+Beyond project-level audio, Revideo's `<Audio>` is a full scene-graph component for layered SFX/music control.
+
+```typescript
+import {Audio} from '@revideo/2d';
+import {createRef, createSignal} from '@revideo/core';
+
+const audioRef = createRef<Audio>();
+const volumeSignal = createSignal<number>(0.8);
+
+view.add(
+  <Audio
+    ref={audioRef}
+    src={'./audio/main-theme.mp3'}
+    play={true}
+    loop={true}
+    volume={volumeSignal}
+    playbackRate={1.0}
+    time={0}
+  />
+);
+
+// Duck audio during VO
+yield* volumeSignal(0.3, 0.4, easeInOutCubic);
+yield* waitFor(2.0);  // VO plays
+yield* volumeSignal(0.8, 0.4, easeInOutCubic);
+
+// Pause and resume
+audioRef().play(false);
+yield* waitFor(0.5);
+audioRef().play(true);
+
+// Scrub to a specific time
+yield* audioRef().time(15.0, 0.2);
+```
+
+### Methods (synchronous)
+
+```typescript
+audioRef().play(true);              // start playback
+audioRef().play(false);             // pause
+audioRef().getCurrentTime();        // → number (seconds)
+audioRef().getDuration();           // → number (seconds, after metadata loads)
+audioRef().getVolume();             // → number 0..1+
+audioRef().setVolume(0.5);          // set without animation
+```
+
+### Volume Amplification (Revideo-specific)
+
+By default, `volume > 1.0` is clamped in editor preview. Enable amplification:
+
+```typescript
+<Audio
+  src={'...'}
+  volume={1.5}
+  allowVolumeAmplificationInPreview={true}
+/>
+```
+
+Renders always honor volume above 1.0; this flag is purely for editor preview behavior.
+
+### Audio Sync Pattern (Wait for Media Ready)
+
+Reliable scene start with audio:
+
+```typescript
+const audio = createRef<Audio>();
+view.add(<Audio ref={audio} src={'...'} play={false} awaitCanPlay={true} />);
+
+// Audio is ready when this resolves
+yield* waitFor(0.05);  // small buffer
+audio().play(true);
+
+yield* mainAnimation();
+```
+
+### Layered Audio Pattern (Background + SFX)
+
+```typescript
+view.add(
+  <>
+    {/* Background ambient music — looped */}
+    <Audio src={'./audio/ambient.mp3'} play={true} loop={true} volume={0.3} />
+
+    {/* One-shot SFX at specific times */}
+    <Audio src={'./audio/whoosh.mp3'} play={true} time={2.4} volume={0.7} />
+    <Audio src={'./audio/impact.mp3'} play={true} time={4.8} volume={0.9} />
+  </>
+);
+```
+
+The `time` prop schedules playback START at that absolute time in the scene.
+
+---
+
+## Composite Blend Modes Reference
+
+The `compositeOperation` prop on any Node controls how its pixels blend with what's behind. Parent should have `cache` for blend modes to work correctly.
+
+| Mode | What It Does | Best For |
+|---|---|---|
+| `'source-over'` | Default — paint on top | Normal layering |
+| `'source-in'` | Show only where new pixel overlaps existing | Inside-only clipping |
+| `'source-out'` | Show only where new pixel does NOT overlap existing | Outside-only painting |
+| `'source-atop'` | Show new pixels, but only where existing pixels exist | Text-fill on a shape |
+| `'destination-over'` | Paint behind existing | Behind-fill |
+| `'destination-in'` | Keep only where new pixel exists | **Mask reveal** (primary use) |
+| `'destination-out'` | Keep only where new pixel does NOT exist | **Mask cutout** (eraser) |
+| `'destination-atop'` | Keep existing only where new pixel exists; new pixels behind | Rare clipping pattern |
+| `'lighter'` | Add color values (brightens) | Light explosions, additive glow |
+| `'copy'` | Replace with new pixel | Hard overwrites |
+| `'xor'` | Show where one or other exists, not both | Punch-through effects |
+| `'multiply'` | Multiply pixels (darken) | Shadow layering, color-dodge-ink |
+| `'screen'` | Inverse multiply (lighten) | Light overlay, glow boost |
+| `'overlay'` | Combination of multiply + screen | Contrast pop |
+| `'darken'` | Keep darker of two pixels | Combine dark shapes without blending |
+| `'lighten'` | Keep lighter of two pixels | Combine bright shapes |
+| `'color-dodge'` | Brighten existing based on new | Sun-flare, intense highlights |
+| `'color-burn'` | Darken existing based on new | Vignette, deep shadows |
+| `'hard-light'` | Like overlay but inverse | Vivid contrast |
+| `'soft-light'` | Soft version of overlay | Gentle gradient overlays |
+| `'difference'` | Absolute difference of pixels | **Chromatic aberration sim**, glitch |
+| `'exclusion'` | Like difference but lower contrast | Soft inversion |
+| `'hue'` | Hue of new, sat+lum of existing | Color recoloring |
+| `'saturation'` | Sat of new, hue+lum of existing | Saturation effects |
+| `'color'` | Hue+sat of new, lum of existing | Color tinting (most natural) |
+| `'luminosity'` | Lum of new, hue+sat of existing | Tonal mapping |
+
+### Example: Mask Reveal (most common)
+
+```typescript
+<Node cache>
+  <Txt text="REVEALED" fontSize={120} fill={'#fff'} />
+  <Rect
+    ref={mask}
+    size={[0, 200]}
+    fill={'#fff'}
+    compositeOperation={'destination-in'}
+  />
+</Node>
+```
+
+### Example: Additive Glow (lighter)
+
+```typescript
+<Node cache>
+  <Circle size={100} fill={'#fff'} />
+  <Circle
+    size={200}
+    fill={'#facc15'}
+    filters={[blur(60)]}
+    compositeOperation={'lighter'}  // adds light values
+    opacity={0.5}
+  />
+</Node>
+```
+
+### Example: Chromatic Aberration / RGB Split (difference)
+
+```typescript
+<Node cache>
+  <Txt text="GLITCH" fontSize={120} fill={'#ff0000'} x={-3} />
+  <Txt text="GLITCH" fontSize={120} fill={'#00ffff'} x={3}
+       compositeOperation={'difference'} />
+</Node>
+```
+
+---
+
+## Advanced APIs
+
+### Code drawHooks (Per-Token Rendering Control)
+
+The Code component exposes `drawHooks` for custom per-token rendering (e.g., blur unselected lines, color-code by syntax type).
+
+```typescript
+import {Code} from '@revideo/2d';
+
+view.add(
+  <Code
+    code={`function hello() { return 'world'; }`}
+    drawHooks={{
+      token: (ctx, text, position, color, selection) => {
+        // Default rendering with custom modifications
+        const isSelected = selection ? selection.contains(position) : true;
+        ctx.globalAlpha = isSelected ? 1.0 : 0.3;  // dim unselected
+        ctx.fillStyle = color;
+        ctx.fillText(text, position.x, position.y);
+      },
+    }}
+  />
+);
+```
+
+**Common patterns:**
+- Blur unselected tokens (`ctx.filter = isSelected ? 'none' : 'blur(2px)'`)
+- Spotlight specific tokens (alpha modulation)
+- Color-shift tokens during emphasis
+
+### Custom Shaders (Fragment GLSL)
+
+Apply WebGL shaders to any Node for custom effects.
+
+```typescript
+import {Node} from '@revideo/2d';
+import {createSignal} from '@revideo/core';
+
+const distortionAmount = createSignal<number>(0);
+
+const chromaticAberrationShader = `
+  precision mediump float;
+  uniform sampler2D src;
+  uniform float distortion;
+  varying vec2 vUv;
+
+  void main() {
+    vec2 d = vec2(distortion * 0.01, 0.0);
+    float r = texture2D(src, vUv + d).r;
+    float g = texture2D(src, vUv).g;
+    float b = texture2D(src, vUv - d).b;
+    gl_FragColor = vec4(r, g, b, 1.0);
+  }
+`;
+
+view.add(
+  <Node
+    shaders={[{
+      fragment: chromaticAberrationShader,
+      uniforms: { distortion: distortionAmount },
+    }]}
+  >
+    <Txt text="GLITCH" fontSize={120} fill={'#fff'} />
+  </Node>
+);
+
+// Animate the distortion
+yield* distortionAmount(1, 0.4);
+yield* distortionAmount(0, 0.2);
+```
+
+**Uniforms supported:** `float`, `vec2`, `vec3`, `vec4`. Signals are auto-converted.
+
+**Hooks:**
+- `setup(gl, program)` — runs once when shader compiles; bind extra textures, set static uniforms
+- `teardown(gl, program)` — runs when shader is removed; clean up resources
+
+### CurvePoint Geometry (Object-Follows-Path)
+
+```typescript
+import {Spline} from '@revideo/2d';
+import {createRef} from '@revideo/core';
+
+const path = createRef<Spline>();
+const dot = createRef<Circle>();
+
+view.add(
+  <>
+    <Spline ref={path} points={[[-400, 0], [-100, -200], [100, 200], [400, 0]]} />
+    <Circle ref={dot} size={20} fill={'#fff'} />
+  </>
+);
+
+// Move dot along path
+const progress = createSignal<number>(0);
+const curveLength = path().getLength();
+
+dot().position(() => {
+  const point = path().getPointAtPercentage(progress());
+  return point.position;
+});
+
+dot().rotation(() => {
+  const point = path().getPointAtPercentage(progress());
+  return point.tangent.degrees;  // dot orients along path direction
+});
+
+yield* progress(1, 2.0, easeInOutCubic);
+```
+
+**CurvePoint shape:** `{ position: Vector2, tangent: Vector2, normal: Vector2 }`
+
+**Available on:** `Spline`, `Path`, `Bezier`, `CubicBezier`, `QuadBezier`, `Line`, `Ray`.
+
+### Random Class (Seeded Deterministic RNG)
+
+```typescript
+import {useRandom} from '@revideo/core';
+
+const rand = useRandom(42);  // seed
+
+const x = rand.nextFloat(-100, 100);
+const angle = rand.nextFloat(0, Math.PI * 2);
+const intIdx = rand.nextInt(0, 10);
+const gaussianValue = rand.gauss(0, 1);  // mean 0, stddev 1
+
+// Generate arrays
+const positions = rand.floatArray(20, 0, 1000);  // 20 floats in [0, 1000)
+const indices = rand.intArray(8, 0, 5);          // 8 ints in [0, 5)
+
+// Spawn a child generator with new seed (for nested randomness)
+const childRand = rand.spawn();
+```
+
+**Why seeded:** rendering is deterministic. Same scene + same seed = same output. Never use `Math.random()` — it varies per frame.
+
+### useContext & useContextAfter Hooks
+
+Low-level canvas hooks for custom drawing before/after the default render pass.
+
+```typescript
+import {useContext} from '@revideo/core';
+
+export default makeScene2D('demo', function* (view) {
+  const cleanup = useContext((ctx) => {
+    // Draw before scene renders — e.g., custom gradient background
+    const grad = ctx.createRadialGradient(960, 540, 100, 960, 540, 800);
+    grad.addColorStop(0, '#f7f4ec');
+    grad.addColorStop(1, '#e8e2d5');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1920, 1080);
+  });
+
+  // ... scene content ...
+
+  yield* mainAnimation();
+  cleanup();  // unregister the hook
+});
+```
+
+`useContextAfter(callback)` draws AFTER all scene rendering completes — useful for overlays (vignettes, film grain, watermarks).
+
+### Layout Edge Positioning Shortcuts
+
+Instead of computing absolute positions, use named shortcuts on `Layout`:
+
+```typescript
+// Position elements at edges/corners without manual math
+<Layout>
+  <Rect ref={topLeft} ... />
+  <Rect ref={topRight} ... />
+</Layout>
+
+// In animation:
+yield* myRect().position(layout().topLeft(), 0.5);     // animate to top-left
+yield* myRect().position(layout().middle(), 0.5);      // center
+yield* myRect().position(layout().bottomRight(), 0.5); // bottom-right
+```
+
+**Available shortcuts:** `top, bottom, left, right, middle, topLeft, topRight, bottomLeft, bottomRight, middleLeft, middleRight, topMiddle, bottomMiddle`. Each returns a `Vector2`.
+
+### SVG getChildrenById
+
+Animate sub-elements of an imported SVG logo.
+
+```typescript
+import {SVG} from '@revideo/2d';
+
+const logo = createRef<SVG>();
+view.add(<SVG ref={logo} src={'./logo.svg'} size={400} />);
+
+// Animate one piece of the logo
+const ringElements = logo().getChildrenById('ring');
+yield* all(...ringElements.map(el => el.opacity(1, 0.3)));
+
+// Find by index too
+const allShapes = logo().getChildrenByTagName('path');
+yield* sequence(0.04, ...allShapes.map(s => s.opacity(1, 0.2)));
+```
+
+**IDs come from the SVG source.** Add `id="ring"` to grouped layers in your SVG editor before export.
+
+---
+
+## Filter Stacking
+
+Filters are CSS-style image processing applied to a Node's rendered output. They chain in array order.
+
+```typescript
+import {blur, brightness, contrast, grayscale, hue, invert, saturate, sepia, dropShadow} from '@revideo/2d';
+
+<Rect filters={[
+  blur(20),                      // 20px Gaussian blur
+  brightness(1.2),               // 120% brightness
+  contrast(1.4),                 // 140% contrast
+  grayscale(0.5),                // 50% grayscale
+  hue(45),                       // rotate hue 45deg
+  invert(0.3),                   // 30% inversion
+  saturate(1.5),                 // 150% saturation
+  sepia(0.4),                    // 40% sepia
+  dropShadow({                   // CSS dropShadow
+    offsetX: 0,
+    offsetY: 8,
+    blurRadius: 24,
+    color: 'rgba(0,0,0,0.2)',
+  }),
+]} />
+```
+
+### Stable Array Pattern (CRITICAL for performance)
+
+```typescript
+// ❌ BAD — new filter array per frame
+<Rect filters={() => [blur(blurAmount())]} />
+
+// ✅ GOOD — precompute, animate the signal inside
+const blurFilter = blur(20);
+<Rect filters={[blurFilter]} />
+// Animate via a signal-driven filter: blurFilter.value(40)
+```
+
+### Common Stacking Patterns
+
+```typescript
+// Vintage photograph
+filters={[saturate(0.7), sepia(0.3), contrast(1.1), blur(0.5)]}
+
+// Sci-fi data screen
+filters={[hue(180), saturate(1.6), brightness(1.1), contrast(1.3)]}
+
+// Soft dream blur (with dropshadow for depth)
+filters={[blur(8), saturate(1.2), dropShadow({offsetX: 0, offsetY: 16, blurRadius: 40, color: 'rgba(0,0,0,0.15)'})]}
+
+// Chromatic abberation effect (use difference compositeOp instead — see Section 27)
+```
+
+### Performance Discipline
+
+- Each filter costs GPU time. Max ~3-4 simultaneous filters per high-density node.
+- `blur` is the most expensive; cache the parent when blurring children: `<Node cache cachePadding={blurAmount * 2}>`.
+- `dropShadow` is moderately expensive but cheaper than blurring a duplicate.
+- Hue/saturate/grayscale are cheap.
+
+---
+
+# Stunning HQ Motion Craft (v2)
+
+The following five sections cover the craft details that separate "competent" from "stunning" motion graphics output. Pair these with the v1 Motion Design Patterns (Section 21) for full agency-grade quality.
+
+---
+
+## Typography Animation Vocabulary
+
+The single biggest lever for agency-grade output. Text shouldn't fade in as a block — every brand has a typographic motion signature.
+
+### Character-Level Reveals
+
+Split text into individual `<Txt>` nodes and stagger their entrance.
+
+```typescript
+import {Txt} from '@revideo/2d';
+import {sequence, all, delay, createRefArray} from '@revideo/core';
+
+// Split "Lumen" into 5 character refs
+const chars = createRefArray<Txt>();
+const word = 'Lumen';
+
+view.add(
+  <Layout layout direction={'row'}>
+    {word.split('').map((c, i) => (
+      <Txt
+        key={`char-${i}`}
+        ref={chars}
+        text={c}
+        fontSize={96}
+        fontFamily={'Inter'}
+        fontWeight={500}
+        opacity={0}
+        y={20}
+      />
+    ))}
+  </Layout>
+);
+
+// Three techniques — pick based on brand energy_curve:
+
+// Opacity-only (calm brands)
+yield* sequence(0.06, ...chars.map(c => c.opacity(1, 0.2, easeOutCubic)));
+
+// Opacity + y-rise (premium/editorial)
+yield* sequence(0.06, ...chars.map(c =>
+  all(c.opacity(1, 0.2, easeOutCubic), c.y(0, 0.2, easeOutCubic))
+));
+
+// Opacity + scale (energetic/playful)
+yield* sequence(0.04, ...chars.map(c => {
+  c.scale(0.7);
+  return all(c.opacity(1, 0.15, easeOutBack), c.scale(1, 0.15, easeOutBack));
+}));
+```
+
+**Stagger timing by brand:**
+- Calm/premium: 0.06-0.10s between chars
+- Moderate: 0.04-0.06s
+- High-energy: 0.02-0.04s
+- Frenetic: 0.01-0.02s (machine-gun)
+
+### Word-by-Word & Line-by-Line Reveals
+
+```typescript
+const words = 'Pattern recognition without panic.'.split(' ');
+
+const wordRefs = createRefArray<Txt>();
+view.add(
+  <Layout layout direction={'row'} gap={20}>
+    {words.map((w, i) => (
+      <Txt key={`w-${i}`} ref={wordRefs} text={w} opacity={0} y={20} />
+    ))}
+  </Layout>
+);
+
+yield* sequence(0.12, ...wordRefs.map(w =>
+  all(w.opacity(1, 0.25, easeOutCubic), w.y(0, 0.25, easeOutCubic))
+));
+```
+
+**Wave-stagger for word reveals** — middle words arrive fastest (per Section 21 cadence rules):
+
+```typescript
+import {staggerWave} from '../lib/brand';  // helper from v1 motion-helpers
+
+yield* all(...staggerWave(
+  wordRefs.map(w => all(w.opacity(1, 0.25), w.y(0, 0.25)) as ThreadGenerator),
+  1.0
+));
+```
+
+### Letter-Spacing (Tracking) Animation
+
+Editorial brands tighten tracking on emphasis. Premium tightening uses `easeInOutCubic` over 0.3-0.5s.
+
+```typescript
+const tracking = createSignal<number>(0);  // letter-spacing in em or px
+
+<Txt
+  text={'QUIETLY INTELLIGENT'}
+  fontSize={48}
+  letterSpacing={() => tracking()}
+  fill={'#1F2A26'}
+/>
+
+// Loose tracking on entrance, tightens during emphasis
+yield* tracking(8, 0.3, easeOutCubic);   // start at 8px tracking
+yield* waitFor(0.5);                      // hold
+yield* tracking(2, 0.4, easeInOutCubic); // tighten for emphasis — feels intentional
+```
+
+### Font-Weight Pulse (No Scale)
+
+```typescript
+const weight = createSignal<number>(400);
+
+<Txt
+  text={'+12%'}
+  fontSize={64}
+  fontWeight={() => weight()}
+  fill={'#1F2A26'}
+/>
+
+// Pulse weight without changing size — text appears to "inhale" without animation jitter
+yield* weight(600, 0.15, easeOutCubic);
+yield* weight(500, 0.2, easeInOutCubic);  // settle slightly heavier
+```
+
+### Count-Up for Metrics
+
+```typescript
+import {tween, easeOutQuint} from '@revideo/core';
+
+const metricRef = createRef<Txt>();
+const value = createSignal<number>(0);
+
+view.add(<Txt ref={metricRef} text={() => `+${Math.round(value())}%`} fontSize={64} />);
+
+// Animate the number from 0 to 12 over 0.8s
+yield* value(12, 0.8, easeOutQuint);
+
+// For decimals:
+const ratio = createSignal<number>(0);
+metricRef().text(() => ratio().toFixed(2));
+yield* ratio(0.94, 0.8, easeOutQuint);  // 0.00 → 0.94
+```
+
+### Optical Sizing (Tracking Scales with Font Size)
+
+| Font Size | Letter-Spacing (em) | Why |
+|---|---|---|
+| 96px+ (hero) | -0.04 to -0.025 | Tight; counter-overlap |
+| 64-96px (h1) | -0.02 to -0.01 | Slightly tight |
+| 32-64px (h2) | -0.005 to 0 | Neutral |
+| 18-32px (body) | 0 to 0.005 | Slightly loose for readability |
+| 12-18px (caption) | 0.02 to 0.06 | Loose; aids legibility |
+| Labels (uppercase) | 0.08 to 0.18 | Wide; institutional feel |
+
+```typescript
+// In brand.ts:
+export const opticalTracking = {
+  hero: -1.6,        // -0.04em at 64px = -1.6px (computed)
+  h1: -0.8,
+  h2: 0,
+  body: 0.2,
+  caption: 0.6,
+  labelUppercase: 5.0,
+};
+```
+
+---
+
+## Cinematic Lighting & Glow Systems
+
+Replace single-blur "glows" with proper layered lighting.
+
+### Multi-Layer Glow Stack (Hero Elements)
+
+Three Circles at increasing blur radii, decreasing opacity. Creates physically-plausible bloom.
+
+```typescript
+import {Circle} from '@revideo/2d';
+import {createRef, all, delay, easeOutCubic} from '@revideo/core';
+
+const glowInner = createRef<Circle>();   // sharp halo
+const glowMid = createRef<Circle>();      // mid bloom
+const glowOuter = createRef<Circle>();    // atmospheric haze
+
+view.add(
+  <>
+    <Circle ref={glowOuter} size={500} fill={'#d4b98c'} opacity={0} filters={[blur(120)]} />
+    <Circle ref={glowMid} size={300} fill={'#d4b98c'} opacity={0} filters={[blur(60)]} />
+    <Circle ref={glowInner} size={180} fill={'#d4b98c'} opacity={0} filters={[blur(20)]} />
+    <Circle size={120} fill={'#7a9e8e'} ref={hero} />  {/* the actual hero */}
+  </>
+);
+
+// Layered glow entrance — outer first (atmosphere), then mid, then sharp
+yield* all(
+  delay(0.0, glowOuter().opacity(0.04, 0.6, easeOutCubic)),
+  delay(0.06, glowMid().opacity(0.08, 0.5, easeOutCubic)),
+  delay(0.12, glowInner().opacity(0.12, 0.4, easeOutCubic)),
+  delay(0.10, hero().scale(1, 0.4, easeOutCubic)),
+);
+```
+
+**Opacity scale:**
+- Inner (sharp): 0.12-0.18 — most visible halo
+- Mid (bloom): 0.06-0.10 — softens the halo edge
+- Outer (haze): 0.03-0.05 — atmospheric bleed into background
+
+### Rim Lighting (Directional Key Light)
+
+Suggests an off-frame light source. Position at 1/3 offset (not center).
+
+```typescript
+const rimGlow = createRef<Circle>();
+
+view.add(
+  <Circle
+    ref={rimGlow}
+    size={400}
+    x={layout.width / 3}        // 1/3 from center, NOT centered
+    y={-layout.height / 3}      // upper third
+    fill={'#d4b98c'}             // warm key light
+    opacity={0}
+    filters={[blur(80)]}
+  />
+);
+
+yield* rimGlow().opacity(0.42, 0.5, easeOutCubic);
+```
+
+**Rule:** rim light positioned at one of the 4 thirds-grid intersections. Stays present through the scene (not animated out) until next section.
+
+### Shadow Depth Dynamics
+
+Shadows that respond to camera moves create depth perception.
+
+```typescript
+const card = createRef<Rect>();
+const shadowDepth = createSignal<number>(20);
+
+<Rect
+  ref={card}
+  size={[380, 280]}
+  shadowOffsetY={() => shadowDepth() * 0.5}
+  shadowBlur={() => shadowDepth() * 2.5}
+  shadowOpacity={0.15}
+  shadowColor={'#000'}
+/>
+
+// During camera push-in, shadow grows (card "lifts off" the plane)
+yield* shadowDepth(48, 0.6, easeInOutCubic);
+```
+
+### Glow Color Shifts
+
+The glow color animates during transitions — color motivation cues the audience.
+
+```typescript
+const glow = createRef<Circle>();
+
+// Scene 1 hero: warm linen glow
+yield* glow().fill('#d4b98c', 0);
+
+// Scene 2 transition: shifts to sage
+yield* glow().fill('#7a9e8e', 0.8, easeInOutCubic);
+```
+
+### Atmospheric Haze (Aerial Perspective)
+
+Distant Layouts get progressive blur during push-in — simulates atmospheric perspective.
+
+```typescript
+const bgWorld = createRef<Layout>();
+
+// During camera push-in
+yield* all(
+  world().scale(1.5, 0.85, easeInOutCubic),     // foreground zooms in
+  bgWorld().scale(1.18, 0.85, easeInOutCubic),   // background zooms less (parallax)
+  bgWorld().filters([blur(0)]).filters([blur(8)], 0.6),  // background hazes
+);
+
+// Pull-out reverses
+yield* all(
+  world().scale(1, 0.6, easeInOutCubic),
+  bgWorld().scale(1, 0.6, easeInOutCubic),
+  bgWorld().filters([blur(0)], 0.5),
+);
+```
+
+---
+
+## Color Animation Rules
+
+### 60-30-10 Motion Rule
+
+Each frame's color distribution should approximate:
+- **60%** dominant color (background, fills, ambient glow)
+- **30%** secondary color (typography, supporting illustrations)
+- **10%** accent color (highlights, glyph fills, status indicators) — these can FLASH but not LINGER
+
+**Verification heuristic:** open a rendered frame in any color picker. Pixel-area distribution should roughly match this ratio. If accent fills >15%, it's overwhelming.
+
+### Semantic Data Colors
+
+Data has meaning beyond brand aesthetic. Use semantic colors with rule-driven animation.
+
+```typescript
+// In brand.ts
+export const dataColors = {
+  positive: '#4ade80',  // green — improvement, success
+  negative: '#f87171',  // red — caution, decrease
+  neutral: '#94a3b8',   // gray — no change, info
+} as const;
+
+// Rules:
+//   positive: enter with count-up + soft glow pulse (uplifting)
+//   negative: enter with rest tone, no pulse (somber)
+//   neutral: enter via opacity fade only (informational)
+```
+
+```typescript
+// Positive metric animation
+yield* all(
+  metricRef().fill(dataColors.positive, 0),
+  countUpMetric(metricRef, 12, 0.6, v => `+${v}%`),
+  delay(0.4, glowRef().opacity(0.5, 0.2, easeOutCubic)),  // celebratory pulse
+);
+
+// Negative metric — no glow, just present
+yield* all(
+  metricRef().fill(dataColors.negative, 0),
+  countUpMetric(metricRef, -8, 0.6, v => `${v} bpm`),
+);
+```
+
+### VO-Emphasis Color Shift
+
+When VO emphasizes a word, briefly tint it to accent color (~0.15s) then return.
+
+```typescript
+// Word "panic" emphasized in VO
+yield* word().fill(colors.accent, 0.1, easeOutCubic);
+yield* word().fill(colors.primary, 0.2, easeInOutCubic);
+```
+
+Combined with font-weight pulse:
+```typescript
+yield* all(
+  word().fill(colors.accent, 0.1),
+  word().fontWeight(700, 0.1),
+);
+yield* all(
+  word().fill(colors.primary, 0.25, easeInOutCubic),
+  word().fontWeight(500, 0.25, easeInOutCubic),
+);
+```
+
+### Gradient Mesh Backgrounds
+
+Replace flat fills with radial/linear gradients with animated stops. Higher production value than solid colors.
+
+```typescript
+import {useContext} from '@revideo/core';
+
+useContext((ctx) => {
+  const grad = ctx.createRadialGradient(
+    960, 540, 100,           // inner circle center + radius
+    960 + 200, 540 - 100, 800,  // outer (offset for asymmetric look)
+  );
+  grad.addColorStop(0, '#f7f4ec');
+  grad.addColorStop(0.5, '#e8e2d5');
+  grad.addColorStop(1, '#1f2a26');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 1920, 1080);
+});
+```
+
+**Animated gradient mesh** — animate the stops via signals:
+
+```typescript
+const gradStop = createSignal<number>(0);
+
+useContext((ctx) => {
+  const grad = ctx.createLinearGradient(0, 0, 1920, 0);
+  grad.addColorStop(gradStop(), '#d4b98c');
+  grad.addColorStop(1, '#f7f4ec');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 1920, 1080);
+});
+
+yield* gradStop(0.8, 1.0, easeInOutCubic);  // gradient slides across
+```
+
+### Saturation Pulse (Emphasis Without Scale)
+
+```typescript
+const sat = createSignal<number>(1);
+
+<Img src={'./hero.jpg'} filters={() => [saturate(sat())]} />
+
+// Emphasis moment — pop saturation briefly
+yield* sat(1.4, 0.15, easeOutCubic);
+yield* sat(1.0, 0.25, easeInOutCubic);
+```
+
+---
+
+## Composition Discipline
+
+### Rule of Thirds
+
+Hero elements at thirds intersections, not center. Add to `brand.ts`:
+
+```typescript
+export const composition = {
+  thirdX: layout.width / 3,        // 640
+  thirdY: layout.height / 3,        // 360
+  thirdsTL: [-layout.width / 3, -layout.height / 3],  // [-640, -360]
+  thirdsTR: [layout.width / 3, -layout.height / 3],
+  thirdsBL: [-layout.width / 3, layout.height / 3],
+  thirdsBR: [layout.width / 3, layout.height / 3],
+} as const;
+```
+
+```typescript
+// Hero positioned at top-third intersection (not center)
+<Circle ref={hero} x={composition.thirdsTR[0]} y={composition.thirdsTR[1]} size={300} />
+```
+
+Camera moves land on thirds intersections, not center:
+
+```typescript
+const heroPos = [composition.thirdX, -composition.thirdY];
+yield* all(
+  world().position([-heroPos[0], -heroPos[1]], 1.0, easeInOutCubic),  // camera moves to hero
+  world().scale(1.6, 1.0, easeInOutCubic),
+);
+```
+
+### Asymmetric Staging
+
+Centered compositions feel mechanical. Weight elements to one side.
+
+```typescript
+// BAD — three cards centered
+<Layout layout direction={'row'} gap={40} alignItems={'center'}>
+  {/* card1 */} {/* card2 */} {/* card3 */}
+</Layout>
+
+// GOOD — three cards weighted left, with negative space to right for typography
+<Layout layout direction={'row'} gap={40} x={-200}>  // shift left
+  {/* card1 */} {/* card2 */} {/* card3 */}
+</Layout>
+<Txt text={'Pattern recognition'} x={400} />  // typography fills right space
+```
+
+### Leading Lines
+
+Background elements guide the eye toward the hero.
+
+```typescript
+// Hairlines that converge toward hero position
+<Line points={[[-960, -100], [composition.thirdX, -composition.thirdY]]}
+      stroke={colors.softNeutral} lineWidth={1} />
+<Line points={[[960, -100], [composition.thirdX, -composition.thirdY]]}
+      stroke={colors.softNeutral} lineWidth={1} />
+// Particle drift directions point inward
+```
+
+### Negative Space Discipline (Breath Rule)
+
+Every busy moment needs a 0.6-1.2s stillness afterward.
+
+```typescript
+yield* heroComplexAnimation();  // dense action
+yield* waitFor(timing.hold);     // ENFORCED breath — minimum 0.6s
+yield* nextSection();
+```
+
+**As a helper:**
+
+```typescript
+// In motion-helpers.ts
+export function* breathHold(durationFromBrand: number = 0.6): ThreadGenerator {
+  yield* waitFor(durationFromBrand);
+}
+```
+
+### Visual Weight Balance
+
+When one corner is dense, opposite corner gets a tiny anchor.
+
+```typescript
+// Dense content top-right → anchor dot bottom-left
+<Rect ref={contentBlock} x={400} y={-300} />  // dense, off-center top-right
+<Circle ref={anchorDot} x={-800} y={400} size={8} fill={colors.accent} />  // tiny anchor BL
+```
+
+---
+
+## Audio-Driven Animation Sync
+
+The sfx-manifest.json should drive animation timing, not just play sounds.
+
+### Beat Grid Extraction
+
+```typescript
+import sfxManifest from '../sfx-manifest.json';
+
+export default makeScene2D('scene1', function* (view) {
+  // Pull beat grid for this scene
+  const beats = (sfxManifest.scenes?.['scene1'] ?? []).map(entry => ({
+    time: entry.start_offset_seconds,
+    layer: entry.layer,         // 'foreground' | 'background' | 'accent' | 'ambient'
+    category: entry.category,    // 'ui' | 'transition' | 'impact' | etc.
+    duration: entry.duration_seconds,
+  }));
+
+  // Scene-level current-time tracker
+  let sceneTime = 0;
+
+  // Helper: yield* aligns animation to nearest upcoming beat
+  function* alignTo(targetBeatIdx: number): ThreadGenerator {
+    const target = beats[targetBeatIdx]?.time ?? 0;
+    const delta = target - sceneTime;
+    if (delta > 0) {
+      yield* waitFor(delta);
+      sceneTime = target;
+    }
+  }
+
+  // ... use alignTo(0), alignTo(1), etc. between animation phases ...
+});
+```
+
+### Anchor Animations to Beats
+
+Instead of `delay(0.85, ...)` use beat references:
+
+```typescript
+// Beat 0 at scene start
+yield* alignTo(0);
+yield* heroEntrance();
+
+// Beat 1 — text reveal
+yield* alignTo(1);
+yield* textReveal();
+
+// Beat 2 — emphasis pulse
+yield* alignTo(2);
+yield* emphasisPulse();
+```
+
+### Silence Is a Beat
+
+When manifest has no entry near expected time, pace animations slower (audience has nothing to anchor to).
+
+```typescript
+// If sceneTime - lastBeat > 0.8s, we're in silence territory
+const silentZone = sceneTime - (beats[lastBeatIdx]?.time ?? 0) > 0.8;
+const animationDuration = silentZone ? timing.beat * 1.5 : timing.beat;  // slower in silence
+```
+
+### Volume-Driven Motion Intensity
+
+```typescript
+// Match motion intensity to expected sound layer
+function motionIntensity(layer: string): number {
+  switch (layer) {
+    case 'foreground': return 1.0;   // big animation
+    case 'accent':     return 0.6;
+    case 'ambient':    return 0.3;
+    case 'background': return 0.2;
+    default: return 0.5;
+  }
+}
+
+const beat = beats[0];
+yield* hero().scale(motionIntensity(beat.layer), 0.3);
+```
+
+### Anchor Types
+
+```typescript
+// sfx-plan.json entries have an anchor field
+function resolveTime(entry: any, scriptVOData?: VOData): number {
+  switch (entry.anchor) {
+    case 'beat_offset':
+      return entry.beat_offset;
+    case 'absolute_seconds':
+      return entry.absolute_seconds;
+    case 'vo_word_index':
+      // Requires VO timing data — provided via project variable or VO segmenter
+      return scriptVOData?.wordTimes[entry.vo_word_index] ?? 0;
+    default:
+      return 0;
+  }
+}
+```
+
+### Fallback (Missing Manifest)
+
+```typescript
+let beats: BeatGrid = [];
+try {
+  beats = (sfxManifest.scenes?.['scene1'] ?? []).map(...);
+} catch {
+  beats = [];  // silent scene fallback
+}
+
+// alignTo gracefully no-ops when target beat doesn't exist
+function* alignTo(idx: number) {
+  const target = beats[idx]?.time;
+  if (target === undefined) return;  // no-op
+  // ... rest of impl
+}
+```
 
 ---
 

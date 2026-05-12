@@ -23,6 +23,8 @@ Thumbs.db
 # Revideo output
 projects/*/output/*.mp4
 projects/*/output/*.webm
+projects/*/output/*.png
+projects/*/output/*.jpg
 
 # SFX generated files
 projects/*/sfx/*.mp3

@@ -1,0 +1,172 @@
+{
+  "project": "atlas",
+  "framerate": 30,
+  "default_volume": 0.7,
+  "schema_version": "1.0",
+  "style": "Bold & Punchy",
+  "notes": "Sound aesthetic from motion_design.sound_aesthetic_hint. Energy_curve=high. Beat_density=dense → up to 4 foreground SFX per second allowed. Vocabulary biased toward sharp/punchy/impact/click; no warm or spacious.",
+  "scenes": {
+    "scene1": [
+      {
+        "id": "s1_001",
+        "name": "intro_riser",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 0.0,
+        "duration": 0.8,
+        "prompt": "tight rising sub riser, energetic build, athletic kick-off, sharp transient",
+        "category": "transition",
+        "layer": "background",
+        "volume": 0.55
+      },
+      {
+        "id": "s1_002",
+        "name": "metric_tick",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 0.45,
+        "duration": 1.4,
+        "prompt": "rapid digital count-up ticks, mechanical metric rolling, sharp and crisp",
+        "category": "ui",
+        "layer": "foreground",
+        "volume": 0.7
+      },
+      {
+        "id": "s1_003",
+        "name": "pr_impact",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 1.95,
+        "duration": 0.5,
+        "prompt": "deep impact hit with sub layer, stadium-sized boom, punchy and confident",
+        "category": "impact",
+        "layer": "foreground",
+        "volume": 0.95
+      },
+      {
+        "id": "s1_004",
+        "name": "label_stagger",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 2.5,
+        "duration": 0.7,
+        "prompt": "tight glitch staccato as text reveals, sharp digital chops",
+        "category": "ui",
+        "layer": "accent",
+        "volume": 0.65
+      },
+      {
+        "id": "s1_005",
+        "name": "whip_pan_out",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 4.2,
+        "duration": 0.35,
+        "prompt": "fast whip pan whoosh, sharp directional sweep, bold and aggressive",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.85
+      }
+    ],
+    "scene2": [
+      {
+        "id": "s2_001",
+        "name": "cards_cascade",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 0.3,
+        "duration": 1.0,
+        "prompt": "three-step punchy card stamps, athletic snap impacts, layered low-mid hits",
+        "category": "impact",
+        "layer": "foreground",
+        "volume": 0.8
+      },
+      {
+        "id": "s2_002",
+        "name": "metric_count_up",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 1.2,
+        "duration": 1.0,
+        "prompt": "tight digital count-up rolling, mechanical metric clicks, crisp ascending",
+        "category": "ui",
+        "layer": "foreground",
+        "volume": 0.7
+      },
+      {
+        "id": "s2_003",
+        "name": "hero_emphasis",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 2.5,
+        "duration": 0.6,
+        "prompt": "bright accent flash with reverse-cymbal lead-in, punchy emphasis stab",
+        "category": "impact",
+        "layer": "accent",
+        "volume": 0.85
+      },
+      {
+        "id": "s2_004",
+        "name": "slide_out",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 4.0,
+        "duration": 0.3,
+        "prompt": "horizontal slide whoosh, sharp directional sweep, athletic exit",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.75
+      }
+    ],
+    "scene3": [
+      {
+        "id": "s3_001",
+        "name": "logo_thunder",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 0.15,
+        "duration": 0.8,
+        "prompt": "deep cinematic logo hit with sub layer, stadium-defining impact, confident",
+        "category": "impact",
+        "layer": "foreground",
+        "volume": 0.95
+      },
+      {
+        "id": "s3_002",
+        "name": "tagline_reveal",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 1.2,
+        "duration": 0.7,
+        "prompt": "tight glitch staccato as tagline reveals, sharp digital text chops",
+        "category": "ui",
+        "layer": "accent",
+        "volume": 0.65
+      },
+      {
+        "id": "s3_003",
+        "name": "signature_dot",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 2.4,
+        "duration": 0.35,
+        "prompt": "single punchy ui click confirmation, bright and sharp, athletic confidence",
+        "category": "ui",
+        "layer": "foreground",
+        "volume": 0.75
+      },
+      {
+        "id": "s3_004",
+        "name": "outro_sustain",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 2.8,
+        "duration": 1.2,
+        "prompt": "punchy sub-bass sustain fading out, athletic confidence tail",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.55
+      }
+    ]
+  }
+}

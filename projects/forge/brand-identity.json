@@ -1,0 +1,200 @@
+{
+  "company": {
+    "name": "Forge",
+    "url": "https://forge.games",
+    "tagline": "Forge: Echoes — a pixel puzzle adventure.",
+    "description": "Forge is an indie game studio shipping pixel-art puzzle adventures with bold color, kinetic motion, and atmospheric world design. Their debut title 'Echoes' fuses three realms around a single discovery loop.",
+    "industry": "Indie Games / Interactive Entertainment",
+    "industry_category": "Indie Gaming",
+    "target_audience": "Indie game fans 16-34 who follow Steam Next Fest, wishlist Hades-likes and Celeste-likes, watch Game Awards reveal trailers, and back tightly-curated narrative platformers on Kickstarter.",
+    "brand_personality": ["kinetic", "bold", "vibrant", "punchy", "playful", "atmospheric"],
+    "key_messages": [
+      "Three realms, one key",
+      "Forge your echo through the dark",
+      "Wishlist on Steam"
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#0A0E27",
+      "name": "Cosmic Indigo",
+      "usage": "Primary background — deep space night",
+      "source": "css_confirmed_by_image"
+    },
+    "accent": {
+      "hex": "#FF006E",
+      "name": "Magenta Pulse",
+      "usage": "Hero accent — energy, impact, hot highlights",
+      "source": "image_dominant"
+    },
+    "secondary": {
+      "hex": "#FFBE0B",
+      "name": "Discovery Gold",
+      "usage": "Discovery moments, treasure, key UI",
+      "source": "image_dominant"
+    },
+    "tertiary": {
+      "hex": "#3A86FF",
+      "name": "Magic Blue",
+      "usage": "Magic, water, electric arcs",
+      "source": "image_dominant"
+    },
+    "bg_dark": {
+      "hex": "#0F1335",
+      "name": "Dungeon Black",
+      "usage": "Card backgrounds, vignette",
+      "source": "css_confirmed_by_image"
+    },
+    "bg_mid": {
+      "hex": "#1B1F45",
+      "name": "Mid Indigo",
+      "usage": "Cards, depth layers",
+      "source": "css_confirmed_by_image"
+    },
+    "glow": {
+      "hex": "#FF4081",
+      "name": "Glow Pink",
+      "usage": "Atmospheric bloom, particle accent",
+      "source": "image_dominant"
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "name": "Spell White",
+      "usage": "Text, hero glyphs",
+      "source": "css_only"
+    }
+  },
+
+  "typography": {
+    "headings": {
+      "family": "Impact",
+      "fallback": "Helvetica Black, Arial Black, sans-serif",
+      "weight": 900,
+      "letter_spacing": "0em",
+      "notes": "Bold display font — chunky character shapes with pixel-art weight"
+    },
+    "body": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 500,
+      "letter_spacing": "0em"
+    },
+    "accent": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 700,
+      "letter_spacing": "0.18em",
+      "notes": "Uppercase labels with wide tracking for institutional/launch-trailer feel"
+    }
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Indie game launch trailer — high-contrast cosmic indigo backgrounds, vibrant magenta and gold accents, additive bloom around hero glyphs, particle bursts on every impact. Reads like a Hades reveal cross-cut with Celeste's emotional palette.",
+    "shapes": {
+      "border_radius": "8-12px on cards (chunky); 0px for pixel glyphs",
+      "stroke_weight": "2-3px chunky strokes",
+      "shape_language": "pixel"
+    },
+    "effects": {
+      "glow_accents": true,
+      "glow_style": "additive-bloom",
+      "shadows": "deep, magenta-tinted, low-opacity (0.4)",
+      "glassmorphism": false,
+      "gradients": "radial cosmic + linear sweep through magenta-gold-blue",
+      "scanlines": false,
+      "particle_systems": true,
+      "screen_shake": true,
+      "glitch_rgb_split": true
+    },
+    "imagery": "Pixel-art glyphs, particle bursts, neon glow, additive lighting, dark cosmic backgrounds, vibrant accent flashes"
+  },
+
+  "components": {
+    "buttons": "Filled magenta with white pixel-bold label; or outline magenta with magenta glow",
+    "cards": "Mid indigo surface with 8-12px radius, chunky 2-3px magenta or gold outline, deep magenta-tinted shadow",
+    "data_viz": "Pixel grids, chunky bars, sharp peaks; never smooth bezier"
+  },
+
+  "brand_voice": {
+    "tone": ["bold", "energetic", "playful", "punchy"],
+    "language_style": "Short, percussive, imperative. Uses uppercase for impact moments. Loves verbs.",
+    "key_phrases": [
+      "Three realms, one key",
+      "Wishlist on Steam",
+      "FORGE: Echoes",
+      "Echo through the dark"
+    ],
+    "avoid": ["Long sentences", "Corporate hedging", "Calm meditative phrasing", "Wellness language"],
+    "energy_level": "high"
+  },
+
+  "motion_design": {
+    "philosophy": "Indie game energy — overshoot everywhere, particle bursts on every hero, glitch transitions, screen-shake on impacts, vibrant accents",
+    "energy_curve": "high",
+    "pace": {
+      "average_beat_duration": "0.22",
+      "beat_density": "dense",
+      "vo_lead_time_ms": 5
+    },
+    "easing_personality": {
+      "primary": "easeOutBack",
+      "secondary": "easeOutExpo",
+      "spring_config": "LogoLandSpring",
+      "use_overshoot": true,
+      "use_anticipation": true
+    },
+    "transition_vocabulary": {
+      "primary": "iris",
+      "section_change": "glitch",
+      "scene_change": "iris",
+      "matched_cut_friendly": false,
+      "avoid": ["fade longer than 0.2s", "long static holds"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["zoom", "shake", "pushIn"],
+      "intensity": "dramatic",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "rich",
+      "follow_through": true,
+      "ambient_particle_density": "rich"
+    },
+    "animation_vocabulary": {
+      "text_entrance": "character-stagger",
+      "emphasis_technique": "overshoot-settle",
+      "camera_beat_sync": "SFX-driven",
+      "color_transition": "shift-on-emphasis",
+      "shape_language": "pixel",
+      "lighting_style": "additive-bloom"
+    },
+    "sound_aesthetic_hint": "Bold & Punchy",
+    "reference_brands": ["Bastion launch trailer", "Hades reveal", "Celeste teaser", "Hollow Knight"],
+    "schema_version": "1.1"
+  },
+
+  "sources": {
+    "url": "https://forge.games (fabricated for system validation)",
+    "url_pages_fetched": ["homepage"],
+    "images_provided": 0,
+    "image_types_detected": []
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "high",
+    "visual_style": "high",
+    "components": "high",
+    "brand_voice": "high",
+    "motion_design": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "synthesized for v2 validation test",
+    "confidence": "high",
+    "confidence_notes": "Fabricated brief authored by the v2 validation workflow for the highest-energy validation project.",
+    "extracted_at": "2026-05-12T00:00:00Z"
+  }
+}

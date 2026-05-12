@@ -1,0 +1,142 @@
+{
+  "project": "lumen",
+  "framerate": 30,
+  "default_volume": 0.5,
+  "schema_version": "1.0",
+  "style": "Minimal & Subtle",
+  "notes": "Sound aesthetic from motion_design.sound_aesthetic_hint. Energy_curve=calm. Beat_density=sparse → max 1 foreground SFX per 0.9s. Vocabulary biased toward soft/warm/spacious; no punchy/crisp/sharp.",
+  "scenes": {
+    "scene1": [
+      {
+        "id": "s1_001",
+        "name": "orb_breathe_in",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 0.85,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.4,
+        "prompt": "soft ambient hum fading in, warm spacious resonance, very quiet sustained tone",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.35
+      },
+      {
+        "id": "s1_002",
+        "name": "wordmark_wipe",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 1.55,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.7,
+        "prompt": "soft sweep across, gentle fabric-tearing-open texture, very quiet",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.55
+      },
+      {
+        "id": "s1_003",
+        "name": "curve_reveal",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 2.45,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.8,
+        "prompt": "soft pen stroke sound, gentle drawing line, almost imperceptible",
+        "category": "mechanical",
+        "layer": "accent",
+        "volume": 0.4
+      }
+    ],
+    "scene2": [
+      {
+        "id": "s2_001",
+        "name": "section_title_wipe",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 0.55,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.6,
+        "prompt": "soft directional whoosh, warm spacious sweep, very quiet",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.45
+      },
+      {
+        "id": "s2_002",
+        "name": "cards_arrive",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 1.15,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.0,
+        "prompt": "very soft layered chimes, gentle warm bells, sparse cascade, calm",
+        "category": "ui",
+        "layer": "foreground",
+        "volume": 0.55
+      },
+      {
+        "id": "s2_003",
+        "name": "focus_pull_push_in",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 2.05,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.85,
+        "prompt": "gentle forward whoosh, soft approaching tone, warm resonance, calm",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.5
+      }
+    ],
+    "scene3": [
+      {
+        "id": "s3_001",
+        "name": "tagline_wipe",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 0.55,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.8,
+        "prompt": "soft sweep across, warm sustained pad, very quiet, spacious",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.5
+      },
+      {
+        "id": "s3_002",
+        "name": "signature_dot_spring",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 1.95,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.5,
+        "prompt": "very soft confirmation tone, warm resonant glow, almost imperceptible",
+        "category": "ui",
+        "layer": "foreground",
+        "volume": 0.55
+      },
+      {
+        "id": "s3_003",
+        "name": "outro_ambient",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 2.4,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.2,
+        "prompt": "soft ambient pad fading out, warm spacious tone, very quiet, breathing",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.3
+      }
+    ]
+  }
+}

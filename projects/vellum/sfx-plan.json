@@ -1,0 +1,156 @@
+{
+  "project": "vellum",
+  "framerate": 30,
+  "default_volume": 0.4,
+  "schema_version": "1.0",
+  "style": "Minimal & Subtle",
+  "notes": "Sound aesthetic from motion_design.sound_aesthetic_hint = 'Minimal & Subtle'. Energy_curve=moderate but sound stays library-quiet. Beat_density=sparse → max 1 foreground SFX per 1.0s. Vocabulary biased toward paper textures, breath, faint room tone. No music, no melodic.",
+  "scenes": {
+    "scene1": [
+      {
+        "id": "v1_001",
+        "name": "ambient_paper_room",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 0.2,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 4.8,
+        "prompt": "very quiet paper room tone, library ambience, faint dust motes, no melody",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.2
+      },
+      {
+        "id": "v1_002",
+        "name": "title_letters_settle",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 1.2,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.4,
+        "prompt": "very soft paper-and-ink writing sound, intermittent gentle scratching, almost imperceptible",
+        "category": "mechanical",
+        "layer": "accent",
+        "volume": 0.35
+      },
+      {
+        "id": "v1_003",
+        "name": "divider_hairlines",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 2.6,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.7,
+        "prompt": "gentle thin pen draw line sound, soft graphite stroke",
+        "category": "mechanical",
+        "layer": "accent",
+        "volume": 0.3
+      },
+      {
+        "id": "v1_004",
+        "name": "page_turn_out",
+        "scene": "scene1",
+        "anchor": "beat_offset",
+        "beat_offset": 4.4,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.8,
+        "prompt": "single soft page turn, warm paper rustle, gentle and slow",
+        "category": "transition",
+        "layer": "accent",
+        "volume": 0.45
+      }
+    ],
+    "scene2": [
+      {
+        "id": "v2_001",
+        "name": "first_card_wipe",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 0.6,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.7,
+        "prompt": "soft cloth slide texture, gentle directional sweep, very quiet",
+        "category": "ui",
+        "layer": "accent",
+        "volume": 0.4
+      },
+      {
+        "id": "v2_002",
+        "name": "second_card_wipe",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 1.4,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.7,
+        "prompt": "soft cloth slide texture, slightly higher tone, very quiet",
+        "category": "ui",
+        "layer": "accent",
+        "volume": 0.4
+      },
+      {
+        "id": "v2_003",
+        "name": "third_card_wipe",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 2.2,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 0.7,
+        "prompt": "soft cloth slide texture, lower warmer tone, very quiet",
+        "category": "ui",
+        "layer": "accent",
+        "volume": 0.4
+      },
+      {
+        "id": "v2_004",
+        "name": "focus_pull_breath",
+        "scene": "scene2",
+        "anchor": "beat_offset",
+        "beat_offset": 3.0,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.2,
+        "prompt": "warm sustained pad, slow attention move forward, very calm",
+        "category": "transition",
+        "layer": "background",
+        "volume": 0.3
+      }
+    ],
+    "scene3": [
+      {
+        "id": "v3_001",
+        "name": "vellum_wordmark_settle",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 0.5,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.4,
+        "prompt": "warm low tone, paper grain settling, almost imperceptible",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.25
+      },
+      {
+        "id": "v3_002",
+        "name": "outro_quiet",
+        "scene": "scene3",
+        "anchor": "beat_offset",
+        "beat_offset": 2.6,
+        "vo_word_index": null,
+        "absolute_seconds": null,
+        "duration": 1.4,
+        "prompt": "soft fade-down ambient pad, library closing tone, very quiet",
+        "category": "ambient",
+        "layer": "background",
+        "volume": 0.25
+      }
+    ]
+  }
+}

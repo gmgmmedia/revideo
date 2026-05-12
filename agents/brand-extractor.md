@@ -47,6 +47,7 @@ A complete `brand-identity.json` with the following structure:
   "visual_style": { ... },
   "components": { ... },
   "brand_voice": { ... },
+  "motion_design": { ... },
   "sources": { ... },
   "field_confidence": { ... },
   "extraction_metadata": { ... },
@@ -439,6 +440,55 @@ IF the brand appears to be in crypto/Web3 space, identify:
    - Excessive emoji usage
 ```
 
+### Step 11C: Infer Motion Design DNA
+
+The `motion_design` block tells the downstream `code-generator.md` agent HOW to animate this brand. It is INFERRED from the visual + voice signals you've already extracted. This is mandatory output — do not skip.
+
+**Inputs you've already gathered (consult these):**
+- `company.brand_personality` (e.g., "bold", "calm", "technical", "playful")
+- `brand_voice.energy_level` (calm | moderate | high)
+- `visual_style.overall_aesthetic` (e.g., "minimalist", "vaporwave", "brutalist")
+- `visual_style.shapes.border_radius` (sharp vs. rounded)
+- `visual_style.effects` (glow, glassmorphism, scanlines, gradients)
+- `company.industry_category` (institutional vs. consumer vs. crypto)
+
+**Inference rules — apply this table:**
+
+| Signal | Implies |
+|---|---|
+| `energy_level: high` + playful personality | `spring_config: LogoLandSpring`, `easing.primary: easeOutBack`, `use_overshoot: true`, `pace.beat: 0.2s`, camera moves: dramatic |
+| `energy_level: calm` + minimal aesthetic | `spring_config: none`, `easing.primary: easeOutCubic`, `use_overshoot: false`, `pace.beat: 0.4-0.5s`, camera: subtle pushIn only |
+| Sharp `border_radius` (0-4px) + technical voice | `easing.primary: easeOutQuart` or `easeOutExpo`, no spring, no overshoot, hardCut or fade transitions |
+| `glow_accents: true` + dark mode | Use additive light reveals, mask-based wipes, `secondary_motion.trail_intensity: rich` |
+| Crypto-native + builder language | Matched cuts preferred, data-driven motion (numbers animate first), `camera.preferred_moves: [pushIn]` |
+| Nostalgic/retro (vaporwave) | `transition.primary: glitch`, jump cuts, scanline reveals, `camera.static: true` |
+| Premium/luxury brands | Slow camera dolly, `easing.primary: easeInOutCubic`, `transition.scene_change: fade`, `pace.beat: 0.4-0.5s` |
+| Institutional fintech | `camera.intensity: subtle`, emphasis on data change, `secondary_motion.follow_through: true`, no glitch transitions |
+| AI/agent-tech positioning | Computational motion (parallel processes), `camera.use_parallax: true`, network-like reveals |
+| **Editorial/fashion brand** | `easing.primary: easeOutQuint`, no spring, `text_entrance: tracking-tighten`, transitions: wipe + color-shift, particle density: sparse |
+| **Indie-music brand** | `easing.primary: easeOutQuart`, `spring_config: UISpring`, `transition.primary: glitch`, `camera: whipPan + shake`, particle density: dense rhythmic |
+| **Gaming/indie studio** | `easing.primary: easeOutBack`, `spring_config: LogoLandSpring`, `transition: iris+glitch`, `camera: zoom + shake`, particle density: rich+bursts |
+| **Food/restaurant brand** | `easing.primary: easeInOutCubic`, `spring_config: OrganicSpring`, `camera: slow pan + macro push`, transitions: fade+dissolve, warm color emphasis |
+| **NGO/cause-driven brand** | `easing.primary: easeInOutCubic`, no spring, `camera: slow push + hold`, transitions: fade, `text_entrance: line-reveal`, particle density: sparse |
+| **Athletic/performance brand** | `easing.primary: easeOutExpo`, `spring_config: UISpring`, `camera: shake + whipPan + pushIn`, transitions: wipe+slide, `emphasis_technique: count-up + scale-pulse`, particle density: rich impact |
+| **Kids/education brand** | `easing.primary: easeOutBack`, `spring_config: LogoLandSpring`, `camera: gentle bobs`, transitions: wipe+iris, `text_entrance: character-stagger with bounce`, particle density: sparse playful |
+| **Fine-art / museum brand** | `easing.primary: easeInOutCubic` + `linear`, no spring, `camera: static + slow dolly`, transitions: fade+dissolve, `text_entrance: tracking-tighten`, particle density: very sparse |
+| **B2B-corporate brand** | `easing.primary: easeOutCubic`, no spring, `camera: pushIn on data`, transitions: slide+fade, `emphasis_technique: count-up`, particle density: sparse |
+| **News/journalism brand** | `easing.primary: easeOutQuart`, no spring, `camera: minimal`, transitions: slide+cut, `text_entrance: temporal reveal (datestamps)`, particle density: none |
+| **Podcast/media brand** | `easing.primary: easeInOutCubic`, no spring, `camera: focusPull on speaker portraits`, transitions: fade+wave, `text_entrance: word-reveal quote pull`, particle density: sparse waveform |
+| **Hospitality/luxury brand** | `easing.primary: easeInOutCubic`, `spring_config: OrganicSpring`, `camera: extreme parallax`, transitions: dissolve, `text_entrance: tracking-anim`, particle density: atmospheric |
+
+**Required values:**
+- `motion_design.philosophy` MUST be a specific 1-sentence description, not generic. Bad: "Clean and modern motion." Good: "Quietly intelligent — soft mask reveals, generous holds, no overshoot."
+- `reference_brands` MUST name 1-3 specific brands whose motion language matches (e.g., "Linear", "Stripe", "Apple keynote"). Not generic ("tech brands").
+- `easing_personality.primary` MUST be one of the documented easings — not made up.
+- All required boolean and enum fields MUST be filled (no nulls).
+
+**Cross-check before outputting:**
+- Does `pace.average_beat_duration` align with `energy_curve`? (calm: 0.4-0.5s; frenetic: 0.15s)
+- Does `camera.static` match `industry_category`? (vaporwave/retro: usually static; modern SaaS: moves)
+- Does `sound_aesthetic_hint` match `energy_curve` + `brand_personality`?
+
 ---
 
 ## OUTPUT JSON SCHEMA
@@ -581,6 +631,61 @@ IF the brand appears to be in crypto/Web3 space, identify:
     "energy_level": "calm | moderate | high"
   },
 
+  "motion_design": {
+    "philosophy": "1-sentence description of how this brand should move (e.g., 'Quietly intelligent — soft entrances, generous holds, no overshoot')",
+    "energy_curve": "calm | moderate | high | frenetic",
+    "pace": {
+      "average_beat_duration": "0.15 | 0.2 | 0.3 | 0.4 | 0.5 (seconds between visual beats)",
+      "beat_density": "sparse | moderate | dense | hyperactive",
+      "vo_lead_time_ms": 30
+    },
+    "easing_personality": {
+      "primary": "easeOutCubic | easeOutBack | spring | easeOutQuart | easeOutExpo | easeInOutCubic",
+      "secondary": "<another easing function used for variety>",
+      "spring_config": "LogoLandSpring | UISpring | OrganicSpring | none",
+      "use_overshoot": true,
+      "use_anticipation": true
+    },
+    "transition_vocabulary": {
+      "primary": "hardCut | fade | slide | zoomIn | zoomOut | wipe | glitch | custom",
+      "section_change": "<transition used between sections within a scene>",
+      "scene_change": "<transition used between full scenes>",
+      "matched_cut_friendly": true,
+      "avoid": ["transitions that would feel off-brand for this identity"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["pushIn", "pullOut", "pan", "whipPan", "focusPull"],
+      "intensity": "subtle | moderate | dramatic",
+      "use_parallax": false
+    },
+    "secondary_motion": {
+      "trail_intensity": "none | subtle | rich",
+      "follow_through": true,
+      "ambient_particle_density": "none | sparse | moderate | rich"
+    },
+    "animation_vocabulary": {
+      "text_entrance": "opacity-fade | character-stagger | word-reveal | line-reveal | count-up | tracking-tighten",
+      "emphasis_technique": "scale-pulse | color-shift | font-weight-pulse | glow-flash | overshoot-settle | tracking-tighten",
+      "camera_beat_sync": "VO-driven | SFX-driven | visual-narrative | static",
+      "color_transition": "static | pulse | shift-on-emphasis | gradient-animation | saturation-pulse",
+      "shape_language": "geometric | organic | mixed | hand-drawn | photographic | pixel",
+      "lighting_style": "ambient-only | rim-light | multi-layer-glow | atmospheric-haze | cinematic-key | additive-bloom"
+    },
+    "reference_brands_operational": {
+      "<brand-name>": {
+        "text": "opacity-fade | tracking-shift | character-stagger | word-reveal",
+        "data": "count-up | metric-color-shift | dashboard-reveal | static",
+        "camera": "subtle push | pan only | focusPull | minimal | static"
+      }
+    },
+    "sound_aesthetic_hint": "Minimal & Subtle | Bold & Punchy | Ambient & Atmospheric | Tech & Digital",
+    "reference_brands": [
+      "1-3 known brands whose motion language this resembles (e.g., 'Apple keynote', 'Stripe homepage', 'Linear product video')"
+    ],
+    "schema_version": "1.1"
+  },
+
   "sources": {
     "url": "https://example.com | null (if images only)",
     "url_pages_fetched": ["homepage", "about"],
@@ -593,7 +698,8 @@ IF the brand appears to be in crypto/Web3 space, identify:
     "typography": "high | medium | low",
     "visual_style": "high | medium | low",
     "components": "high | medium | low",
-    "brand_voice": "high | medium | low"
+    "brand_voice": "high | medium | low",
+    "motion_design": "high | medium | low"
   },
 
   "extraction_metadata": {
@@ -640,17 +746,24 @@ Before outputting JSON:
 3. **Personality must match** - brand_personality should align with visual evidence
 4. **All hex codes valid** - 6-character format with # prefix
 5. **JSON must be parseable** - Valid syntax, no trailing commas
+6. **motion_design must be present and consistent** - All required fields filled, values align with `brand_personality` + `energy_level`. No nulls in enum fields.
+7. **motion_design.reference_brands must be specific** - Name 1-3 actual brands (e.g., "Linear", "Stripe"), not categories ("tech brands")
+8. **motion_design.philosophy must be one specific sentence** - Not generic. Describes HOW this brand moves, not what it is.
 
 ---
 
 ## WHAT NOT TO INCLUDE
 
-This agent focuses ONLY on brand identity. Do NOT output:
+This agent INFERS and OUTPUTS brand identity including the motion_design DNA block (see Step 11C). The motion_design block is REQUIRED.
+
+Do NOT output:
 - Logo recreation code
-- Animation parameters
-- Motion graphics guidance
-- Motion Canvas configuration
-- Technical implementation details
+- TSX scene code or Revideo configuration
+- Specific animation tween parameters (durations, exact pixel values)
+- Component implementation details (those belong to `code-generator.md`)
+- Concrete easing function calls in code form
+
+Boundary rule: motion_design describes PHILOSOPHY and STYLE choices (energy curve, easing personality, transition vocabulary). It does NOT prescribe tween durations or component code — that's the code-generator's responsibility, informed by this block.
 
 ---
 
@@ -796,6 +909,44 @@ This agent focuses ONLY on brand identity. Do NOT output:
     ],
     "avoid": ["Hype language", "Vague promises", "Non-technical marketing speak"],
     "energy_level": "moderate"
+  },
+
+  "motion_design": {
+    "philosophy": "Technical clarity in motion — measured pace, no overshoot, push-in to land on data points",
+    "energy_curve": "moderate",
+    "pace": {
+      "average_beat_duration": "0.3",
+      "beat_density": "moderate",
+      "vo_lead_time_ms": 20
+    },
+    "easing_personality": {
+      "primary": "easeOutQuart",
+      "secondary": "easeInOutCubic",
+      "spring_config": "none",
+      "use_overshoot": false,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "fade",
+      "section_change": "fade",
+      "scene_change": "fade",
+      "matched_cut_friendly": true,
+      "avoid": ["glitch", "wipe", "elastic bounces"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["pushIn", "focusPull"],
+      "intensity": "subtle",
+      "use_parallax": false
+    },
+    "secondary_motion": {
+      "trail_intensity": "subtle",
+      "follow_through": true,
+      "ambient_particle_density": "sparse"
+    },
+    "sound_aesthetic_hint": "Tech & Digital",
+    "reference_brands": ["Stripe", "Linear", "Vercel"],
+    "schema_version": "1.0"
   },
 
   "sources": {
@@ -978,6 +1129,44 @@ This agent focuses ONLY on brand identity. Do NOT output:
     ],
     "avoid": ["Traditional agency language", "Corporate jargon"],
     "energy_level": "moderate"
+  },
+
+  "motion_design": {
+    "philosophy": "Warm and capable — flowing pans, generous holds, soft mask reveals signal craft",
+    "energy_curve": "moderate",
+    "pace": {
+      "average_beat_duration": "0.4",
+      "beat_density": "moderate",
+      "vo_lead_time_ms": 30
+    },
+    "easing_personality": {
+      "primary": "easeInOutCubic",
+      "secondary": "easeOutCubic",
+      "spring_config": "none",
+      "use_overshoot": false,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "fade",
+      "section_change": "wipe",
+      "scene_change": "fade",
+      "matched_cut_friendly": true,
+      "avoid": ["glitch", "hardCut without matched motion"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["pan", "pullOut"],
+      "intensity": "subtle",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "rich",
+      "follow_through": true,
+      "ambient_particle_density": "moderate"
+    },
+    "sound_aesthetic_hint": "Minimal & Subtle",
+    "reference_brands": ["Mailchimp", "Slack", "Notion"],
+    "schema_version": "1.0"
   },
 
   "sources": {
@@ -1163,6 +1352,44 @@ This example demonstrates extraction from multiple sources with reconciliation:
     "energy_level": "moderate"
   },
 
+  "motion_design": {
+    "philosophy": "Crisp builder energy — snap transitions with one micro-overshoot, focus-pull lands on code",
+    "energy_curve": "moderate",
+    "pace": {
+      "average_beat_duration": "0.25",
+      "beat_density": "dense",
+      "vo_lead_time_ms": 20
+    },
+    "easing_personality": {
+      "primary": "easeOutBack",
+      "secondary": "easeOutCubic",
+      "spring_config": "UISpring",
+      "use_overshoot": true,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "slide",
+      "section_change": "fade",
+      "scene_change": "slide",
+      "matched_cut_friendly": true,
+      "avoid": ["elastic bounces", "wipe"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["focusPull", "pushIn"],
+      "intensity": "moderate",
+      "use_parallax": false
+    },
+    "secondary_motion": {
+      "trail_intensity": "subtle",
+      "follow_through": true,
+      "ambient_particle_density": "sparse"
+    },
+    "sound_aesthetic_hint": "Tech & Digital",
+    "reference_brands": ["GitHub", "Vercel", "Raycast"],
+    "schema_version": "1.0"
+  },
+
   "sources": {
     "url": "https://example-brand.io",
     "url_pages_fetched": ["homepage", "docs", "pricing"],
@@ -1328,6 +1555,44 @@ This example demonstrates extraction when only social media posts are provided:
     ],
     "avoid": ["Unknown without more content"],
     "energy_level": "high"
+  },
+
+  "motion_design": {
+    "philosophy": "High-energy bold — whip pans land on punctuation, spring overshoot on every hero, dense beats",
+    "energy_curve": "high",
+    "pace": {
+      "average_beat_duration": "0.2",
+      "beat_density": "dense",
+      "vo_lead_time_ms": 10
+    },
+    "easing_personality": {
+      "primary": "easeOutBack",
+      "secondary": "easeOutExpo",
+      "spring_config": "LogoLandSpring",
+      "use_overshoot": true,
+      "use_anticipation": true
+    },
+    "transition_vocabulary": {
+      "primary": "slide",
+      "section_change": "wipe",
+      "scene_change": "zoomIn",
+      "matched_cut_friendly": false,
+      "avoid": ["fade", "static holds"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["whipPan", "pushIn", "pullOut"],
+      "intensity": "dramatic",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "rich",
+      "follow_through": true,
+      "ambient_particle_density": "rich"
+    },
+    "sound_aesthetic_hint": "Bold & Punchy",
+    "reference_brands": ["Red Bull", "Nike SB", "Adobe MAX"],
+    "schema_version": "1.0"
   },
 
   "sources": {

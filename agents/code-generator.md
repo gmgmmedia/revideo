@@ -21,6 +21,11 @@ BEFORE writing ANY code:
    - "Visual Components" (available components and props)
    - "Animation System" (tweening, signals, flow control)
    - "Timing Functions" (available easings)
+   - "Camera Patterns (Wrapper Layout)" (Section 11) — NO built-in Camera; use Layout wrapper
+   - "Motion Design Patterns" (Section 21) — spring physics, secondary motion, hierarchy
+   - "Masking, Wipe Transitions & Matched Cuts" (Section 22) — non-hard-cut transitions
+   - "Easing Personalities & Decision Tables" (Section 23) — easing choice framework
+   - "Performance & Gotchas" (Section 24) — cache discipline, blur ceilings, determinism
 3. Keep these patterns in working memory throughout generation
 ```
 
@@ -28,15 +33,43 @@ BEFORE writing ANY code:
 - Revideo uses `@revideo/core` and `@revideo/2d` (NOT `@motion-canvas/*`)
 - Revideo's `makeScene2D` requires a scene name string: `makeScene2D('sceneName', function* (view) {...})`
 - Motion Canvas omits the name: `makeScene2D(function* (view) {...})` — THIS WILL BREAK
+- Revideo does NOT ship a `Camera` component. Virtual camera = wrapper `<Layout>` with animated transform.
 
-### Step 1: Read Brand Identity
+### Step 1: Read Brand Identity (with motion_design)
 
 ```
 Read the project's brand-identity.json file:
 - Confirm color values match embedded constants
 - Note any brand-specific patterns
 - Load colors into your working memory
+
+THEN extract motion_design fields as decision inputs:
+- motion_design.philosophy           → guides high-level animation choices
+- motion_design.pace.average_beat_duration → controls beat timing
+- motion_design.pace.beat_density    → controls how many beats fit per second
+- motion_design.easing_personality.primary → default easing for entrances
+- motion_design.easing_personality.spring_config → if not 'none', use spring()
+- motion_design.easing_personality.use_overshoot → whether to use easeOutBack/spring
+- motion_design.easing_personality.use_anticipation → pre-scale-down before entrances
+- motion_design.transition_vocabulary.primary → scene-to-scene transition default
+- motion_design.transition_vocabulary.matched_cut_friendly → use useScene variables
+- motion_design.camera_personality.static → if false, use wrapper-Layout camera moves
+- motion_design.camera_personality.preferred_moves → which moves to apply
+- motion_design.camera_personality.use_parallax → nest wrappers
+- motion_design.secondary_motion.trail_intensity → particle/glow follow-through density
+- motion_design.sound_aesthetic_hint → informs SFX selection (consumed by sound-designer)
 ```
+
+**Fallback if motion_design is missing or incomplete:** Use the "Generic Professional" default profile:
+- easing.primary = easeOutCubic, secondary = easeInOutCubic
+- spring_config = none
+- pace.beat = 0.3s
+- transitions = fade only
+- camera.static = true
+- secondary_motion.trail_intensity = subtle
+- reference_brands = ["Stripe"]
+
+Document the fallback in a comment at the top of generated scene files: `// Motion design defaulted to Generic Professional — no motion_design in brand-identity.json.`
 
 ### Step 2: Parse Input Script
 
@@ -48,16 +81,20 @@ Parse the user's timestamp script:
 - Note transition types between scenes
 ```
 
-### Step 3: Generate Code (Iterate Until Quality Met)
+### Step 3: Generate Code (Iterate Until Score ≥ 9.0)
 
 ```
 LOOP:
   1. Generate scene files
-  2. Validate against technical-reference.md patterns
-  3. Check type safety (all refs typed, proper imports)
-  4. Check visual density (beats every 0.3s)
-  5. If < 800 lines per scene or quality issues: enhance and repeat
-  6. If passing all checks: exit loop
+  2. Run hard checklist (all must pass; regenerate if any fail):
+     - All 16 error-prevention rules
+     - Scene name matches file name
+     - All imports used; no unused refs
+     - At least one beat per pace.average_beat_duration
+  3. Compute weighted quality score (target ≥ 9.0) — see "Quality Iteration Loop" below
+  4. If score < 9.0: fix the LOWEST-scoring metric.
+     DO NOT add more glow layers if the deficit is in spring/camera/masking.
+  5. Loop until score ≥ 9.0 AND scene reaches min line count (800+)
 ```
 
 ### Step 4: Output Final Code
@@ -83,6 +120,13 @@ After generating code, verify against the technical reference:
 - [ ] Flow control functions (`all`, `chain`, `sequence`, `delay`, `waitFor`) used correctly
 - [ ] Signal syntax correct: `ref()` to access, `ref().property(value, duration)` to animate
 - [ ] `yield*` used for all animation calls
+- [ ] No `Camera` import (Revideo has none) — wrapper `<Layout>` used for camera moves instead
+- [ ] `motion_design` block from brand-identity.json was consulted BEFORE choosing easing/transition/camera
+- [ ] Spring physics imported and used at least once (unless brand.motion_design.spring_config == 'none')
+- [ ] Wrapper `<Layout>` virtual camera used at least once per video (unless brand.camera.static == true)
+- [ ] At least one `compositeOperation` mask OR custom `useTransition` per video
+- [ ] Secondary motion (`delay()` inside `all()`) used on every hero element entrance
+- [ ] Easing diversity ≥ 4 distinct functions per scene; no single easing exceeds 50% of animations
 
 ---
 
@@ -370,53 +414,97 @@ export default makeScene2D('sceneX', function* (view) {
 
 ---
 
-## Animation Patterns
+## Animation Pattern Library
 
-### Beat-Driven Timeline
+15 production patterns organized into 5 families. Pick patterns from each family to compose a scene. Every pattern shows required imports at the top.
 
-Structure animations in 0.3s beats:
+### Family 1: Entrance Patterns
 
+#### 1A. Beat-Driven Timeline
 ```typescript
-// Beat 0 (00:00) - Initial entrance
-yield* all(
-  element1().opacity(1, 0.15),
-  element1().y(0, 0.2, easeOutCubic),
-);
+// Imports: all, easeOutCubic from '@revideo/core'
 
-// Beat 1 (00:10) - Secondary element
+// Beat 0 (00:00) — hero element lands
 yield* all(
-  element2().scale(1, 0.15, easeOutCubic),
-  element1Glow().opacity(0.5, 0.1),
+  hero().opacity(1, 0.15),
+  hero().y(0, 0.2, easeOutCubic),
 );
-
-// Beat 2 (00:20) - Text appears
+// Beat 1 (00:10) — secondary element
+yield* all(
+  supporting().scale(1, 0.15, easeOutCubic),
+  heroGlow().opacity(0.5, 0.1),
+);
+// Beat 2 (00:20) — text appears
 yield* all(
   text().opacity(1, 0.1),
   text().x(0, 0.2, easeOutCubic),
 );
-
-// Continue every 0.3s...
+// Continue every motion_design.pace.average_beat_duration seconds...
 ```
 
-### Staggered Entrances
-
+#### 1B. Staggered Cascade
 ```typescript
-// Fast stagger for lists/grids
-yield* sequence(
-  0.05, // 50ms between each
-  ...items.map(item =>
-    all(
-      item.opacity(1, 0.1),
-      item.y(0, 0.15, easeOutCubic),
-    )
-  ),
+// Imports: sequence, all, easeOutCubic from '@revideo/core'
+
+// Fast stagger (staccato): 0.04s — for code reveals, lists
+yield* sequence(0.04, ...items.map(item =>
+  all(item.opacity(1, 0.1), item.y(0, 0.15, easeOutCubic))
+));
+
+// March (0.08s) — for 3-5 element reveals
+yield* sequence(0.08, ...items.map(item => item.opacity(1, 0.15, easeOutCubic)));
+
+// Wave (0.15s, with easeInOutCubic) — for text lines, hero builds
+yield* sequence(0.15, ...items.map(item => item.opacity(1, 0.2, easeInOutCubic)));
+```
+
+#### 1C. Spring Drop (HERO entrance for organic/playful brands)
+```typescript
+// Imports: spring, createSignal from '@revideo/core'
+
+// Use UISpring | LogoLandSpring | OrganicSpring (defined in lib/brand.ts)
+const heroScale = createSignal<number>(0);
+const heroY = createSignal<number>(-200);
+hero().scale(heroScale).y(heroY);
+
+yield* all(
+  spring(LogoLandSpring, 0, 1, value => heroScale(value)),
+  spring(LogoLandSpring, -200, 0, value => heroY(value)),
 );
 ```
 
-### Emphasis/Pulse
-
+#### 1D. Anticipation Entrance (HERO entrance for energetic brands)
 ```typescript
-// Quick attention pulse
+// Imports: easeInOutCubic, easeOutBack from '@revideo/core'
+
+// Pre-load (wind-up) then release
+yield* hero().scale(0.95, 0.08, easeInOutCubic);    // anticipation
+yield* hero().scale(1.0, 0.2, easeOutBack);          // release + overshoot
+```
+
+#### 1E. Mask-Wipe Entrance (HERO entrance for cinematic feel)
+```typescript
+// Imports: createRef, easeInOutCubic from '@revideo/core'; Rect from '@revideo/2d'
+
+const wipe = createRef<Rect>();
+
+view.add(
+  <Node cache>
+    <Txt text="Hero text" fontSize={120} fill={'#fff'} />
+    <Rect ref={wipe} size={[0, 200]} x={-600} offsetX={-1} fill={'#fff'}
+          compositeOperation={'destination-in'} />
+  </Node>
+);
+
+yield* wipe().size([1200, 200], 0.5, easeInOutCubic);
+```
+
+### Family 2: Emphasis Patterns
+
+#### 2A. Pulse (attention beat)
+```typescript
+// Imports: all, easeOutCubic, easeInOutCubic from '@revideo/core'
+
 yield* all(
   element().scale(1.08, 0.08, easeOutCubic),
   elementGlow().opacity(0.8, 0.08),
@@ -426,6 +514,628 @@ yield* all(
   elementGlow().opacity(effects.glowOpacity, 0.1),
 );
 ```
+
+#### 2B. Overshoot + Settle (premium UI emphasis)
+```typescript
+// Imports: easeOutBack, easeInOutCubic from '@revideo/core'
+
+yield* element().scale(1.1, 0.15, easeOutBack);     // overshoot
+yield* element().scale(1.0, 0.12, easeInOutCubic);  // settle
+```
+
+#### 2C. Focus-Pull Emphasis (wrapper-camera emphasis)
+```typescript
+// Imports: createRef, all, easeInOutCubic from '@revideo/core'
+
+const heroPos = heroElement().position();
+yield* all(
+  world().position(heroPos.scale(-1), 1.2, easeInOutCubic),
+  world().scale(2, 1.2, easeInOutCubic),
+);
+yield* waitFor(0.3);  // hold for audience to read
+yield* all(
+  world().position(0, 0.6, easeInOutCubic),
+  world().scale(1, 0.6, easeInOutCubic),
+);
+```
+
+### Family 3: Secondary Motion Patterns
+
+#### 3A. Glow Follow-Through (lags shape by 50ms)
+```typescript
+// Imports: all, delay, easeOutCubic from '@revideo/core'
+
+yield* all(
+  hero().scale(1, 0.2, easeOutCubic),
+  delay(0.05, heroGlow().opacity(0.8, 0.15)),
+  delay(0.08, heroGlow().scale(1.2, 0.18)),
+);
+```
+
+#### 3B. Particle Trail (arrives after parent lands)
+```typescript
+// Imports: all, delay, sequence from '@revideo/core'
+
+yield* all(
+  hero().y(0, 0.25, easeOutCubic),
+  delay(0.1, sequence(0.04, ...trailParticles.map(p =>
+    all(p.opacity(0.6, 0.12), p.scale(1, 0.12))
+  ))),
+);
+```
+
+#### 3C. Settling Oscillation (small scale wobble using spring)
+```typescript
+// Imports: spring from '@revideo/core'
+
+// After hero lands, small spring wobble — feels alive
+const wobble = createSignal<number>(1);
+hero().scale(() => wobble());
+yield* spring({mass: 0.02, stiffness: 30, damping: 0.4, initialVelocity: 0.5},
+              1, 1, v => wobble(v));
+```
+
+### Family 4: Transition Patterns
+
+#### 4A. Wipe-Out Exit (mask closing)
+```typescript
+// Imports: easeInOutCubic from '@revideo/core'
+
+yield* wipeMask().size([0, 200], 0.4, easeInOutCubic);  // collapse mask
+```
+
+#### 4B. Push-Out (element exits with glow follow-through)
+```typescript
+// Imports: all, delay, easeInCubic from '@revideo/core'
+
+yield* all(
+  element().y(-1200, 0.3, easeInCubic),        // off-screen up
+  element().opacity(0, 0.3),
+  delay(0.08, elementGlow().opacity(0, 0.2)),  // glow trails behind
+);
+```
+
+#### 4C. Crossfade with Color Shift
+```typescript
+// Imports: all from '@revideo/core'
+
+yield* all(
+  oldElement().opacity(0, 0.2),
+  newElement().opacity(1, 0.2),
+  bgGradient().fill(nextSceneAccentColor, 0.3),  // color motivation
+);
+```
+
+#### 4D. Matched-Cut Handoff
+```typescript
+// Imports: useScene, waitFor from '@revideo/core'
+
+// At END of scene N
+useScene().variables.set('matchedCut', {
+  anchor: 'heroBox',
+  position: heroBox().position(),
+  scale: heroBox().scale(),
+  rotation: heroBox().rotation(),
+});
+yield* waitFor(0.2);  // hold so cut feels deliberate
+
+// At START of scene N+1
+const entry = useScene().variables.get('matchedCut', null)();
+const hero = createRef<Rect>();
+view.add(<Rect ref={hero} position={entry?.position ?? 0}
+                scale={entry?.scale ?? 1} ... />);
+yield* hero().position([0, 0], 0.4, easeInOutCubic);
+```
+
+### Family 5: Wrapper-Camera Moves
+
+> **CRITICAL**: There is NO `Camera` component in Revideo. All camera moves use a wrapper `<Layout ref={world}>` animated via its transform.
+
+#### 5A. Push-In (zoom on hero)
+```typescript
+// Imports: createRef, easeInOutCubic from '@revideo/core'; Layout from '@revideo/2d'
+
+const world = createRef<Layout>();
+
+view.add(
+  <Layout ref={world} size={[1920, 1080]}>
+    {/* scene content */}
+  </Layout>
+);
+
+// Land on hero word during VO emphasis
+yield* world().scale(1.8, 1.2, easeInOutCubic);
+yield* waitFor(0.3);  // hold
+yield* world().scale(1, 0.6, easeInOutCubic);  // pull back
+```
+
+#### 5B. Reveal Pull-Out
+```typescript
+// Imports: all, easeInOutCubic from '@revideo/core'
+
+// Start zoomed in (set in JSX), pull out to reveal context
+view.add(<Layout ref={world} scale={1.8}>...</Layout>);
+
+yield* world().scale(1, 1.5, easeInOutCubic);
+```
+
+#### 5C. Focus-Pull Between Two Elements
+```typescript
+// Imports: all, easeInOutCubic from '@revideo/core'
+
+// Pull to first element
+yield* all(
+  world().position(firstEl().position().scale(-1), 1.2, easeInOutCubic),
+  world().scale(1.6, 1.2, easeInOutCubic),
+);
+yield* waitFor(0.4);
+// Pull to second element
+yield* world().position(secondEl().position().scale(-1), 1.2, easeInOutCubic);
+```
+
+---
+
+## Motion Design Decision Framework
+
+Apply these IF-THEN rules BEFORE writing each animation. The rules read `brand-identity.json → motion_design` block to pick easing, transition, camera per situation.
+
+### Entrance of HERO Element
+
+```
+IF motion_design.easing_personality.spring_config != 'none':
+  USE: Pattern 1C (Spring Drop)
+ELIF motion_design.energy_curve in ['high', 'frenetic'] AND use_overshoot == true:
+  USE: Pattern 1D (Anticipation Entrance) → easeOutBack
+ELIF motion_design.transition_vocabulary.primary in ['wipe', 'slide']:
+  USE: Pattern 1E (Mask-Wipe Entrance)
+ELSE:
+  USE: Pattern 1A (Beat-Driven Timeline) → easeOutCubic
+```
+
+### Section Transition WITHIN a Scene
+
+```
+IF motion_design.transition_vocabulary.section_change == 'wipe':
+  USE: Pattern 1E or Pattern 4A (compositeOperation mask)
+ELIF .section_change == 'fade':
+  USE: Pattern 4C (crossfade — optionally with color shift)
+ELIF .section_change == 'slide':
+  USE: position animation with easeInOutCubic
+ELIF .section_change == 'glitch':
+  USE: rapid opacity/RGB-shift custom (see lib/transitions.ts)
+ELSE:
+  USE: fade transition (safe default)
+```
+
+### VO Emphasis Word
+
+```
+IF motion_design.camera_personality.static == false:
+  USE: Pattern 5A (Push-In) — land on emphasis syllable
+ELIF .use_overshoot == true:
+  USE: Pattern 2B (Overshoot + Settle) on the emphasized element
+ELSE:
+  USE: Pattern 2A (Pulse) — scale 1.08 + glow flash
+```
+
+### Scene-to-Scene Transition
+
+```
+IF motion_design.transition_vocabulary.matched_cut_friendly == true:
+  USE: Pattern 4D (Matched-Cut Handoff) with useScene().variables
+ELIF .scene_change == 'fade':
+  USE: fadeTransition(0.6) at top of scene
+ELIF .scene_change == 'slide':
+  USE: slideTransition(Direction.Left, 0.6)
+ELIF .scene_change == 'zoomIn':
+  USE: zoomInTransition(0.6)
+ELIF .scene_change == 'zoomOut':
+  USE: zoomOutTransition(0.6)
+ELSE:
+  USE: fadeTransition(0.6)  // safe default
+```
+
+### Ambient Idle Moment (>0.5s without primary motion)
+
+```
+IF motion_design.secondary_motion.ambient_particle_density == 'rich':
+  ADD: 8-12 floating particles with sequence-staggered drift
+ELIF .ambient_particle_density == 'moderate':
+  ADD: 3-5 floating particles
+ELIF .ambient_particle_density == 'sparse':
+  ADD: 1-2 slow-drifting glow orbs
+ELSE:
+  HOLD with subtle hero-glow breathing animation
+```
+
+### Hero Glow Strategy
+
+```
+IF motion_design.secondary_motion.follow_through == true:
+  USE: Pattern 3A (Glow Follow-Through) — glow lags shape by 0.05s
+ELSE:
+  USE: Pattern 1A (synchronous glow+shape)
+```
+
+### Easing Diversity Check (per scene)
+
+```
+COUNT distinct easing functions used in scene.
+IF count < 4:
+  ADD variety — use motion_design.easing_personality.secondary for non-hero animations.
+COMPUTE max single-easing-share (occurrences / total).
+IF share > 50%:
+  REASSIGN some animations to secondary easing until share drops below 50%.
+```
+
+---
+
+## Wiring SFX from sfx-manifest.json
+
+If the project has a `sfx-manifest.json` (output of `scripts/generate_sfx.py`), the agent MUST wire `<Audio>` components into each scene that has SFX entries.
+
+### File Convention
+
+- Manifest location: `src/sfx-manifest.json` (project-relative)
+- Audio files: `src/sfx/{scene}/{id}_{name}.mp3`
+
+### Pattern: Auto-Wire from Manifest
+
+```typescript
+// Top of scene file
+import {Audio, makeScene2D} from '@revideo/2d';
+import sfxManifest from '../sfx-manifest.json';
+
+export default makeScene2D('scene1', function* (view) {
+  const sceneSfx = sfxManifest.scenes['scene1'] ?? [];
+
+  view.add(
+    <>
+      {sceneSfx.map((s, i) => (
+        <Audio
+          key={`sfx-${s.id}`}
+          src={s.file}
+          play={true}
+          time={s.start_offset_seconds}
+          volume={s.volume ?? 1}
+        />
+      ))}
+      {/* rest of scene content */}
+    </>,
+  );
+
+  // animations...
+});
+```
+
+### Pattern: Per-Beat SFX (for tight sync)
+
+When the manifest entry's `anchor` is `beat_X`, align beats to manifest offsets:
+
+```typescript
+// SFX at beat_0 (start), beat_1 (after 0.3s), beat_2 (after 0.6s)
+yield* all(
+  hero().opacity(1, 0.15),
+  hero().y(0, 0.2, easeOutCubic),
+);  // beat_0 sound plays at scene start
+yield* waitFor(0.1);  // ensures beat_1 sound aligns
+```
+
+### Volume Defaults by Layer
+
+When the manifest entry omits `volume`:
+- `layer: 'background'` → volume = 0.3
+- `layer: 'ambient'` → volume = 0.4
+- `layer: 'foreground'` → volume = 0.8
+- `layer: 'accent'` → volume = 1.0
+
+### Fallback (Manifest Missing)
+
+If `sfx-manifest.json` does not exist, do NOT throw. Skip the import and audio block. Scene still renders without SFX. Add a comment: `// SFX manifest not present — silent scene.`
+
+---
+
+## Motion Helper Library Convention (v2)
+
+Every new project MUST ship with `src/lib/motion-helpers.ts` alongside `src/lib/brand.ts`. This file contains 10 standardized helper functions that scenes import instead of re-implementing patterns inline. The helpers encode the craft details from `docs/technical-reference.md` Sections 30-34 (Typography, Lighting, Color, Composition, Audio Sync).
+
+### Standard Helper Set
+
+The agent MUST emit `motion-helpers.ts` with these 10 helpers:
+
+```typescript
+// 1. charStagger — sequential character/word reveal
+export function* charStagger(
+  chars: Reference<Txt>[] | Txt[],
+  staggerDelay: number,
+  charDuration: number,
+  technique: 'opacity' | 'opacity-y' | 'opacity-scale' = 'opacity'
+): ThreadGenerator;
+
+// 2. multiLayerGlow — 3-layer glow stack entrance (inner sharp + mid + outer bloom)
+export function* multiLayerGlow(
+  glows: [Reference<Circle>, Reference<Circle>, Reference<Circle>],
+  duration: number,
+  peakOpacities: [number, number, number] = [0.12, 0.08, 0.04],
+  staggerDelays: [number, number, number] = [0, 0.06, 0.12]
+): ThreadGenerator;
+
+// 3. countUpMetric — animate number text from 0 to target with easing
+export function* countUpMetric(
+  textRef: Reference<Txt>,
+  target: number,
+  duration: number,
+  formatter?: (v: number) => string,
+  easing?: TimingFunction
+): ThreadGenerator;
+
+// 4. emphasisPulse — color/scale/weight pulse without overshoot
+export function* emphasisPulse(
+  node: Reference<Txt> | Reference<Rect>,
+  technique: 'color' | 'scale' | 'weight' | 'tracking',
+  accentColor?: string,
+  intensity?: number
+): ThreadGenerator;
+
+// 5. rimLight — directional key light positioned at 1/3 offset
+export function rimLight(
+  color: string,
+  blur: number,
+  intensity: number,
+  position?: 'TR' | 'TL' | 'BR' | 'BL'
+): JSX.Element;  // returns a Circle node for view.add
+
+// 6. alignToBeat — wait until next beat in beatGrid (audio sync)
+export function* alignToBeat(
+  beatGrid: BeatGrid,
+  targetIndex: number,
+  currentTime: { value: number }
+): ThreadGenerator;
+
+// 7. asymmetricPosition — rule-of-thirds positioning helper
+export function asymmetricPosition(
+  zone: 'TL' | 'TR' | 'BL' | 'BR' | 'centerLeft' | 'centerRight' | 'topMiddle' | 'bottomMiddle',
+  layout: { width: number; height: number }
+): [number, number];
+
+// 8. computeStagger — parameterized stagger replacing hard-coded delays
+export function computeStagger(
+  count: number,
+  totalSpan: number,
+  distribution: 'linear' | 'wave' | 'exponential' | 'cascade'
+): number[];
+
+// 9. cinematicFade — fade with subtle blur (atmospheric haze)
+export function* cinematicFade(
+  target: Reference<Node>,
+  fadeIn: boolean,
+  duration: number,
+  hazeBlur?: number
+): ThreadGenerator;
+
+// 10. breathHold — enforced negative-space pause (composition discipline)
+export function* breathHold(durationFromBrand?: number): ThreadGenerator;
+```
+
+### Implementation Skeleton
+
+The agent emits this concrete implementation in each new project:
+
+```typescript
+// src/lib/motion-helpers.ts
+import {Txt, Circle, Rect, Node, Layout} from '@revideo/2d';
+import {
+  all, delay, sequence, waitFor, tween,
+  Reference, ThreadGenerator,
+  easeInOutCubic, easeOutCubic, easeOutQuint, easeOutQuart, easeOutBack, linear,
+  TimingFunction,
+} from '@revideo/core';
+import {colors, timing, layout, OrganicSpring, composition} from './brand';
+
+export interface BeatGridEntry {
+  time: number;
+  layer: 'foreground' | 'background' | 'accent' | 'ambient';
+  category: string;
+  duration: number;
+}
+
+export type BeatGrid = BeatGridEntry[];
+
+// charStagger — opacity-y is the most common premium technique
+export function* charStagger(
+  chars: Array<Reference<Txt>>,
+  staggerDelay = 0.06,
+  charDuration = 0.2,
+  technique: 'opacity' | 'opacity-y' | 'opacity-scale' = 'opacity-y',
+): ThreadGenerator {
+  const gens = chars.map(c => {
+    if (technique === 'opacity-y') {
+      return all(c().opacity(1, charDuration, easeOutCubic), c().y(0, charDuration, easeOutCubic));
+    }
+    if (technique === 'opacity-scale') {
+      c().scale(0.7);
+      return all(c().opacity(1, charDuration, easeOutBack), c().scale(1, charDuration, easeOutBack));
+    }
+    return c().opacity(1, charDuration, easeOutCubic);
+  });
+  yield* sequence(staggerDelay, ...(gens as ThreadGenerator[]));
+}
+
+export function* multiLayerGlow(
+  glows: [Reference<Circle>, Reference<Circle>, Reference<Circle>],
+  duration = 0.5,
+  peakOpacities: [number, number, number] = [0.12, 0.08, 0.04],
+  staggerDelays: [number, number, number] = [0, 0.06, 0.12],
+): ThreadGenerator {
+  // Outer first (atmospheric haze), then mid (bloom), then inner (sharp)
+  yield* all(
+    delay(staggerDelays[2], glows[2]().opacity(peakOpacities[2], duration, easeOutCubic)),
+    delay(staggerDelays[1], glows[1]().opacity(peakOpacities[1], duration * 0.85, easeOutCubic)),
+    delay(staggerDelays[0], glows[0]().opacity(peakOpacities[0], duration * 0.7, easeOutCubic)),
+  );
+}
+
+export function* countUpMetric(
+  textRef: Reference<Txt>,
+  target: number,
+  duration = 0.8,
+  formatter: (v: number) => string = (v) => Math.round(v).toString(),
+  easing: TimingFunction = easeOutQuint,
+): ThreadGenerator {
+  yield* tween(duration, (t) => {
+    const value = target * easing(t);
+    textRef().text(formatter(value));
+  });
+  textRef().text(formatter(target));  // ensure final value is exact
+}
+
+export function* emphasisPulse(
+  node: Reference<Txt>,
+  technique: 'color' | 'scale' | 'weight' | 'tracking',
+  accentColor: string = colors.accent,
+  intensity = 1,
+): ThreadGenerator {
+  switch (technique) {
+    case 'color':
+      yield* node().fill(accentColor, 0.1, easeOutCubic);
+      yield* node().fill(colors.primary, 0.25, easeInOutCubic);
+      break;
+    case 'scale':
+      yield* node().scale(1 + 0.08 * intensity, 0.12, easeOutCubic);
+      yield* node().scale(1, 0.18, easeInOutCubic);
+      break;
+    case 'weight':
+      yield* node().fontWeight(500 + 200 * intensity, 0.15, easeOutCubic);
+      yield* node().fontWeight(500, 0.25, easeInOutCubic);
+      break;
+    case 'tracking':
+      const baseTracking = node().letterSpacing();
+      yield* node().letterSpacing(baseTracking - 2 * intensity, 0.2, easeOutCubic);
+      yield* node().letterSpacing(baseTracking, 0.3, easeInOutCubic);
+      break;
+  }
+}
+
+export function rimLight(
+  color = colors.accent,
+  blurAmount = 80,
+  intensity = 0.4,
+  position: 'TR' | 'TL' | 'BR' | 'BL' = 'TR',
+) {
+  const positions = {
+    TR: [layout.width / 3, -layout.height / 3],
+    TL: [-layout.width / 3, -layout.height / 3],
+    BR: [layout.width / 3, layout.height / 3],
+    BL: [-layout.width / 3, layout.height / 3],
+  } as const;
+  const [x, y] = positions[position];
+  return (
+    <Circle
+      size={400}
+      x={x}
+      y={y}
+      fill={color}
+      opacity={intensity}
+      filters={[blur(blurAmount) as any]}
+    />
+  );
+}
+
+export function* alignToBeat(
+  beatGrid: BeatGrid,
+  targetIndex: number,
+  currentTime: { value: number },
+): ThreadGenerator {
+  const target = beatGrid[targetIndex]?.time;
+  if (target === undefined) return;
+  const delta = target - currentTime.value;
+  if (delta > 0) {
+    yield* waitFor(delta);
+    currentTime.value = target;
+  }
+}
+
+export function asymmetricPosition(
+  zone: 'TL' | 'TR' | 'BL' | 'BR' | 'centerLeft' | 'centerRight' | 'topMiddle' | 'bottomMiddle',
+): [number, number] {
+  const tX = layout.width / 3;
+  const tY = layout.height / 3;
+  switch (zone) {
+    case 'TL': return [-tX, -tY];
+    case 'TR': return [tX, -tY];
+    case 'BL': return [-tX, tY];
+    case 'BR': return [tX, tY];
+    case 'centerLeft': return [-tX, 0];
+    case 'centerRight': return [tX, 0];
+    case 'topMiddle': return [0, -tY];
+    case 'bottomMiddle': return [0, tY];
+  }
+}
+
+export function computeStagger(
+  count: number,
+  totalSpan: number,
+  distribution: 'linear' | 'wave' | 'exponential' | 'cascade',
+): number[] {
+  if (count <= 1) return [0];
+  return Array.from({length: count}, (_, i) => {
+    const t = i / (count - 1);
+    switch (distribution) {
+      case 'linear': return totalSpan * t;
+      case 'wave': return totalSpan * (t - 0.5 * Math.sin(2 * Math.PI * t) / (2 * Math.PI));
+      case 'exponential': return totalSpan * Math.pow(t, 1.6);
+      case 'cascade': return totalSpan * (Math.pow(2, t * 4) - 1) / 15;
+    }
+  });
+}
+
+export function* cinematicFade(
+  target: Reference<Node>,
+  fadeIn: boolean,
+  duration = 0.5,
+  hazeBlur = 8,
+): ThreadGenerator {
+  if (fadeIn) {
+    target().filters([blur(hazeBlur) as any]);
+    yield* all(
+      target().opacity(1, duration, easeInOutCubic),
+      target().filters([blur(0) as any], duration, easeInOutCubic) as any,
+    );
+  } else {
+    yield* all(
+      target().opacity(0, duration, easeInOutCubic),
+      target().filters([blur(hazeBlur) as any], duration, easeInOutCubic) as any,
+    );
+  }
+}
+
+export function* breathHold(durationFromBrand = timing.hold): ThreadGenerator {
+  yield* waitFor(durationFromBrand);
+}
+```
+
+### When to Use Each Helper
+
+The agent's Decision Framework references these helpers explicitly:
+
+| Situation | Use Helper |
+|---|---|
+| Hero text entrance | `charStagger(chars, 0.06, 0.2, 'opacity-y')` |
+| Hero shape entrance | `multiLayerGlow(glows, ...)` + `spring()` for shape |
+| Data metric reveal | `countUpMetric(metric, target, 0.8)` |
+| Word emphasis on VO peak | `emphasisPulse(word, 'color' or 'tracking')` |
+| Adding directional light | `rimLight(accentColor, 80, 0.4, 'TR')` |
+| Audio-driven beat sync | `alignToBeat(beatGrid, idx, currentTime)` before each section |
+| Hero positioning | `asymmetricPosition('TR')` instead of `[0, -200]` |
+| Replacing hard-coded delays | `computeStagger(8, 1.2, 'wave')` |
+| Scene transitions with depth | `cinematicFade(target, true, 0.6, 8)` |
+| After dense moments | `yield* breathHold()` for calm pacing |
+
+### Anti-Pattern Watchlist
+
+- DO NOT re-implement these helpers inline in scenes — always import from `./lib/motion-helpers`
+- DO NOT skip `motion-helpers.ts` for "simple" projects — it's mandatory
+- DO NOT hard-code stagger delays (`delay(0.15, ...)`) when `computeStagger()` works
 
 ---
 
@@ -482,29 +1192,44 @@ fill={null}
 ### 5. Required Imports Checklist
 
 ```typescript
-// From @revideo/2d - Components AND blur filter
+// From @revideo/2d - Components AND filters
 import { makeScene2D } from '@revideo/2d';
-import { Rect, Node, Line, Circle, Path, Txt, blur } from '@revideo/2d';
-
-// From @revideo/core - Animation utilities + types
 import {
-  all,
-  chain,
-  delay,
-  sequence,
-  waitFor,
-  createRef,
-  createRefArray,
-  createSignal,
-  easeOutCubic,
-  easeInCubic,
-  easeInOutCubic,
-  easeOutQuart,
-  easeOutExpo,
-  easeOutBack,
+  Rect, Node, Line, Circle, Path, Txt, Layout, Audio,
+  blur, brightness, contrast, dropShadow,
+} from '@revideo/2d';
+// NOTE: There is NO Camera component in Revideo. Use wrapper <Layout> for camera moves.
+
+// From @revideo/core - Animation utilities, springs, transitions, types
+import {
+  // Flow control
+  all, chain, delay, sequence, waitFor, spawn, loop,
+
+  // Refs and signals
+  createRef, createRefArray, createSignal,
+
+  // Easings
+  easeOutCubic, easeInCubic, easeInOutCubic,
+  easeOutQuart, easeOutExpo, easeOutBack,
+  easeInQuart, easeOutQuint, easeInOutQuart,
+  easeOutElastic, easeOutSine, easeInOutSine,
   linear,
-  SimpleSignal,      // For signal array types
-  ThreadGenerator,   // For animation array types
+
+  // Spring physics (use named configs from lib/brand.ts: LogoLandSpring, UISpring, OrganicSpring)
+  spring, PlopSpring, SmoothSpring,
+
+  // Scene transitions
+  slideTransition, fadeTransition,
+  zoomInTransition, zoomOutTransition,
+  waitTransition, useTransition,
+  Direction, finishScene,
+
+  // Scene variables (for matched cuts)
+  useScene,
+
+  // Types
+  SimpleSignal,
+  ThreadGenerator,
 } from '@revideo/core';
 ```
 
@@ -703,34 +1428,77 @@ for (let i = 0; i < maxDots; i++) {
 
 ---
 
-## Quality Iteration Loop
+## Quality Iteration Loop (Scoring Rubric v2)
 
-### Iteration Process
+The agent self-assesses the generated scene against an expanded 17-metric rubric. Target score: **≥ 15.0 / 18.0** for "stunning" (was ≥9.0/12.0 in v1). Iterate until met.
 
-```
-1. Generate initial code (~800 lines per scene)
-2. Type-check mentally / validate syntax
-3. If errors: fix silently, regenerate
-4. Check visual density:
-   - Count beats (should be ~1 per 0.3s)
-   - Count glow layers (every main element needs one)
-   - Count animations per beat (2-4 simultaneous)
-5. If under-animated: add more layers, effects, micro-animations
-6. Repeat until quality met
-7. Final validation pass
-8. Output clean, copy-pasteable code
-```
+### Hard Checklist (Gate — All Must Pass; Regenerate if Any Fail)
 
-### Adding Visual Density
+- [ ] All 16 error-prevention rules pass
+- [ ] Scene name (first arg of `makeScene2D`) matches file name
+- [ ] All imports are USED in the file; no unused imports
+- [ ] No unused refs (every `createRef`/`createRefArray` is referenced in JSX AND animated)
+- [ ] Scene duration meets the script's stated length
+- [ ] At least one visual beat per `motion_design.pace.average_beat_duration` seconds on average
+- [ ] **v2**: `lib/motion-helpers.ts` exists and is imported (not re-implemented inline)
 
-To increase quality:
+### Weighted Metrics (Drive Iteration Toward Score ≥ 15.0)
 
-1. **Add glow layers** - Every text, icon, shape gets a blur glow behind it
-2. **Add background elements** - Grids, dot patterns, ambient shapes
-3. **Add micro-beats** - Small scale/opacity pulses between main beats
-4. **Add particle effects** - Floating dots, lines, shapes
-5. **Layer more elements** - Multiple text shadows, stroke + fill versions
-6. **More animation steps** - Break single animations into sequences
+**v1 Compliance Metrics (keep all 11):**
+
+| Metric | Weight | How to Measure | Pass Threshold |
+|---|---|---|---|
+| Easing diversity | 1.0 | distinct easing fns / total animations | ≥4 distinct AND no single easing >50% |
+| Spring usage | 1.0 | `spring()` calls present | ≥1 per scene (unless brand says spring_config='none') |
+| Secondary motion | 1.5 | `delay()` calls inside `all()` blocks | ≥3 per major beat block |
+| Anticipation/overshoot on hero | 1.0 | hero entrance uses pre-scale-down OR easeOutBack | ≥1 hero per scene |
+| Transition variety | 1.0 | non-hardcut transition between scenes | ≥1 non-hardcut per video |
+| Mask/wipe usage | 1.0 | `compositeOperation` OR custom `useTransition` | ≥1 per video (unless brand explicitly excludes) |
+| Virtual camera (wrapper Layout) | 1.5 | `<Layout ref={world}>` with animated transform | ≥1 move per video (unless camera.static==true) |
+| Hierarchy timing | 1.0 | `sequence()` with stagger OR delay()-based cascade | ≥2 instances per scene |
+| Animation density | 0.5 | parallel animations inside `all()` | 3-6 per `all()` block (above 8 deducts) |
+| Visual density (glow per hero/text) | 0.5 | blur-filtered glow layers behind heroes and text | ≥1 glow per hero element |
+| Beat fidelity | 1.0 | animations land on the brand's beat grid | ≥90% of beats on grid |
+
+**v2 Craft Metrics (6 new):**
+
+| Metric | Weight | How to Measure | Pass Threshold |
+|---|---|---|---|
+| **Typography craft** | 1.5 | `charStagger` used for hero text; OR `fontWeight` animated; OR `countUpMetric` for numbers; OR letter-spacing animated | ≥1 technique per scene (unless brand.text_entrance == 'opacity-fade' only) |
+| **Color animation** | 1.0 | At least one `.fill()` animated mid-scene OR gradient mesh used OR `saturate()` filter animated | ≥1 meaningful color event per scene |
+| **Composition discipline** | 1.0 | At least one hero uses `asymmetricPosition()` (NOT centered); rule-of-thirds verified | ≥1 hero off-center per scene |
+| **Narrative progression** | 1.0 | Scene comments label setup → rising → peak → resolution beats | ≥3 distinct narrative beats labeled |
+| **Micro-timing precision** | 1.0 | Delays computed via `computeStagger`/`alignToBeat`, NOT hard-coded | <5 hard-coded `delay(N, ...)` per scene |
+| **Audio-motion sync** | 1.0 | Scene imports `sfx-manifest.json` AND references `beatGrid` in at least one `alignToBeat` OR `waitFor(beat.time)` | manifest imported AND used (or brand says silent) |
+
+### Score = sum(weight × pass_value), max = 18.0
+
+- pass_value = 1.0 if metric fully met
+- pass_value = 0.5 if partially met (used once where 3 expected; or cosmetic vs. substantive)
+- pass_value = 0.0 if not met
+
+**Quality Tiers:**
+- ≥15.0 → "Stunning" (HQ agency-tier target — commit-ready)
+- 12.0–14.9 → "Strong" (broadcast/marketing-tier — needs polish)
+- 9.0–11.9 → "Functional" (v1 baseline — competent but not stunning)
+- <9.0 → "Generic" (must regenerate)
+
+### Iteration Rule
+
+If score < 15.0:
+1. Identify the lowest-scoring metric.
+2. Fix THAT metric specifically — prefer adding a single v2 craft technique over inflating v1 compliance metrics.
+3. Do NOT add more glow layers if the deficit is in typography craft or color animation.
+4. Re-score and repeat — max 1 iteration in the v2 commit cycle (diminishing returns).
+
+### Anti-Gaming Rules (v2 expanded)
+
+- **Spring usage** requires `spring()` to drive a HERO element's primary entrance. Decorative-only spring = partial credit.
+- **Typography craft** requires `charStagger` AND at least one of (`countUpMetric`, font-weight animation, tracking animation). Single technique = 0.5 partial credit.
+- **Multi-layer glow** requires 3 distinct Circle refs with DIFFERENT blur radii (e.g., 20/60/120). Three identical glow Circles = 0.5 partial credit.
+- **Audio-motion sync** requires `beatGrid` actually used in an `alignToBeat` or `waitFor` call. Importing manifest without using `beatGrid` references = 0.0 credit.
+- **Composition discipline** requires `asymmetricPosition()` used on a HERO element, not just on decorative particles.
+- **Color animation** requires the color change to be MEANINGFUL — tied to VO emphasis, data semantics, or section transition. Random rainbow-cycling = 0.5 partial credit.
 
 ---
 
@@ -748,6 +1516,10 @@ To increase quality:
 | Animations not playing | Missing `yield*` | Always use `yield*` for animations |
 | `'() => unknown' not assignable to 'SignalValue<number>'` | Missing type on createSignal | Use `createSignal<number>(0)` |
 | `Type 'Generator[]' not assignable to 'ThreadGenerator'` | Wrong array type for animations | Use `ThreadGenerator[]` or `any[]` |
+| `spring is not a function` | Missing `spring` import from `@revideo/core` | Add `spring, PlopSpring, SmoothSpring` to imports |
+| `Cannot find name 'Camera'` | Tried to import Camera from `@revideo/2d` (doesn't exist) | Use wrapper `<Layout ref={world}>` and animate `world().scale/position` |
+| Transition not firing | Yield ordering wrong — animation yielded before transition | Transition generator must yield FIRST: `yield* fadeTransition(0.6); yield* animation();` |
+| Masked node invisible | Parent missing `cache` prop | Add `cache` and `cachePadding` to parent Node holding compositeOperation children |
 
 ### Runtime Errors (CRITICAL - Prevent These)
 

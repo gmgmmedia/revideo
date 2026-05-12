@@ -1,0 +1,203 @@
+{
+  "company": {
+    "name": "Atlas",
+    "url": "https://atlas.run",
+    "tagline": "Run with intent.",
+    "description": "Atlas is a running performance analytics platform for amateur athletes who want professional-grade insight into their training. It pairs wearable data with pacing intelligence and form analysis to surface meaningful PRs, not vanity metrics.",
+    "industry": "Sports / Performance Analytics",
+    "industry_category": "Run & Endurance Tech",
+    "target_audience": "Amateur athletes 22-42 chasing PRs; current users of Strava, Whoop, Garmin Connect who want sharper coaching feedback.",
+    "brand_personality": ["bold", "kinetic", "impact-driven", "athletic", "confident"],
+    "key_messages": [
+      "PRs that mean something",
+      "Form intelligence, not just pace",
+      "Built for the long game"
+    ]
+  },
+
+  "colors": {
+    "primary": {
+      "hex": "#0B0F14",
+      "name": "Track Black",
+      "usage": "Backgrounds, surfaces, hero typography",
+      "source": "css_confirmed_by_image"
+    },
+    "accent": {
+      "hex": "#FF4500",
+      "name": "Signal Orange",
+      "usage": "PR highlights, emphasis flashes, glow accents",
+      "source": "image_dominant"
+    },
+    "secondary": {
+      "hex": "#4ADE80",
+      "name": "Electric Green",
+      "usage": "Improvement deltas, positive metric color",
+      "source": "css_confirmed_by_image"
+    },
+    "warning": {
+      "hex": "#F87171",
+      "name": "Caution Red",
+      "usage": "Negative deltas, caution states",
+      "source": "css_only"
+    },
+    "background_dark": {
+      "hex": "#131820",
+      "name": "Carbon Gray",
+      "usage": "Cards, deep surfaces",
+      "source": "css_confirmed_by_image"
+    },
+    "background_mid": {
+      "hex": "#1F2A38",
+      "name": "Slate Mid",
+      "usage": "Mid panels, hairline backgrounds",
+      "source": "css_only"
+    },
+    "white": {
+      "hex": "#F8FAFC",
+      "name": "Track Chalk",
+      "usage": "Primary text on dark",
+      "source": "css_confirmed_by_image"
+    },
+    "soft_grey": {
+      "hex": "#94A3B8",
+      "name": "Stadium Mist",
+      "usage": "Secondary text, labels",
+      "source": "css_only"
+    }
+  },
+
+  "typography": {
+    "headings": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 800,
+      "letter_spacing": "-0.04em",
+      "notes": "Heavy display weight with tight tracking — feels like stadium signage"
+    },
+    "body": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 500,
+      "letter_spacing": "0em"
+    },
+    "accent": {
+      "family": "Inter",
+      "fallback": "system-ui, sans-serif",
+      "weight": 700,
+      "letter_spacing": "0.18em",
+      "notes": "Uppercase eyebrow labels with very wide tracking"
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "fallback": "ui-monospace, monospace",
+      "weight": 600,
+      "letter_spacing": "-0.02em",
+      "notes": "Used for metrics and tabular numerals so digits don't jitter on count-up"
+    }
+  },
+
+  "visual_style": {
+    "overall_aesthetic": "Dark, kinetic, impact-driven. Bold orange signal accents over near-black track surfaces. Grid hairlines suggest measurement. Reads like Nike Run Club + Adobe MAX intro.",
+    "shapes": {
+      "border_radius": "12-16px on cards; sharp 0px on stat bars; 999px for status pills",
+      "stroke_weight": "1.5-2px hairlines for grid; 3-4px for sparklines"
+    },
+    "effects": {
+      "glow_accents": true,
+      "shadows": "deep, orange-tinted, dramatic",
+      "glassmorphism": false,
+      "gradients": "directional radial orange→black for rim light; subtle slate vignette",
+      "scanlines": false,
+      "rim_light": true
+    },
+    "imagery": "Track-surface gradients; sparklines; high-contrast metric cards; chevron motifs"
+  },
+
+  "components": {
+    "buttons": "Filled signal-orange with track-black label; large 56px tap target",
+    "cards": "Carbon-gray surface with 12-16px radius and rim-lit orange glow",
+    "data_viz": "Sharp polyline sparklines over slate-mid grid; metric labels in mono; trend dots in green/orange"
+  },
+
+  "brand_voice": {
+    "tone": ["bold", "confident", "kinetic"],
+    "language_style": "Imperative, punchy, athletic. Short sentences. Numbers are heroes.",
+    "key_phrases": [
+      "Run with intent",
+      "For the long game",
+      "5K — Personal Best",
+      "Atlas knows your form"
+    ],
+    "avoid": ["Hype clichés", "Hashtag jargon", "Sentimental language"],
+    "energy_level": "high"
+  },
+
+  "motion_design": {
+    "philosophy": "Athletic snap — impact easing, count-up metrics, camera shake on PRs, sharp accent flashes",
+    "energy_curve": "high",
+    "pace": {
+      "average_beat_duration": "0.22",
+      "beat_density": "dense",
+      "vo_lead_time_ms": 10
+    },
+    "easing_personality": {
+      "primary": "easeOutExpo",
+      "secondary": "easeOutQuart",
+      "spring_config": "UISpring",
+      "use_overshoot": true,
+      "use_anticipation": false
+    },
+    "transition_vocabulary": {
+      "primary": "wipe",
+      "section_change": "slide",
+      "scene_change": "wipe",
+      "matched_cut_friendly": true,
+      "avoid": ["fade", "static holds longer than 0.3s"]
+    },
+    "camera_personality": {
+      "static": false,
+      "preferred_moves": ["whipPan", "pushIn", "pullOut"],
+      "intensity": "dramatic",
+      "use_parallax": true
+    },
+    "secondary_motion": {
+      "trail_intensity": "rich",
+      "follow_through": true,
+      "ambient_particle_density": "rich"
+    },
+    "animation_vocabulary": {
+      "text_entrance": "character-stagger",
+      "emphasis_technique": "scale-pulse",
+      "camera_beat_sync": "SFX-driven",
+      "color_transition": "shift-on-emphasis",
+      "shape_language": "geometric",
+      "lighting_style": "rim-light"
+    },
+    "sound_aesthetic_hint": "Bold & Punchy",
+    "reference_brands": ["Strava", "Nike Run Club", "Adobe MAX intro"],
+    "schema_version": "1.1"
+  },
+
+  "sources": {
+    "url": "https://atlas.run (fabricated for system validation)",
+    "url_pages_fetched": ["homepage"],
+    "images_provided": 0,
+    "image_types_detected": []
+  },
+
+  "field_confidence": {
+    "colors": "high",
+    "typography": "high",
+    "visual_style": "high",
+    "components": "high",
+    "brand_voice": "high",
+    "motion_design": "high"
+  },
+
+  "extraction_metadata": {
+    "primary_source": "synthesized for validation test",
+    "confidence": "high",
+    "confidence_notes": "Fabricated brief authored by validation workflow; values internally consistent.",
+    "extracted_at": "2026-05-12T00:00:00Z"
+  }
+}

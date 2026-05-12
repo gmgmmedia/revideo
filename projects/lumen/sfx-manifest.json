@@ -1,0 +1,103 @@
+{
+  "project": "lumen",
+  "schema_version": "1.0",
+  "framerate": 30,
+  "scenes": {
+    "scene1": [
+      {
+        "id": "s1_001",
+        "name": "orb_breathe_in",
+        "file": "./sfx/scene1/s1_001_orb_breathe_in.mp3",
+        "start_offset_seconds": 0.85,
+        "duration_seconds": 1.4,
+        "volume": 0.35,
+        "layer": "background",
+        "category": "ambient"
+      },
+      {
+        "id": "s1_002",
+        "name": "wordmark_wipe",
+        "file": "./sfx/scene1/s1_002_wordmark_wipe.mp3",
+        "start_offset_seconds": 1.55,
+        "duration_seconds": 0.7,
+        "volume": 0.55,
+        "layer": "accent",
+        "category": "transition"
+      },
+      {
+        "id": "s1_003",
+        "name": "curve_reveal",
+        "file": "./sfx/scene1/s1_003_curve_reveal.mp3",
+        "start_offset_seconds": 2.45,
+        "duration_seconds": 0.8,
+        "volume": 0.4,
+        "layer": "accent",
+        "category": "mechanical"
+      }
+    ],
+    "scene2": [
+      {
+        "id": "s2_001",
+        "name": "section_title_wipe",
+        "file": "./sfx/scene2/s2_001_section_title_wipe.mp3",
+        "start_offset_seconds": 0.55,
+        "duration_seconds": 0.6,
+        "volume": 0.45,
+        "layer": "accent",
+        "category": "transition"
+      },
+      {
+        "id": "s2_002",
+        "name": "cards_arrive",
+        "file": "./sfx/scene2/s2_002_cards_arrive.mp3",
+        "start_offset_seconds": 1.15,
+        "duration_seconds": 1.0,
+        "volume": 0.55,
+        "layer": "foreground",
+        "category": "ui"
+      },
+      {
+        "id": "s2_003",
+        "name": "focus_pull_push_in",
+        "file": "./sfx/scene2/s2_003_focus_pull_push_in.mp3",
+        "start_offset_seconds": 2.05,
+        "duration_seconds": 0.85,
+        "volume": 0.5,
+        "layer": "accent",
+        "category": "transition"
+      }
+    ],
+    "scene3": [
+      {
+        "id": "s3_001",
+        "name": "tagline_wipe",
+        "file": "./sfx/scene3/s3_001_tagline_wipe.mp3",
+        "start_offset_seconds": 0.55,
+        "duration_seconds": 0.8,
+        "volume": 0.5,
+        "layer": "accent",
+        "category": "transition"
+      },
+      {
+        "id": "s3_002",
+        "name": "signature_dot_spring",
+        "file": "./sfx/scene3/s3_002_signature_dot_spring.mp3",
+        "start_offset_seconds": 1.95,
+        "duration_seconds": 0.5,
+        "volume": 0.55,
+        "layer": "foreground",
+        "category": "ui"
+      },
+      {
+        "id": "s3_003",
+        "name": "outro_ambient",
+        "file": "./sfx/scene3/s3_003_outro_ambient.mp3",
+        "start_offset_seconds": 2.4,
+        "duration_seconds": 1.2,
+        "volume": 0.3,
+        "layer": "background",
+        "category": "ambient"
+      }
+    ]
+  }
+}
